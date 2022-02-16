@@ -983,3 +983,166 @@ AS
 						
 		COMMIT TRAN
 	END
+
+
+	--							PROVEEDORES
+--====================================================================================
+--INSERT
+CREATE PROCEDURE Gral.UDP_Proveedores_INSERT
+--VARIABLES DIRECCION
+	@Ciu_Codigo					INT,	
+	@Dir_Sector					VARCHAR(50),
+	@Dir_Calle					NVARCHAR(50),
+	@Dir_Avenida				NVARCHAR(50),
+	@Dir_Bloque					NVARCHAR(20),
+
+--VARIABLES PROVEEDOR 
+	@Pro_Empresa				NVARCHAR(50), 
+	@Pro_RepNombreS				NVARCHAR(100), 
+	@Pro_RepPriApellido			NVARCHAR(50),
+	@Pro_RepSegApellido			NVARCHAR(50), 
+	--@@IDENTITY Dir_Id
+	@Pro_TelFijo				NVARCHAR(8), 
+	@Pro_TelMovil				NVARCHAR(8), 
+	@Pro_Email					NVARCHAR(100), 
+	@Pro_PaginaWeb				NVARCHAR(MAX),
+	@UsuarioCrea				INT
+AS
+	BEGIN
+		BEGIN TRAN
+			DECLARE @Dir_Id		INT
+			
+					INSERT INTO Gral.tblDirecciones
+						(
+							Ciu_Codigo, 
+							Dir_Sector, 
+							Dir_Calle, 
+							Dir_Avenida, 
+							Dir_Bloque, 
+							Dir_Activo, 
+							Dir_UsuarioCrea, 
+							Dir_FechaCrea
+						)
+						VALUES
+							(
+								@Ciu_Codigo,
+								@Dir_Sector,
+								@Dir_Calle, 
+								@Dir_Avenida, 
+								@Dir_Bloque,
+								1,
+								@UsuarioCrea,
+								GETDATE()
+							)
+							SET @Dir_Id = @@IDENTITY
+
+					INSERT INTO Gral.tblProveedores
+						(				
+							Pro_Empresa,			
+							Pro_RepNombreS,			
+							Pro_RepPriApellido,		
+							Pro_RepSegApellido,		
+							Dir_Id,
+							Pro_TelFijo,			
+							Pro_TelMovil,			
+							Pro_Email,				
+							Pro_PaginaWeb,
+							Pro_Estado,
+							Pro_UsuarioCrea,
+							Pro_FechaCrea
+						)
+						VALUES
+							(					
+								@Pro_Empresa,			
+								@Pro_RepNombreS,			
+								@Pro_RepPriApellido,		
+								@Pro_RepSegApellido,		
+								@Dir_Id,
+								@Pro_TelFijo,			
+								@Pro_TelMovil,			
+								@Pro_Email,				
+								@Pro_PaginaWeb,					
+								1,
+								@UsuarioCrea,
+								GETDATE()
+							)
+		COMMIT TRAN
+	END
+
+--Update
+CREATE PROCEDURE Gral.UDP_Proveedores_UPDATE
+	--VARIABLES DIRECCION
+	@Dir_Id						INT,
+	@Ciu_Codigo					INT,	
+	@Dir_Sector					VARCHAR(50),
+	@Dir_Calle					NVARCHAR(50),
+	@Dir_Avenida				NVARCHAR(50),
+	@Dir_Bloque					NVARCHAR(20),
+
+--VARIABLES PROVEEDOR
+	@Pro_Id						INT, 
+	@Pro_Empresa				NVARCHAR(50), 
+	@Pro_RepNombreS				NVARCHAR(100), 
+	@Pro_RepPriApellido			NVARCHAR(50),
+	@Pro_RepSegApellido			NVARCHAR(50), 
+	@Pro_TelFijo				NVARCHAR(8), 
+	@Pro_TelMovil				NVARCHAR(8), 
+	@Pro_Email					NVARCHAR(100), 
+	@Pro_PaginaWeb				NVARCHAR(MAX),
+	@UsuarioModifica				INT
+
+AS
+	BEGIN
+		BEGIN TRAN
+					UPDATE	Gral.tblDirecciones
+					SET		Ciu_Codigo			= @Ciu_Codigo,	
+							Dir_Sector			= @Dir_Sector,	
+							Dir_Calle			= @Dir_Calle,	
+							Dir_Avenida			= @Dir_Avenida,
+							Dir_Bloque			= @Dir_Bloque,
+							Dir_UsuarioModifica = @UsuarioModifica,
+							Dir_FechaModifica	= GETDATE()
+					WHERE	@Dir_Id				= @Dir_Id
+
+					
+					UPDATE	Gral.tblProveedores
+					SET		Pro_Empresa			= @Pro_Empresa,			
+							Pro_RepNombreS		= @Pro_RepNombreS,			
+							Pro_RepPriApellido	= @Pro_RepPriApellido,			
+							Pro_RepSegApellido	= @Pro_RepSegApellido,		
+							Pro_TelFijo			= @Pro_TelFijo,			
+							Pro_TelMovil		= @Pro_TelMovil,			
+							Pro_Email			= @Pro_Email,				
+							Pro_PaginaWeb		= @Pro_PaginaWeb,			
+							Pro_UsuarioModifica	= @UsuarioModifica,		
+							Pro_FechaModifica	= GETDATE()
+					WHERE	Pro_Id				= @Pro_Id
+						
+		COMMIT TRAN
+	END
+
+CREATE PROCEDURE Gral.UDP_Proveedor_DELETE
+	--VARIABLES PERSONA
+	@Pro_Id						INT,
+	@UsuarioModifica			INT,
+	--VARIABLES DIRECCION
+	@Dir_Id						INT
+	
+AS
+	BEGIN
+		BEGIN TRAN
+					UPDATE	Gral.tblProveedores
+					SET		Pro_Estado					= 0,
+							Pro_UsuarioModifica			= @UsuarioModifica,
+							Pro_FechaModifica			= GETDATE()
+					WHERE	Pro_Id						= @Pro_Id
+
+					
+					UPDATE	Gral.tblDirecciones
+					SET		Dir_Activo				= 0,
+							Dir_UsuarioModifica		= @UsuarioModifica,
+							Dir_FechaModifica		= GETDATE()
+					WHERE	Dir_Id					= @Dir_Id
+						
+		COMMIT TRAN
+	END
