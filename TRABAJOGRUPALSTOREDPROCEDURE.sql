@@ -400,26 +400,33 @@ CREATE PROCEDURE UDP_Compras_INSERT
 	@Cop_UsuarioCrea			INT
 AS
 	BEGIN
-		INSERT INTO Fact.tblCompras
-		(
-			Cop_NumFactura,	
-			Cop_Fecha,		
-			Prd_Id,		
-			Cop_Cantidad,
-			Cop_Estado,
-			Cop_UsuarioCrea,
-			Cop_FechaCrea
-		)
-		VALUES	
-		(
-			@Cop_NumFactura,	
-			@Cop_Fecha,	
-			@Prd_Id,			
-			@Cop_Cantidad,
-			1,
-			@Cop_UsuarioCrea,
-			GETDATE()
-		)
+		BEGIN TRAN
+			UPDATE  Fact.tblProductos
+			SET		Prd_Stock = Prd_Stock + @Cop_Cantidad
+			WHERE	Prd_Id = @Prd_Id
+
+
+			INSERT INTO Fact.tblCompras
+			(
+				Cop_NumFactura,	
+				Cop_Fecha,		
+				Prd_Id,		
+				Cop_Cantidad,
+				Cop_Estado,
+				Cop_UsuarioCrea,
+				Cop_FechaCrea
+			)
+			VALUES	
+			(
+				@Cop_NumFactura,	
+				@Cop_Fecha,	
+				@Prd_Id,			
+				@Cop_Cantidad,
+				1,
+				@Cop_UsuarioCrea,
+				GETDATE()
+			)
+		COMMIT TRAN
 	END
 
 ----------------UPDATE------------------
@@ -429,17 +436,25 @@ CREATE PROCEDURE UDP_Compras_UPDATE
 	@Cop_Fecha					DATE,
 	@Prd_Id						INT,
 	@Cop_Cantidad				INT,
-	@Cop_UsuarioModifica		INT
+	@Cop_UsuarioModifica		INT,
+--VARIABLES PRODUCTO
+	@Prd_Stock					INT
 AS
 	BEGIN
-		UPDATE Fact.tblCompras
-		SET		Cop_NumFactura		=  @Cop_NumFactura,		
-				Cop_Fecha			=  @Cop_Fecha,			
-				Prd_Id				=  @Prd_Id,				
-				Cop_Cantidad		=  @Cop_Cantidad,		
-				Cop_UsuarioModifica	=  @Cop_UsuarioModifica,
-				Cop_FechaModifica	=  GETDATE()
-		WHERE	Cop_Id = @Cop_Id
+		BEGIN TRAN
+			UPDATE  Fact.tblProductos
+			SET		Prd_Stock = @Prd_Stock
+			WHERE	Prd_Id = @Prd_Id
+
+			UPDATE Fact.tblCompras
+			SET		Cop_NumFactura		=  @Cop_NumFactura,		
+					Cop_Fecha			=  @Cop_Fecha,			
+					Prd_Id				=  @Prd_Id,				
+					Cop_Cantidad		=  @Cop_Cantidad,		
+					Cop_UsuarioModifica	=  @Cop_UsuarioModifica,
+					Cop_FechaModifica	=  GETDATE()
+			WHERE	Cop_Id = @Cop_Id
+		COMMIT TRAN
 	END
 
 ----------------DELELE------------------
@@ -463,7 +478,6 @@ CREATE PROCEDURE Fact.UDP_Venta_INSERT
 	--VARIABLES ENCABEZADO
 	@VentEnc_NumFactura			INT , 
 	@VentEnc_Fecha				DATETIME,
-	@Per_Id						INT,
 	@VentEnc_Total				MONEY,
 	@Ven_UsuarioCrea			INT,	
 	--VARIABLES DETALLE
@@ -472,13 +486,28 @@ CREATE PROCEDURE Fact.UDP_Venta_INSERT
 	@VentDet_Cantidad			INT,
 	@VentDet_Descuento			MONEY,
 	@VentDet_Impuesto			NVARCHAR(10),
+--VARIABLES CLIENTE QUE SE REGISTRAN EN PERSONAS
+	@Per_Identidad				NVARCHAR(13),
+	@Per_Rtn					NVARCHAR(15),
+	@Per_Nombres				NVARCHAR(50),
+	@Per_PrimerApellido			NVARCHAR(50),
+	@Per_SegundoApellido		NVARCHAR(100),
+	@Per_Sexo					CHAR(1),
+	@Dir_Id						INT,
+	@Per_Telefono				NVARCHAR(8),
+	@Per_Correo					NVARCHAR(60),
 	@cont						INT
 AS
 	BEGIN
 		BEGIN TRAN
-			DECLARE @i	INT
+			DECLARE @i			INT
+			DECLARE @Cliente_Id INT
 			IF @cont = 0
 				BEGIN
+					UPDATE  Fact.tblProductos
+					SET		Prd_Stock = Prd_Stock - @VentDet_Cantidad
+					WHERE	Prd_Id = @Prd_Id
+					SET @Cliente_Id = (SELECT MAX(Per_Id) FROM Gral.tblPersonas)
 					INSERT INTO Fact.tblVentaEncabezado
 						(
 							VentEnc_NumFactura,	
@@ -493,7 +522,7 @@ AS
 						(
 							@VentEnc_NumFactura,	
 							@VentEnc_Fecha,		
-							@Per_Id,				
+							@Cliente_Id,				
 							@VentEnc_Total,
 							1,
 							@Ven_UsuarioCrea,
@@ -581,12 +610,18 @@ CREATE PROCEDURE Fact.UDP_Venta_UPDATE
 	@VentDet_Cantidad			INT,
 	@VentDet_Descuento			MONEY,
 	@VentDet_Impuesto			NVARCHAR(10),
+--VARIABLES PRODUCTO
+	@Prd_Stock					INT,
 	@cont						INT
 AS
 	BEGIN
 		BEGIN TRAN
 			IF @cont = 0
 				BEGIN
+					UPDATE  Fact.tblProductos
+					SET		Prd_Stock = @Prd_Stock
+					WHERE	Prd_Id = @Prd_Id
+
 					UPDATE	Fact.tblVentaEncabezado
 					SET		VentEnc_NumFactura			= @VentEnc_NumFactura,
 							VentEnc_Fecha				= @VentEnc_Fecha,
@@ -642,7 +677,7 @@ AS
 						--DIRECCION-PERSONA
 --=============================================================================
 --INSERT
-CREATE PROCEDURE Fact.UDP_Personas_INSERT
+CREATE PROCEDURE Fact.UDP_Personas_INSERT_1
 --VARIABLES DEPARTAMENTO
 	@Dep_Codigo					NVARCHAR(2),
 	@Dep_Descripcion			NVARCHAR(50),
@@ -871,7 +906,7 @@ AS
 
 
 --UPDATE
-CREATE PROCEDURE Fact.UDP_Venta_UPDATE
+CREATE PROCEDURE Fact.UDP_Personas_UPDATE
 	--VARIABLES DIRECCION
 	@Dir_Id						INT,
 	@Ciu_Id						INT,	
@@ -923,7 +958,7 @@ AS
 	END
 
 
-CREATE PROCEDURE Fact.UDP_Venta_DELETE
+CREATE PROCEDURE Fact.UDP_Personas_DELETE
 	--VARIABLES PERSONA
 	@Per_Id						INT,
 	@UsuarioModifica			INT,
