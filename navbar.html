@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+  <!-- Coding by CodingLab | www.codinglabweb.com -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+   
+    <link rel="stylesheet" href="Proyecto/assets/css/Nav-Styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bx-command'></i>
+                <div class="logo_name" id="nick_logo">Supermercado<br> <h6>_Supermercado</h6></div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+
+    
+
+
+        <ul class="nav_list">
+            <li>
+                <a href="#">
+                    <i class='bx bx-user' ></i>
+                    <span class="links_name">Usuario</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-user' ></i>
+                    <span class="links_name">Personas</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-user-badge' ></i>
+                    <span class="links_name">Proveedores</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-user-badge' ></i>
+                    <span class="links_name">Venta/Compras</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-offer'></i>
+                    <span class="links_name">Articulos</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-grid-alt' ></i>
+                    <span class="links_name">Ejemplo</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-grid-alt' ></i>
+                    <span class="links_name">Ejemplo</span>
+                </a>
+            </li>
+        </ul>
+
+
+
+
+
+
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">Ejemplo</div>
+                        <div class="job">Ejemplo dos </div>
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out"></i>  
+            </div>
+
+           
+        </div>
+
+<script>
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+
+    btn.onclick = function() {
+        sidebar.classList.toggle("active");
+
+    }
+
+
+
+</script>
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
+</body>
+</html>
