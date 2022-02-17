@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+ 
 }
 
 body{
@@ -15,6 +16,8 @@ body{
 }
 
 .sidebar{
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 6px #1a1922c0;
     position: fixed;
     top: 0;
     left: 0;
