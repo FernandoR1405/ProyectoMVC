@@ -486,16 +486,6 @@ CREATE PROCEDURE Fact.UDP_Venta_INSERT
 	@VentDet_Cantidad			INT,
 	@VentDet_Descuento			MONEY,
 	@VentDet_Impuesto			NVARCHAR(10),
---VARIABLES CLIENTE QUE SE REGISTRAN EN PERSONAS
-	@Per_Identidad				NVARCHAR(13),
-	@Per_Rtn					NVARCHAR(15),
-	@Per_Nombres				NVARCHAR(50),
-	@Per_PrimerApellido			NVARCHAR(50),
-	@Per_SegundoApellido		NVARCHAR(100),
-	@Per_Sexo					CHAR(1),
-	@Dir_Id						INT,
-	@Per_Telefono				NVARCHAR(8),
-	@Per_Correo					NVARCHAR(60),
 	@cont						INT
 AS
 	BEGIN
