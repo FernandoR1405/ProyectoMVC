@@ -44,8 +44,10 @@ body{
     display: flex;
     height: 210px;
     width: 100%;
+    font-size: 0px;
     align-items: center;
     opacity: 0;
+    font-size: 0px;
     pointer-events: none;
     transition: all 0.5s ease;
 }
@@ -124,11 +126,13 @@ body{
 
 .sidebar .links_name{
     opacity: 0;
+    font-size: 0px;
     transition: all 0.5s ease;
 }
 
 .sidebar.active .links_name{
     opacity: 1;
+    font-size: 15px;
     pointer-events: auto;
 }
 
@@ -144,12 +148,13 @@ body{
     position: relative;
     padding: 10px 6px;
     height: 60px;
-}
+}   
 
 .profile_content .profile .profile_details{
     display: flex;
     align-items: center;
     opacity: 0;
+    font-size: 0px;
     pointer-events: auto;
     white-space: nowrap;
     transition: all 0.5s ease;
@@ -158,8 +163,7 @@ body{
 .sidebar.active .profile .profile_details{
     opacity: 1;
     pointer-events: auto;
-    
-
+    font-size: 15px;
 }
 
 .profile .profile_details .name_job{
@@ -169,13 +173,13 @@ body{
 
 
 .profile .profile_details .name{
-    font-size: 15px;
+    /* font-size: 15px; */
     font-weight: 400;
 }
-
+/* 
 .profile .profile_details .job{
     font-size: 12px;
-}
+} */
 
 .profile #log_out{
     position:  absolute;
