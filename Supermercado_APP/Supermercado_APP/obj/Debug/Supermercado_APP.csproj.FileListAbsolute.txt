@@ -247,3 +247,5 @@ C:\Users\Dell\Documents\GitHub\ProyectoMVC\Supermercado_APP\Supermercado_APP\obj
 C:\Users\Dell\Documents\GitHub\ProyectoMVC\Supermercado_APP\Supermercado_APP\obj\Debug\Supermercado_APP.csproj.CopyComplete
 C:\Users\Dell\Documents\GitHub\ProyectoMVC\Supermercado_APP\Supermercado_APP\obj\Debug\Supermercado_APP.dll
 C:\Users\Dell\Documents\GitHub\ProyectoMVC\Supermercado_APP\Supermercado_APP\obj\Debug\Supermercado_APP.pdb
+C:\Users\rapal\Documents\GitHub\Supermercado_APP\Supermercado_APP\obj\Debug\Supermercado_APP.csproj.AssemblyReference.cache
+C:\Users\rapal\Documents\GitHub\Supermercado_APP\Supermercado_APP\obj\Debug\Supermercado_APP.csproj.CoreCompileInputs.cache
