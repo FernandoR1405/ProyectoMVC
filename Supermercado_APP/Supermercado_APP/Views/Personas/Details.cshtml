@@ -1,0 +1,131 @@
+﻿@model Supermercado_APP.Models.tblPersona
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblPersona</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Per_Identidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Per_Identidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Per_Rtn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Per_Rtn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Per_Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Per_Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Per_PrimerApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Per_PrimerApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Per_SegundoApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Per_SegundoApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Per_Sexo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Per_Sexo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Per_Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Per_Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Per_Correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Per_Correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Per_EsActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Per_EsActivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Per_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Per_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Per_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Per_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblDireccione.Dir_Sector)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblDireccione.Dir_Sector)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Per_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

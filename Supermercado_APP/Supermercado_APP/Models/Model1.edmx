@@ -1,0 +1,2277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SupermercadoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblUsuarios">
+          <Key>
+            <PropertyRef Name="Usu_Id" />
+          </Key>
+          <Property Name="Usu_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usu_UsuarioNombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="Usu_Contrasena" Type="nvarchar" MaxLength="100" />
+          <Property Name="Usu_EsAdmin" Type="bit" />
+          <Property Name="CarP_Id" Type="int" />
+          <Property Name="Usu_Activo" Type="bit" />
+          <Property Name="Usu_UsuarioCrea" Type="int" Nullable="false" />
+          <Property Name="Usu_FechaCrea" Type="datetime" Nullable="false" />
+          <Property Name="Usu_UsuarioModifica" Type="int" />
+          <Property Name="Usu_FechaModifica" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblCategorias">
+          <Key>
+            <PropertyRef Name="Cat_Id" />
+          </Key>
+          <Property Name="Cat_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cat_Descripcion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cat_Estado" Type="bit" Nullable="false" />
+          <Property Name="Cat_UsuarioCrea" Type="int" Nullable="false" />
+          <Property Name="Cat_FechaCrea" Type="date" Nullable="false" />
+          <Property Name="Cat_UsuarioModifica" Type="int" />
+          <Property Name="Cat_FechaModifica" Type="date" />
+        </EntityType>
+        <EntityType Name="tblCompras">
+          <Key>
+            <PropertyRef Name="Cop_Id" />
+          </Key>
+          <Property Name="Cop_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cop_NumFactura" Type="nvarchar" MaxLength="20" />
+          <Property Name="Cop_Fecha" Type="date" />
+          <Property Name="Prd_Id" Type="int" />
+          <Property Name="Cop_Cantidad" Type="int" />
+          <Property Name="Cop_Estado" Type="bit" Nullable="false" />
+          <Property Name="Cop_UsuarioCrea" Type="int" Nullable="false" />
+          <Property Name="Cop_FechaCrea" Type="date" Nullable="false" />
+          <Property Name="Cop_UsuarioModifica" Type="int" />
+          <Property Name="Cop_FechaModifica" Type="date" />
+        </EntityType>
+        <EntityType Name="tblProductos">
+          <Key>
+            <PropertyRef Name="Prd_Id" />
+          </Key>
+          <Property Name="Prd_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prd_Codigo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Prd_Descripcion" Type="nvarchar(max)" />
+          <Property Name="Cat_Id" Type="int" />
+          <Property Name="Pro_Id" Type="int" />
+          <Property Name="Prd_Stock" Type="int" />
+          <Property Name="Prd_PrecioCompra" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="Prd_PrecioVenta" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="Prd_Imagen" Type="image" />
+          <Property Name="Prd_Estado" Type="bit" Nullable="false" />
+          <Property Name="Prd_UsuarioCrea" Type="int" Nullable="false" />
+          <Property Name="Prd_FechaCrea" Type="date" Nullable="false" />
+          <Property Name="Prd_UsuarioModifica" Type="int" />
+          <Property Name="Prd_FechaModifica" Type="date" />
+        </EntityType>
+        <EntityType Name="tblventadetalle">
+          <Key>
+            <PropertyRef Name="VentDet_Id" />
+          </Key>
+          <Property Name="VentDet_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VentEnc_Id" Type="int" />
+          <Property Name="Prd_Id" Type="int" />
+          <Property Name="VentDet_Precio" Type="money" />
+          <Property Name="VentDet_Cantidad" Type="int" />
+          <Property Name="VentDet_Descuento" Type="money" />
+          <Property Name="VentDet_Impuesto" Type="nvarchar" MaxLength="10" />
+          <Property Name="VentDet_Subtotal" Type="money" />
+          <Property Name="VentDet_Activo" Type="bit" />
+          <Property Name="VentDet_UsuarioCrea" Type="int" />
+          <Property Name="VentDet_FechaCrea" Type="datetime" />
+          <Property Name="VentDet_UsuarioModifica" Type="int" />
+          <Property Name="VentDet_FechaModifica" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblVentaEncabezado">
+          <Key>
+            <PropertyRef Name="VentEnc_Id" />
+          </Key>
+          <Property Name="VentEnc_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VentEnc_NumFactura" Type="int" />
+          <Property Name="VentEnc_Fecha" Type="datetime" />
+          <Property Name="Per_Id" Type="int" />
+          <Property Name="VentEnc_Total" Type="money" />
+          <Property Name="VentEnc_Activo" Type="bit" />
+          <Property Name="VentEnc_UsuarioCrea" Type="int" />
+          <Property Name="VentEnc_FechaCrea" Type="datetime" />
+          <Property Name="VentEnc_UsuarioModifica" Type="int" />
+          <Property Name="VentEnc_FechaModifica" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblCargos">
+          <Key>
+            <PropertyRef Name="Carg_Id" />
+          </Key>
+          <Property Name="Carg_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Carg_Descripcion" Type="nvarchar" MaxLength="60" />
+          <Property Name="Carg_EsActivo" Type="int" Nullable="false" />
+          <Property Name="Carg_UsuarioCrea" Type="int" Nullable="false" />
+          <Property Name="Carg_FechaCrea" Type="datetime" Nullable="false" />
+          <Property Name="Carg_UsuarioModifica" Type="int" />
+          <Property Name="Carg_FechaModifica" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblCargosPersonas">
+          <Key>
+            <PropertyRef Name="CarP_Id" />
+          </Key>
+          <Property Name="CarP_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Carg_Id" Type="int" />
+          <Property Name="Per_Id" Type="int" />
+          <Property Name="CarP_EsActivo" Type="int" Nullable="false" />
+          <Property Name="CarP_UsuarioCrea" Type="int" Nullable="false" />
+          <Property Name="CarP_FechaCrea" Type="datetime" Nullable="false" />
+          <Property Name="CarP_UsuarioModifica" Type="int" />
+          <Property Name="CarP_FechaModifica" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblCiudades">
+          <Key>
+            <PropertyRef Name="Ciu_Codigo" />
+          </Key>
+          <Property Name="Ciu_Codigo" Type="int" Nullable="false" />
+          <Property Name="Ciu_Descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dep_Codigo" Type="int" />
+          <Property Name="Ciu_Activo" Type="bit" />
+          <Property Name="Ciu_UsuarioCrea" Type="int" />
+          <Property Name="Ciu_FechaCrea" Type="datetime" />
+          <Property Name="Ciu_UsuarioModifica" Type="int" />
+          <Property Name="Ciu_FechaModifica" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblDepartamentos">
+          <Key>
+            <PropertyRef Name="Dep_Codigo" />
+          </Key>
+          <Property Name="Dep_Codigo" Type="int" Nullable="false" />
+          <Property Name="Dep_Descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dep_Activo" Type="bit" />
+          <Property Name="Dep_UsuarioCrea" Type="int" />
+          <Property Name="Dep_FechaCrea" Type="datetime" />
+          <Property Name="Dep_UsuarioModifica" Type="int" />
+          <Property Name="Dep_FechaModifica" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblDirecciones">
+          <Key>
+            <PropertyRef Name="Dir_Id" />
+          </Key>
+          <Property Name="Dir_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ciu_Codigo" Type="int" />
+          <Property Name="Dir_Sector" Type="varchar" MaxLength="50" />
+          <Property Name="Dir_Calle" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dir_Avenida" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dir_Bloque" Type="nvarchar" MaxLength="20" />
+          <Property Name="Dir_Activo" Type="bit" />
+          <Property Name="Dir_UsuarioCrea" Type="int" />
+          <Property Name="Dir_FechaCrea" Type="datetime" />
+          <Property Name="Dir_UsuarioModifica" Type="int" />
+          <Property Name="Dir_FechaModifica" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPersonas">
+          <Key>
+            <PropertyRef Name="Per_Id" />
+          </Key>
+          <Property Name="Per_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Per_Identidad" Type="nvarchar" MaxLength="13" />
+          <Property Name="Per_Rtn" Type="nvarchar" MaxLength="15" />
+          <Property Name="Per_Nombres" Type="nvarchar" MaxLength="50" />
+          <Property Name="Per_PrimerApellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="Per_SegundoApellido" Type="nvarchar" MaxLength="100" />
+          <Property Name="Per_Sexo" Type="char" MaxLength="1" />
+          <Property Name="Dir_Id" Type="int" />
+          <Property Name="Per_Telefono" Type="nvarchar" MaxLength="8" />
+          <Property Name="Per_Correo" Type="nvarchar" MaxLength="60" />
+          <Property Name="Per_EsActivo" Type="int" Nullable="false" />
+          <Property Name="Per_UsuarioCrea" Type="int" Nullable="false" />
+          <Property Name="Per_FechaCrea" Type="datetime" Nullable="false" />
+          <Property Name="Per_UsuarioModifica" Type="int" />
+          <Property Name="Per_FechaModifica" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblProveedores">
+          <Key>
+            <PropertyRef Name="Pro_Id" />
+          </Key>
+          <Property Name="Pro_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pro_Empresa" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pro_RepNombreS" Type="nvarchar" MaxLength="100" />
+          <Property Name="Pro_RepPriApellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pro_RepSegApellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dir_Id" Type="int" />
+          <Property Name="Pro_TelFijo" Type="nvarchar" MaxLength="8" />
+          <Property Name="Pro_TelMovil" Type="nvarchar" MaxLength="8" />
+          <Property Name="Pro_Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Pro_PaginaWeb" Type="nvarchar(max)" />
+          <Property Name="Pro_Estado" Type="bit" Nullable="false" />
+          <Property Name="Pro_UsuarioCrea" Type="int" Nullable="false" />
+          <Property Name="Pro_FechaCrea" Type="date" Nullable="false" />
+          <Property Name="Pro_UsuarioModifica" Type="int" />
+          <Property Name="Pro_FechaModifica" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_Usuario">
+          <Key>
+            <PropertyRef Name="IdU" />
+          </Key>
+          <Property Name="IdU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="100" />
+          <Property Name="Act" Type="bit" />
+          <Property Name="Adm" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <Association Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+          <End Role="tblCategorias" Type="Self.tblCategorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCategorias">
+              <PropertyRef Name="Cat_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblCategorias_Cat_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblCategorias" Type="Self.tblCategorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCategorias">
+              <PropertyRef Name="Cat_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblCompras_Cop_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+          <End Role="tblCompras" Type="Self.tblCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCompras">
+              <PropertyRef Name="Cop_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblCompras_Cop_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblCompras" Type="Self.tblCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCompras">
+              <PropertyRef Name="Cop_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblCompras_Fact_tblProductos_Prd_Id">
+          <End Role="tblProductos" Type="Self.tblProductos" Multiplicity="0..1" />
+          <End Role="tblCompras" Type="Self.tblCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductos">
+              <PropertyRef Name="Prd_Id" />
+            </Principal>
+            <Dependent Role="tblCompras">
+              <PropertyRef Name="Prd_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblProductos_Fact_tblCategorias_Cat_Id">
+          <End Role="tblCategorias" Type="Self.tblCategorias" Multiplicity="0..1" />
+          <End Role="tblProductos" Type="Self.tblProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategorias">
+              <PropertyRef Name="Cat_Id" />
+            </Principal>
+            <Dependent Role="tblProductos">
+              <PropertyRef Name="Cat_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblProductos_Gral_tblProveedores_Pro_Id">
+          <End Role="tblProveedores" Type="Self.tblProveedores" Multiplicity="0..1" />
+          <End Role="tblProductos" Type="Self.tblProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProveedores">
+              <PropertyRef Name="Pro_Id" />
+            </Principal>
+            <Dependent Role="tblProductos">
+              <PropertyRef Name="Pro_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblProductos_Prd_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+          <End Role="tblProductos" Type="Self.tblProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblProductos">
+              <PropertyRef Name="Prd_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblProductos_Prd_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblProductos" Type="Self.tblProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblProductos">
+              <PropertyRef Name="Prd_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tblProveedores_Gral_tblDirecciones_Dir_Id">
+          <End Role="tblDirecciones" Type="Self.tblDirecciones" Multiplicity="0..1" />
+          <End Role="tblProveedores" Type="Self.tblProveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDirecciones">
+              <PropertyRef Name="Dir_Id" />
+            </Principal>
+            <Dependent Role="tblProveedores">
+              <PropertyRef Name="Dir_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tblProveedores_Pro_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+          <End Role="tblProveedores" Type="Self.tblProveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblProveedores">
+              <PropertyRef Name="Pro_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tblProveedores_Pro_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+          <End Role="tblProveedores" Type="Self.tblProveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblProveedores">
+              <PropertyRef Name="Pro_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargos_Carg_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+          <End Role="tblCargos" Type="Self.tblCargos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCargos">
+              <PropertyRef Name="Carg_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargos_Carg_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblCargos" Type="Self.tblCargos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCargos">
+              <PropertyRef Name="Carg_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargosPersonas_CarP_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+          <End Role="tblCargosPersonas" Type="Self.tblCargosPersonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCargosPersonas">
+              <PropertyRef Name="CarP_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargosPersonas_CarP_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblCargosPersonas" Type="Self.tblCargosPersonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCargosPersonas">
+              <PropertyRef Name="CarP_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargosPersonas_tblCargos_Dir_Id">
+          <End Role="tblCargos" Type="Self.tblCargos" Multiplicity="0..1" />
+          <End Role="tblCargosPersonas" Type="Self.tblCargosPersonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCargos">
+              <PropertyRef Name="Carg_Id" />
+            </Principal>
+            <Dependent Role="tblCargosPersonas">
+              <PropertyRef Name="Carg_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargosPersonas_tblPersonas_Dir_Id">
+          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="0..1" />
+          <End Role="tblCargosPersonas" Type="Self.tblCargosPersonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersonas">
+              <PropertyRef Name="Per_Id" />
+            </Principal>
+            <Dependent Role="tblCargosPersonas">
+              <PropertyRef Name="Per_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCiudades_Ciu_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblCiudades" Type="Self.tblCiudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCiudades">
+              <PropertyRef Name="Ciu_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCiudades_Ciu_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblCiudades" Type="Self.tblCiudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCiudades">
+              <PropertyRef Name="Ciu_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCiudades_tblDepartamentos_Dep_Codigo">
+          <End Role="tblDepartamentos" Type="Self.tblDepartamentos" Multiplicity="0..1" />
+          <End Role="tblCiudades" Type="Self.tblCiudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDepartamentos">
+              <PropertyRef Name="Dep_Codigo" />
+            </Principal>
+            <Dependent Role="tblCiudades">
+              <PropertyRef Name="Dep_Codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDepartamentos_Dep_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblDepartamentos" Type="Self.tblDepartamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblDepartamentos">
+              <PropertyRef Name="Dep_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDepartamentos_Dep_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblDepartamentos" Type="Self.tblDepartamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblDepartamentos">
+              <PropertyRef Name="Dep_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDirecciones_Dir_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblDirecciones" Type="Self.tblDirecciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblDirecciones">
+              <PropertyRef Name="Dir_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDirecciones_Dir_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblDirecciones" Type="Self.tblDirecciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblDirecciones">
+              <PropertyRef Name="Dir_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDirecciones_tblDirecciones_Ciu_Codigo">
+          <End Role="tblCiudades" Type="Self.tblCiudades" Multiplicity="0..1" />
+          <End Role="tblDirecciones" Type="Self.tblDirecciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCiudades">
+              <PropertyRef Name="Ciu_Codigo" />
+            </Principal>
+            <Dependent Role="tblDirecciones">
+              <PropertyRef Name="Ciu_Codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPersonas_Per_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblPersonas">
+              <PropertyRef Name="Per_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPersonas_Per_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblPersonas">
+              <PropertyRef Name="Per_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPersonas_tblDireccion_Dir_Id">
+          <End Role="tblDirecciones" Type="Self.tblDirecciones" Multiplicity="0..1" />
+          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDirecciones">
+              <PropertyRef Name="Dir_Id" />
+            </Principal>
+            <Dependent Role="tblPersonas">
+              <PropertyRef Name="Dir_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsuarios_tblPersonas_CarP_Id">
+          <End Role="tblCargosPersonas" Type="Self.tblCargosPersonas" Multiplicity="0..1" />
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCargosPersonas">
+              <PropertyRef Name="CarP_Id" />
+            </Principal>
+            <Dependent Role="tblUsuarios">
+              <PropertyRef Name="CarP_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsuarios_Usu_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+          <End Role="tblUsuarios1" Type="Self.tblUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblUsuarios1">
+              <PropertyRef Name="Usu_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsuarios_Usu_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblUsuarios1" Type="Self.tblUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblUsuarios1">
+              <PropertyRef Name="Usu_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblventadetalle_tblProductos_Prd_Id">
+          <End Role="tblProductos" Type="Self.tblProductos" Multiplicity="0..1" />
+          <End Role="tblventadetalle" Type="Self.tblventadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductos">
+              <PropertyRef Name="Prd_Id" />
+            </Principal>
+            <Dependent Role="tblventadetalle">
+              <PropertyRef Name="Prd_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblventadetalle_tblVentaEncabezado_VentEnc_Id">
+          <End Role="tblVentaEncabezado" Type="Self.tblVentaEncabezado" Multiplicity="0..1" />
+          <End Role="tblventadetalle" Type="Self.tblventadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVentaEncabezado">
+              <PropertyRef Name="VentEnc_Id" />
+            </Principal>
+            <Dependent Role="tblventadetalle">
+              <PropertyRef Name="VentEnc_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblventadetalle_VentDet_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblventadetalle" Type="Self.tblventadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblventadetalle">
+              <PropertyRef Name="VentDet_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblventadetalle_VentDet_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblventadetalle" Type="Self.tblventadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblventadetalle">
+              <PropertyRef Name="VentDet_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVentaEncabezado_tblPersonas_Per_Id">
+          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="0..1" />
+          <End Role="tblVentaEncabezado" Type="Self.tblVentaEncabezado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersonas">
+              <PropertyRef Name="Per_Id" />
+            </Principal>
+            <Dependent Role="tblVentaEncabezado">
+              <PropertyRef Name="Per_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVentaEncabezado_VentEnc_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblVentaEncabezado" Type="Self.tblVentaEncabezado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblVentaEncabezado">
+              <PropertyRef Name="VentEnc_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVentaEncabezado_VentEnc_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="0..1" />
+          <End Role="tblVentaEncabezado" Type="Self.tblVentaEncabezado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblVentaEncabezado">
+              <PropertyRef Name="VentEnc_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="UDP_Inicio_Sesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+          <Parameter Name="Usu_UsuarioNombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Usu_Contrasena" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UDP_Usuario_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+          <Parameter Name="Usu_UsuarioNombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Usu_Contrasena" Type="nvarchar" Mode="In" />
+          <Parameter Name="Usu_EsAdmin" Type="bit" Mode="In" />
+          <Parameter Name="Usu_UsuarioCrea" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Usuario_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+          <Parameter Name="Usu_Id" Type="int" Mode="In" />
+          <Parameter Name="Usu_UsuarioNombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Usu_Contrasena" Type="nvarchar" Mode="In" />
+          <Parameter Name="Usu_EsAdmin" Type="bit" Mode="In" />
+          <Parameter Name="Usu_UsuarioModifica" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Categoria_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cat_Id" Type="int" Mode="In" />
+          <Parameter Name="Cat_UsuarioModifica" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Categoria_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cat_Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="Cat_UsuarioCrea" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Categoria_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cat_Id" Type="int" Mode="In" />
+          <Parameter Name="Cat_Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="Cat_UsuarioModifica" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Proveedores_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pro_Id" Type="int" Mode="In" />
+          <Parameter Name="Pro_UsuarioModifica" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Proveedores_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pro_Empresa" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_RepNombreS" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_RepPriApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_RepSegApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Dir_Id" Type="int" Mode="In" />
+          <Parameter Name="Pro_TelFijo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_TelMovil" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_PaginaWeb" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Pro_UsuarioCrea" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Proveedores_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pro_Id" Type="int" Mode="In" />
+          <Parameter Name="Pro_Empresa" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_RepNombreS" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_RepPriApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_RepSegApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Dir_Id" Type="int" Mode="In" />
+          <Parameter Name="Pro_TelFijo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_TelMovil" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pro_PaginaWeb" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Pro_UsuarioModifica" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_tblPersonas_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="Per_Id" Type="int" Mode="In" />
+          <Parameter Name="Per_UsuarioModifica" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_tblPersonas_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="Per_Identidad" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Rtn" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Nombres" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_PrimerApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_SegundoApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Sexo" Type="char" Mode="In" />
+          <Parameter Name="Dir_Id" Type="int" Mode="In" />
+          <Parameter Name="Per_Telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Correo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_UsuarioCrea" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_tblPersonas_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="Per_Id" Type="int" Mode="In" />
+          <Parameter Name="Per_Identidad" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Rtn" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Nombres" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_PrimerApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_SegundoApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Sexo" Type="char" Mode="In" />
+          <Parameter Name="Dir_Id" Type="int" Mode="In" />
+          <Parameter Name="Per_Telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Correo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_UsuarioModifica" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Usuario_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="Usu_Id" Type="int" Mode="In" />
+          <Parameter Name="Usu_UsuarioModifica" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="SupermercadoDBModelStoreContainer">
+          <EntitySet Name="tblUsuarios" EntityType="Self.tblUsuarios" Schema="Acce" store:Type="Tables" />
+          <EntitySet Name="tblCategorias" EntityType="Self.tblCategorias" Schema="Fact" store:Type="Tables" />
+          <EntitySet Name="tblCompras" EntityType="Self.tblCompras" Schema="Fact" store:Type="Tables" />
+          <EntitySet Name="tblProductos" EntityType="Self.tblProductos" Schema="Fact" store:Type="Tables" />
+          <EntitySet Name="tblventadetalle" EntityType="Self.tblventadetalle" Schema="Fact" store:Type="Tables" />
+          <EntitySet Name="tblVentaEncabezado" EntityType="Self.tblVentaEncabezado" Schema="Fact" store:Type="Tables" />
+          <EntitySet Name="tblCargos" EntityType="Self.tblCargos" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tblCargosPersonas" EntityType="Self.tblCargosPersonas" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tblCiudades" EntityType="Self.tblCiudades" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tblDepartamentos" EntityType="Self.tblDepartamentos" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tblDirecciones" EntityType="Self.tblDirecciones" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tblPersonas" EntityType="Self.tblPersonas" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tblProveedores" EntityType="Self.tblProveedores" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="VW_Usuario" EntityType="Self.VW_Usuario" store:Type="Views" store:Schema="Acce">
+            <DefiningQuery>SELECT 
+[VW_Usuario].[IdU] AS [IdU], 
+[VW_Usuario].[Nombre] AS [Nombre], 
+[VW_Usuario].[Pass] AS [Pass], 
+[VW_Usuario].[Act] AS [Act], 
+[VW_Usuario].[Adm] AS [Adm]
+FROM [Acce].[VW_Usuario] AS [VW_Usuario]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCategorias" EntitySet="tblCategorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblCategorias_Cat_UsuarioModifica_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCategorias_Cat_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCategorias" EntitySet="tblCategorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblCompras_Cop_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCompras_Cop_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCompras" EntitySet="tblCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblCompras_Cop_UsuarioModifica_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCompras_Cop_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCompras" EntitySet="tblCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblCompras_Fact_tblProductos_Prd_Id" Association="Self.FK_Fact_tblCompras_Fact_tblProductos_Prd_Id">
+            <End Role="tblProductos" EntitySet="tblProductos" />
+            <End Role="tblCompras" EntitySet="tblCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblProductos_Fact_tblCategorias_Cat_Id" Association="Self.FK_Fact_tblProductos_Fact_tblCategorias_Cat_Id">
+            <End Role="tblCategorias" EntitySet="tblCategorias" />
+            <End Role="tblProductos" EntitySet="tblProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblProductos_Gral_tblProveedores_Pro_Id" Association="Self.FK_Fact_tblProductos_Gral_tblProveedores_Pro_Id">
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+            <End Role="tblProductos" EntitySet="tblProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblProductos_Prd_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblProductos_Prd_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblProductos" EntitySet="tblProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblProductos_Prd_UsuarioModifica_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblProductos_Prd_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblProductos" EntitySet="tblProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tblProveedores_Gral_tblDirecciones_Dir_Id" Association="Self.FK_Gral_tblProveedores_Gral_tblDirecciones_Dir_Id">
+            <End Role="tblDirecciones" EntitySet="tblDirecciones" />
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tblProveedores_Pro_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Gral_tblProveedores_Pro_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tblProveedores_Pro_UsuarioModifica_Acc_tblUsuario_Usu_Id" Association="Self.FK_Gral_tblProveedores_Pro_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargos_Carg_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblCargos_Carg_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCargos" EntitySet="tblCargos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargos_Carg_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblCargos_Carg_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCargos" EntitySet="tblCargos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargosPersonas_CarP_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblCargosPersonas_CarP_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCargosPersonas" EntitySet="tblCargosPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargosPersonas_CarP_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblCargosPersonas_CarP_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCargosPersonas" EntitySet="tblCargosPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargosPersonas_tblCargos_Dir_Id" Association="Self.FK_tblCargosPersonas_tblCargos_Dir_Id">
+            <End Role="tblCargos" EntitySet="tblCargos" />
+            <End Role="tblCargosPersonas" EntitySet="tblCargosPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargosPersonas_tblPersonas_Dir_Id" Association="Self.FK_tblCargosPersonas_tblPersonas_Dir_Id">
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+            <End Role="tblCargosPersonas" EntitySet="tblCargosPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCiudades_Ciu_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblCiudades_Ciu_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCiudades" EntitySet="tblCiudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCiudades_Ciu_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblCiudades_Ciu_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCiudades" EntitySet="tblCiudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCiudades_tblDepartamentos_Dep_Codigo" Association="Self.FK_tblCiudades_tblDepartamentos_Dep_Codigo">
+            <End Role="tblDepartamentos" EntitySet="tblDepartamentos" />
+            <End Role="tblCiudades" EntitySet="tblCiudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDepartamentos_Dep_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblDepartamentos_Dep_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblDepartamentos" EntitySet="tblDepartamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDepartamentos_Dep_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblDepartamentos_Dep_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblDepartamentos" EntitySet="tblDepartamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDirecciones_Dir_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblDirecciones_Dir_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblDirecciones" EntitySet="tblDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDirecciones_Dir_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblDirecciones_Dir_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblDirecciones" EntitySet="tblDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDirecciones_tblDirecciones_Ciu_Codigo" Association="Self.FK_tblDirecciones_tblDirecciones_Ciu_Codigo">
+            <End Role="tblCiudades" EntitySet="tblCiudades" />
+            <End Role="tblDirecciones" EntitySet="tblDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPersonas_Per_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblPersonas_Per_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPersonas_Per_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblPersonas_Per_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPersonas_tblDireccion_Dir_Id" Association="Self.FK_tblPersonas_tblDireccion_Dir_Id">
+            <End Role="tblDirecciones" EntitySet="tblDirecciones" />
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsuarios_tblPersonas_CarP_Id" Association="Self.FK_tblUsuarios_tblPersonas_CarP_Id">
+            <End Role="tblCargosPersonas" EntitySet="tblCargosPersonas" />
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsuarios_Usu_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblUsuarios_Usu_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblUsuarios1" EntitySet="tblUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsuarios_Usu_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblUsuarios_Usu_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblUsuarios1" EntitySet="tblUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblventadetalle_tblProductos_Prd_Id" Association="Self.FK_tblventadetalle_tblProductos_Prd_Id">
+            <End Role="tblProductos" EntitySet="tblProductos" />
+            <End Role="tblventadetalle" EntitySet="tblventadetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblventadetalle_tblVentaEncabezado_VentEnc_Id" Association="Self.FK_tblventadetalle_tblVentaEncabezado_VentEnc_Id">
+            <End Role="tblVentaEncabezado" EntitySet="tblVentaEncabezado" />
+            <End Role="tblventadetalle" EntitySet="tblventadetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblventadetalle_VentDet_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblventadetalle_VentDet_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblventadetalle" EntitySet="tblventadetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblventadetalle_VentDet_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblventadetalle_VentDet_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblventadetalle" EntitySet="tblventadetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVentaEncabezado_tblPersonas_Per_Id" Association="Self.FK_tblVentaEncabezado_tblPersonas_Per_Id">
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+            <End Role="tblVentaEncabezado" EntitySet="tblVentaEncabezado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVentaEncabezado_VentEnc_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblVentaEncabezado_VentEnc_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblVentaEncabezado" EntitySet="tblVentaEncabezado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVentaEncabezado_VentEnc_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblVentaEncabezado_VentEnc_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblVentaEncabezado" EntitySet="tblVentaEncabezado" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SupermercadoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblUsuario">
+          <Key>
+            <PropertyRef Name="Usu_Id" />
+          </Key>
+          <Property Name="Usu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usu_UsuarioNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Usu_Contrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Usu_EsAdmin" Type="Boolean" />
+          <Property Name="CarP_Id" Type="Int32" />
+          <Property Name="Usu_Activo" Type="Boolean" />
+          <Property Name="Usu_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="Usu_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usu_UsuarioModifica" Type="Int32" />
+          <Property Name="Usu_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblCategorias" Relationship="Self.FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id" FromRole="tblUsuarios" ToRole="tblCategorias" />
+          <NavigationProperty Name="tblCategorias1" Relationship="Self.FK_Fact_tblCategorias_Cat_UsuarioModifica_Acc_tblUsuario_Usu_Id" FromRole="tblUsuarios" ToRole="tblCategorias" />
+          <NavigationProperty Name="tblCompras" Relationship="Self.FK_Fact_tblCompras_Cop_UsuarioCrea_Acc_tblUsuario_Usu_Id" FromRole="tblUsuarios" ToRole="tblCompras" />
+          <NavigationProperty Name="tblCompras1" Relationship="Self.FK_Fact_tblCompras_Cop_UsuarioModifica_Acc_tblUsuario_Usu_Id" FromRole="tblUsuarios" ToRole="tblCompras" />
+          <NavigationProperty Name="tblProductos" Relationship="Self.FK_Fact_tblProductos_Prd_UsuarioCrea_Acc_tblUsuario_Usu_Id" FromRole="tblUsuarios" ToRole="tblProductos" />
+          <NavigationProperty Name="tblProductos1" Relationship="Self.FK_Fact_tblProductos_Prd_UsuarioModifica_Acc_tblUsuario_Usu_Id" FromRole="tblUsuarios" ToRole="tblProductos" />
+          <NavigationProperty Name="tblProveedores" Relationship="Self.FK_Gral_tblProveedores_Pro_UsuarioCrea_Acc_tblUsuario_Usu_Id" FromRole="tblUsuarios" ToRole="tblProveedores" />
+          <NavigationProperty Name="tblProveedores1" Relationship="Self.FK_Gral_tblProveedores_Pro_UsuarioModifica_Acc_tblUsuario_Usu_Id" FromRole="tblUsuarios" ToRole="tblProveedores" />
+          <NavigationProperty Name="tblCargos" Relationship="Self.FK_tblCargos_Carg_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblCargos" />
+          <NavigationProperty Name="tblCargos1" Relationship="Self.FK_tblCargos_Carg_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblCargos" />
+          <NavigationProperty Name="tblCargosPersonas" Relationship="Self.FK_tblCargosPersonas_CarP_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblCargosPersonas" />
+          <NavigationProperty Name="tblCargosPersonas1" Relationship="Self.FK_tblCargosPersonas_CarP_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblCargosPersonas" />
+          <NavigationProperty Name="tblCiudades" Relationship="Self.FK_tblCiudades_Ciu_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblCiudades" />
+          <NavigationProperty Name="tblCiudades1" Relationship="Self.FK_tblCiudades_Ciu_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblCiudades" />
+          <NavigationProperty Name="tblDepartamentos" Relationship="Self.FK_tblDepartamentos_Dep_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblDepartamentos" />
+          <NavigationProperty Name="tblDepartamentos1" Relationship="Self.FK_tblDepartamentos_Dep_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblDepartamentos" />
+          <NavigationProperty Name="tblDirecciones" Relationship="Self.FK_tblDirecciones_Dir_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblDirecciones" />
+          <NavigationProperty Name="tblDirecciones1" Relationship="Self.FK_tblDirecciones_Dir_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblDirecciones" />
+          <NavigationProperty Name="tblPersonas" Relationship="Self.FK_tblPersonas_Per_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblPersonas" />
+          <NavigationProperty Name="tblPersonas1" Relationship="Self.FK_tblPersonas_Per_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblPersonas" />
+          <NavigationProperty Name="tblCargosPersona" Relationship="Self.FK_tblUsuarios_tblPersonas_CarP_Id" FromRole="tblUsuarios" ToRole="tblCargosPersonas" />
+          <NavigationProperty Name="tblUsuarios1" Relationship="Self.FK_tblUsuarios_Usu_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblUsuarios1" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_tblUsuarios_Usu_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblUsuarios1" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuarios11" Relationship="Self.FK_tblUsuarios_Usu_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblUsuarios1" />
+          <NavigationProperty Name="tblUsuario2" Relationship="Self.FK_tblUsuarios_Usu_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblUsuarios1" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblventadetalles" Relationship="Self.FK_tblventadetalle_VentDet_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblventadetalle" />
+          <NavigationProperty Name="tblventadetalles1" Relationship="Self.FK_tblventadetalle_VentDet_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblventadetalle" />
+          <NavigationProperty Name="tblVentaEncabezadoes" Relationship="Self.FK_tblVentaEncabezado_VentEnc_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblVentaEncabezado" />
+          <NavigationProperty Name="tblVentaEncabezadoes1" Relationship="Self.FK_tblVentaEncabezado_VentEnc_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblUsuarios" ToRole="tblVentaEncabezado" />
+        </EntityType>
+        <EntityType Name="tblCategoria">
+          <Key>
+            <PropertyRef Name="Cat_Id" />
+          </Key>
+          <Property Name="Cat_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cat_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Cat_Estado" Type="Boolean" Nullable="false" />
+          <Property Name="Cat_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="Cat_FechaCrea" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Cat_UsuarioModifica" Type="Int32" />
+          <Property Name="Cat_FechaModifica" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id" FromRole="tblCategorias" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_Fact_tblCategorias_Cat_UsuarioModifica_Acc_tblUsuario_Usu_Id" FromRole="tblCategorias" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblProductos" Relationship="Self.FK_Fact_tblProductos_Fact_tblCategorias_Cat_Id" FromRole="tblCategorias" ToRole="tblProductos" />
+        </EntityType>
+        <EntityType Name="tblCompra">
+          <Key>
+            <PropertyRef Name="Cop_Id" />
+          </Key>
+          <Property Name="Cop_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cop_NumFactura" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Cop_Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Prd_Id" Type="Int32" />
+          <Property Name="Cop_Cantidad" Type="Int32" />
+          <Property Name="Cop_Estado" Type="Boolean" Nullable="false" />
+          <Property Name="Cop_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="Cop_FechaCrea" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Cop_UsuarioModifica" Type="Int32" />
+          <Property Name="Cop_FechaModifica" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_Fact_tblCompras_Cop_UsuarioCrea_Acc_tblUsuario_Usu_Id" FromRole="tblCompras" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_Fact_tblCompras_Cop_UsuarioModifica_Acc_tblUsuario_Usu_Id" FromRole="tblCompras" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblProducto" Relationship="Self.FK_Fact_tblCompras_Fact_tblProductos_Prd_Id" FromRole="tblCompras" ToRole="tblProductos" />
+        </EntityType>
+        <EntityType Name="tblProducto">
+          <Key>
+            <PropertyRef Name="Prd_Id" />
+          </Key>
+          <Property Name="Prd_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prd_Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Prd_Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cat_Id" Type="Int32" />
+          <Property Name="Pro_Id" Type="Int32" />
+          <Property Name="Prd_Stock" Type="Int32" />
+          <Property Name="Prd_PrecioCompra" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Prd_PrecioVenta" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Prd_Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Prd_Estado" Type="Boolean" Nullable="false" />
+          <Property Name="Prd_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="Prd_FechaCrea" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Prd_UsuarioModifica" Type="Int32" />
+          <Property Name="Prd_FechaModifica" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_Fact_tblProductos_Prd_UsuarioCrea_Acc_tblUsuario_Usu_Id" FromRole="tblProductos" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_Fact_tblProductos_Prd_UsuarioModifica_Acc_tblUsuario_Usu_Id" FromRole="tblProductos" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblCategoria" Relationship="Self.FK_Fact_tblProductos_Fact_tblCategorias_Cat_Id" FromRole="tblProductos" ToRole="tblCategorias" />
+          <NavigationProperty Name="tblCompras" Relationship="Self.FK_Fact_tblCompras_Fact_tblProductos_Prd_Id" FromRole="tblProductos" ToRole="tblCompras" />
+          <NavigationProperty Name="tblProveedore" Relationship="Self.FK_Fact_tblProductos_Gral_tblProveedores_Pro_Id" FromRole="tblProductos" ToRole="tblProveedores" />
+          <NavigationProperty Name="tblventadetalles" Relationship="Self.FK_tblventadetalle_tblProductos_Prd_Id" FromRole="tblProductos" ToRole="tblventadetalle" />
+        </EntityType>
+        <EntityType Name="tblventadetalle">
+          <Key>
+            <PropertyRef Name="VentDet_Id" />
+          </Key>
+          <Property Name="VentDet_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VentEnc_Id" Type="Int32" />
+          <Property Name="Prd_Id" Type="Int32" />
+          <Property Name="VentDet_Precio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="VentDet_Cantidad" Type="Int32" />
+          <Property Name="VentDet_Descuento" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="VentDet_Impuesto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VentDet_Subtotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="VentDet_Activo" Type="Boolean" />
+          <Property Name="VentDet_UsuarioCrea" Type="Int32" />
+          <Property Name="VentDet_FechaCrea" Type="DateTime" Precision="3" />
+          <Property Name="VentDet_UsuarioModifica" Type="Int32" />
+          <Property Name="VentDet_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_tblventadetalle_VentDet_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblventadetalle" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_tblventadetalle_VentDet_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblventadetalle" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblProducto" Relationship="Self.FK_tblventadetalle_tblProductos_Prd_Id" FromRole="tblventadetalle" ToRole="tblProductos" />
+          <NavigationProperty Name="tblVentaEncabezado" Relationship="Self.FK_tblventadetalle_tblVentaEncabezado_VentEnc_Id" FromRole="tblventadetalle" ToRole="tblVentaEncabezado" />
+        </EntityType>
+        <EntityType Name="tblVentaEncabezado">
+          <Key>
+            <PropertyRef Name="VentEnc_Id" />
+          </Key>
+          <Property Name="VentEnc_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VentEnc_NumFactura" Type="Int32" />
+          <Property Name="VentEnc_Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Per_Id" Type="Int32" />
+          <Property Name="VentEnc_Total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="VentEnc_Activo" Type="Boolean" />
+          <Property Name="VentEnc_UsuarioCrea" Type="Int32" />
+          <Property Name="VentEnc_FechaCrea" Type="DateTime" Precision="3" />
+          <Property Name="VentEnc_UsuarioModifica" Type="Int32" />
+          <Property Name="VentEnc_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_tblVentaEncabezado_VentEnc_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblVentaEncabezado" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_tblVentaEncabezado_VentEnc_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblVentaEncabezado" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblventadetalles" Relationship="Self.FK_tblventadetalle_tblVentaEncabezado_VentEnc_Id" FromRole="tblVentaEncabezado" ToRole="tblventadetalle" />
+          <NavigationProperty Name="tblPersona" Relationship="Self.FK_tblVentaEncabezado_tblPersonas_Per_Id" FromRole="tblVentaEncabezado" ToRole="tblPersonas" />
+        </EntityType>
+        <EntityType Name="tblCargo">
+          <Key>
+            <PropertyRef Name="Carg_Id" />
+          </Key>
+          <Property Name="Carg_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Carg_Descripcion" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Carg_EsActivo" Type="Int32" Nullable="false" />
+          <Property Name="Carg_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="Carg_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Carg_UsuarioModifica" Type="Int32" />
+          <Property Name="Carg_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_tblCargos_Carg_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblCargos" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_tblCargos_Carg_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblCargos" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblCargosPersonas" Relationship="Self.FK_tblCargosPersonas_tblCargos_Dir_Id" FromRole="tblCargos" ToRole="tblCargosPersonas" />
+        </EntityType>
+        <EntityType Name="tblCargosPersona">
+          <Key>
+            <PropertyRef Name="CarP_Id" />
+          </Key>
+          <Property Name="CarP_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Carg_Id" Type="Int32" />
+          <Property Name="Per_Id" Type="Int32" />
+          <Property Name="CarP_EsActivo" Type="Int32" Nullable="false" />
+          <Property Name="CarP_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="CarP_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CarP_UsuarioModifica" Type="Int32" />
+          <Property Name="CarP_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_tblCargosPersonas_CarP_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblCargosPersonas" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_tblCargosPersonas_CarP_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblCargosPersonas" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuarios" Relationship="Self.FK_tblUsuarios_tblPersonas_CarP_Id" FromRole="tblCargosPersonas" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblCargo" Relationship="Self.FK_tblCargosPersonas_tblCargos_Dir_Id" FromRole="tblCargosPersonas" ToRole="tblCargos" />
+          <NavigationProperty Name="tblPersona" Relationship="Self.FK_tblCargosPersonas_tblPersonas_Dir_Id" FromRole="tblCargosPersonas" ToRole="tblPersonas" />
+        </EntityType>
+        <EntityType Name="tblCiudade">
+          <Key>
+            <PropertyRef Name="Ciu_Codigo" />
+          </Key>
+          <Property Name="Ciu_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Ciu_Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dep_Codigo" Type="Int32" />
+          <Property Name="Ciu_Activo" Type="Boolean" />
+          <Property Name="Ciu_UsuarioCrea" Type="Int32" />
+          <Property Name="Ciu_FechaCrea" Type="DateTime" Precision="3" />
+          <Property Name="Ciu_UsuarioModifica" Type="Int32" />
+          <Property Name="Ciu_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_tblCiudades_Ciu_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblCiudades" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_tblCiudades_Ciu_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblCiudades" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblDepartamento" Relationship="Self.FK_tblCiudades_tblDepartamentos_Dep_Codigo" FromRole="tblCiudades" ToRole="tblDepartamentos" />
+          <NavigationProperty Name="tblDirecciones" Relationship="Self.FK_tblDirecciones_tblDirecciones_Ciu_Codigo" FromRole="tblCiudades" ToRole="tblDirecciones" />
+        </EntityType>
+        <EntityType Name="tblDepartamento">
+          <Key>
+            <PropertyRef Name="Dep_Codigo" />
+          </Key>
+          <Property Name="Dep_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Dep_Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dep_Activo" Type="Boolean" />
+          <Property Name="Dep_UsuarioCrea" Type="Int32" />
+          <Property Name="Dep_FechaCrea" Type="DateTime" Precision="3" />
+          <Property Name="Dep_UsuarioModifica" Type="Int32" />
+          <Property Name="Dep_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_tblDepartamentos_Dep_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblDepartamentos" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_tblDepartamentos_Dep_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblDepartamentos" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblCiudades" Relationship="Self.FK_tblCiudades_tblDepartamentos_Dep_Codigo" FromRole="tblDepartamentos" ToRole="tblCiudades" />
+        </EntityType>
+        <EntityType Name="tblDireccione">
+          <Key>
+            <PropertyRef Name="Dir_Id" />
+          </Key>
+          <Property Name="Dir_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ciu_Codigo" Type="Int32" />
+          <Property Name="Dir_Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dir_Calle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dir_Avenida" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dir_Bloque" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Dir_Activo" Type="Boolean" />
+          <Property Name="Dir_UsuarioCrea" Type="Int32" />
+          <Property Name="Dir_FechaCrea" Type="DateTime" Precision="3" />
+          <Property Name="Dir_UsuarioModifica" Type="Int32" />
+          <Property Name="Dir_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_tblDirecciones_Dir_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblDirecciones" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_tblDirecciones_Dir_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblDirecciones" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblCiudade" Relationship="Self.FK_tblDirecciones_tblDirecciones_Ciu_Codigo" FromRole="tblDirecciones" ToRole="tblCiudades" />
+          <NavigationProperty Name="tblProveedores" Relationship="Self.FK_Gral_tblProveedores_Gral_tblDirecciones_Dir_Id" FromRole="tblDirecciones" ToRole="tblProveedores" />
+          <NavigationProperty Name="tblPersonas" Relationship="Self.FK_tblPersonas_tblDireccion_Dir_Id" FromRole="tblDirecciones" ToRole="tblPersonas" />
+        </EntityType>
+        <EntityType Name="tblPersona">
+          <Key>
+            <PropertyRef Name="Per_Id" />
+          </Key>
+          <Property Name="Per_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Per_Identidad" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Per_Rtn" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Per_Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Per_PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Per_SegundoApellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Per_Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Dir_Id" Type="Int32" />
+          <Property Name="Per_Telefono" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Per_Correo" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Per_EsActivo" Type="Int32" Nullable="false" />
+          <Property Name="Per_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="Per_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Per_UsuarioModifica" Type="Int32" />
+          <Property Name="Per_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_tblPersonas_Per_UsuarioCrea_tblUsuarios_Usu_Id" FromRole="tblPersonas" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_tblPersonas_Per_UsuarioModifica_tblUsuarios_Usu_Id" FromRole="tblPersonas" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblVentaEncabezadoes" Relationship="Self.FK_tblVentaEncabezado_tblPersonas_Per_Id" FromRole="tblPersonas" ToRole="tblVentaEncabezado" />
+          <NavigationProperty Name="tblCargosPersonas" Relationship="Self.FK_tblCargosPersonas_tblPersonas_Dir_Id" FromRole="tblPersonas" ToRole="tblCargosPersonas" />
+          <NavigationProperty Name="tblDireccione" Relationship="Self.FK_tblPersonas_tblDireccion_Dir_Id" FromRole="tblPersonas" ToRole="tblDirecciones" />
+        </EntityType>
+        <EntityType Name="tblProveedore">
+          <Key>
+            <PropertyRef Name="Pro_Id" />
+          </Key>
+          <Property Name="Pro_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pro_Empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pro_RepNombreS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Pro_RepPriApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pro_RepSegApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dir_Id" Type="Int32" />
+          <Property Name="Pro_TelFijo" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Pro_TelMovil" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Pro_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Pro_PaginaWeb" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pro_Estado" Type="Boolean" Nullable="false" />
+          <Property Name="Pro_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="Pro_FechaCrea" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Pro_UsuarioModifica" Type="Int32" />
+          <Property Name="Pro_FechaModifica" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblUsuario" Relationship="Self.FK_Gral_tblProveedores_Pro_UsuarioCrea_Acc_tblUsuario_Usu_Id" FromRole="tblProveedores" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_Gral_tblProveedores_Pro_UsuarioModifica_Acc_tblUsuario_Usu_Id" FromRole="tblProveedores" ToRole="tblUsuarios" />
+          <NavigationProperty Name="tblProductos" Relationship="Self.FK_Fact_tblProductos_Gral_tblProveedores_Pro_Id" FromRole="tblProveedores" ToRole="tblProductos" />
+          <NavigationProperty Name="tblDireccione" Relationship="Self.FK_Gral_tblProveedores_Gral_tblDirecciones_Dir_Id" FromRole="tblProveedores" ToRole="tblDirecciones" />
+        </EntityType>
+        <Association Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblCategorias" Type="Self.tblCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCategorias">
+              <PropertyRef Name="Cat_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblCategorias_Cat_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblCategorias" Type="Self.tblCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCategorias">
+              <PropertyRef Name="Cat_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblCompras_Cop_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblCompras" Type="Self.tblCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCompras">
+              <PropertyRef Name="Cop_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblCompras_Cop_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblCompras" Type="Self.tblCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCompras">
+              <PropertyRef Name="Cop_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblProductos_Prd_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblProductos" Type="Self.tblProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblProductos">
+              <PropertyRef Name="Prd_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblProductos_Prd_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblProductos" Type="Self.tblProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblProductos">
+              <PropertyRef Name="Prd_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tblProveedores_Pro_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblProveedores" Type="Self.tblProveedore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblProveedores">
+              <PropertyRef Name="Pro_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tblProveedores_Pro_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblProveedores" Type="Self.tblProveedore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblProveedores">
+              <PropertyRef Name="Pro_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargos_Carg_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblCargos" Type="Self.tblCargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCargos">
+              <PropertyRef Name="Carg_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargos_Carg_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblCargos" Type="Self.tblCargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCargos">
+              <PropertyRef Name="Carg_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargosPersonas_CarP_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblCargosPersonas" Type="Self.tblCargosPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCargosPersonas">
+              <PropertyRef Name="CarP_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargosPersonas_CarP_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblCargosPersonas" Type="Self.tblCargosPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCargosPersonas">
+              <PropertyRef Name="CarP_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCiudades_Ciu_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblCiudades" Type="Self.tblCiudade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCiudades">
+              <PropertyRef Name="Ciu_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCiudades_Ciu_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblCiudades" Type="Self.tblCiudade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblCiudades">
+              <PropertyRef Name="Ciu_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDepartamentos_Dep_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblDepartamentos" Type="Self.tblDepartamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblDepartamentos">
+              <PropertyRef Name="Dep_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDepartamentos_Dep_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblDepartamentos" Type="Self.tblDepartamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblDepartamentos">
+              <PropertyRef Name="Dep_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDirecciones_Dir_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblDirecciones" Type="Self.tblDireccione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblDirecciones">
+              <PropertyRef Name="Dir_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDirecciones_Dir_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblDirecciones" Type="Self.tblDireccione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblDirecciones">
+              <PropertyRef Name="Dir_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPersonas_Per_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblPersonas" Type="Self.tblPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblPersonas">
+              <PropertyRef Name="Per_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPersonas_Per_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblPersonas" Type="Self.tblPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblPersonas">
+              <PropertyRef Name="Per_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsuarios_tblPersonas_CarP_Id">
+          <End Role="tblCargosPersonas" Type="Self.tblCargosPersona" Multiplicity="0..1" />
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCargosPersonas">
+              <PropertyRef Name="CarP_Id" />
+            </Principal>
+            <Dependent Role="tblUsuarios">
+              <PropertyRef Name="CarP_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsuarios_Usu_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblUsuarios1" Type="Self.tblUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblUsuarios1">
+              <PropertyRef Name="Usu_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsuarios_Usu_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblUsuarios1" Type="Self.tblUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblUsuarios1">
+              <PropertyRef Name="Usu_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblventadetalle_VentDet_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblventadetalle" Type="Self.tblventadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblventadetalle">
+              <PropertyRef Name="VentDet_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblventadetalle_VentDet_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblventadetalle" Type="Self.tblventadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblventadetalle">
+              <PropertyRef Name="VentDet_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVentaEncabezado_VentEnc_UsuarioCrea_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblVentaEncabezado" Type="Self.tblVentaEncabezado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblVentaEncabezado">
+              <PropertyRef Name="VentEnc_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVentaEncabezado_VentEnc_UsuarioModifica_tblUsuarios_Usu_Id">
+          <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblVentaEncabezado" Type="Self.tblVentaEncabezado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="Usu_Id" />
+            </Principal>
+            <Dependent Role="tblVentaEncabezado">
+              <PropertyRef Name="VentEnc_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblProductos_Fact_tblCategorias_Cat_Id">
+          <End Role="tblCategorias" Type="Self.tblCategoria" Multiplicity="0..1" />
+          <End Role="tblProductos" Type="Self.tblProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategorias">
+              <PropertyRef Name="Cat_Id" />
+            </Principal>
+            <Dependent Role="tblProductos">
+              <PropertyRef Name="Cat_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblCompras_Fact_tblProductos_Prd_Id">
+          <End Role="tblProductos" Type="Self.tblProducto" Multiplicity="0..1" />
+          <End Role="tblCompras" Type="Self.tblCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductos">
+              <PropertyRef Name="Prd_Id" />
+            </Principal>
+            <Dependent Role="tblCompras">
+              <PropertyRef Name="Prd_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fact_tblProductos_Gral_tblProveedores_Pro_Id">
+          <End Role="tblProveedores" Type="Self.tblProveedore" Multiplicity="0..1" />
+          <End Role="tblProductos" Type="Self.tblProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProveedores">
+              <PropertyRef Name="Pro_Id" />
+            </Principal>
+            <Dependent Role="tblProductos">
+              <PropertyRef Name="Pro_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblventadetalle_tblProductos_Prd_Id">
+          <End Role="tblProductos" Type="Self.tblProducto" Multiplicity="0..1" />
+          <End Role="tblventadetalle" Type="Self.tblventadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductos">
+              <PropertyRef Name="Prd_Id" />
+            </Principal>
+            <Dependent Role="tblventadetalle">
+              <PropertyRef Name="Prd_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblventadetalle_tblVentaEncabezado_VentEnc_Id">
+          <End Role="tblVentaEncabezado" Type="Self.tblVentaEncabezado" Multiplicity="0..1" />
+          <End Role="tblventadetalle" Type="Self.tblventadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVentaEncabezado">
+              <PropertyRef Name="VentEnc_Id" />
+            </Principal>
+            <Dependent Role="tblventadetalle">
+              <PropertyRef Name="VentEnc_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVentaEncabezado_tblPersonas_Per_Id">
+          <End Role="tblPersonas" Type="Self.tblPersona" Multiplicity="0..1" />
+          <End Role="tblVentaEncabezado" Type="Self.tblVentaEncabezado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersonas">
+              <PropertyRef Name="Per_Id" />
+            </Principal>
+            <Dependent Role="tblVentaEncabezado">
+              <PropertyRef Name="Per_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargosPersonas_tblCargos_Dir_Id">
+          <End Role="tblCargos" Type="Self.tblCargo" Multiplicity="0..1" />
+          <End Role="tblCargosPersonas" Type="Self.tblCargosPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCargos">
+              <PropertyRef Name="Carg_Id" />
+            </Principal>
+            <Dependent Role="tblCargosPersonas">
+              <PropertyRef Name="Carg_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCargosPersonas_tblPersonas_Dir_Id">
+          <End Role="tblPersonas" Type="Self.tblPersona" Multiplicity="0..1" />
+          <End Role="tblCargosPersonas" Type="Self.tblCargosPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersonas">
+              <PropertyRef Name="Per_Id" />
+            </Principal>
+            <Dependent Role="tblCargosPersonas">
+              <PropertyRef Name="Per_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCiudades_tblDepartamentos_Dep_Codigo">
+          <End Role="tblDepartamentos" Type="Self.tblDepartamento" Multiplicity="0..1" />
+          <End Role="tblCiudades" Type="Self.tblCiudade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDepartamentos">
+              <PropertyRef Name="Dep_Codigo" />
+            </Principal>
+            <Dependent Role="tblCiudades">
+              <PropertyRef Name="Dep_Codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDirecciones_tblDirecciones_Ciu_Codigo">
+          <End Role="tblCiudades" Type="Self.tblCiudade" Multiplicity="0..1" />
+          <End Role="tblDirecciones" Type="Self.tblDireccione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCiudades">
+              <PropertyRef Name="Ciu_Codigo" />
+            </Principal>
+            <Dependent Role="tblDirecciones">
+              <PropertyRef Name="Ciu_Codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tblProveedores_Gral_tblDirecciones_Dir_Id">
+          <End Role="tblDirecciones" Type="Self.tblDireccione" Multiplicity="0..1" />
+          <End Role="tblProveedores" Type="Self.tblProveedore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDirecciones">
+              <PropertyRef Name="Dir_Id" />
+            </Principal>
+            <Dependent Role="tblProveedores">
+              <PropertyRef Name="Dir_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPersonas_tblDireccion_Dir_Id">
+          <End Role="tblDirecciones" Type="Self.tblDireccione" Multiplicity="0..1" />
+          <End Role="tblPersonas" Type="Self.tblPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDirecciones">
+              <PropertyRef Name="Dir_Id" />
+            </Principal>
+            <Dependent Role="tblPersonas">
+              <PropertyRef Name="Dir_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SupermercadoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblUsuarios" EntityType="Self.tblUsuario" />
+          <EntitySet Name="tblCategorias" EntityType="Self.tblCategoria" />
+          <EntitySet Name="tblCompras" EntityType="Self.tblCompra" />
+          <EntitySet Name="tblProductos" EntityType="Self.tblProducto" />
+          <EntitySet Name="tblventadetalles" EntityType="Self.tblventadetalle" />
+          <EntitySet Name="tblVentaEncabezadoes" EntityType="Self.tblVentaEncabezado" />
+          <EntitySet Name="tblCargos" EntityType="Self.tblCargo" />
+          <EntitySet Name="tblCargosPersonas" EntityType="Self.tblCargosPersona" />
+          <EntitySet Name="tblCiudades" EntityType="Self.tblCiudade" />
+          <EntitySet Name="tblDepartamentos" EntityType="Self.tblDepartamento" />
+          <EntitySet Name="tblDirecciones" EntityType="Self.tblDireccione" />
+          <EntitySet Name="tblPersonas" EntityType="Self.tblPersona" />
+          <EntitySet Name="tblProveedores" EntityType="Self.tblProveedore" />
+          <AssociationSet Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCategorias" EntitySet="tblCategorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblCategorias_Cat_UsuarioModifica_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCategorias_Cat_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCategorias" EntitySet="tblCategorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblCompras_Cop_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCompras_Cop_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCompras" EntitySet="tblCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblCompras_Cop_UsuarioModifica_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCompras_Cop_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCompras" EntitySet="tblCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblProductos_Prd_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblProductos_Prd_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblProductos" EntitySet="tblProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblProductos_Prd_UsuarioModifica_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblProductos_Prd_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblProductos" EntitySet="tblProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tblProveedores_Pro_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Gral_tblProveedores_Pro_UsuarioCrea_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tblProveedores_Pro_UsuarioModifica_Acc_tblUsuario_Usu_Id" Association="Self.FK_Gral_tblProveedores_Pro_UsuarioModifica_Acc_tblUsuario_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargos_Carg_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblCargos_Carg_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCargos" EntitySet="tblCargos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargos_Carg_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblCargos_Carg_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCargos" EntitySet="tblCargos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargosPersonas_CarP_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblCargosPersonas_CarP_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCargosPersonas" EntitySet="tblCargosPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargosPersonas_CarP_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblCargosPersonas_CarP_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCargosPersonas" EntitySet="tblCargosPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCiudades_Ciu_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblCiudades_Ciu_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCiudades" EntitySet="tblCiudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCiudades_Ciu_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblCiudades_Ciu_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblCiudades" EntitySet="tblCiudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDepartamentos_Dep_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblDepartamentos_Dep_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblDepartamentos" EntitySet="tblDepartamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDepartamentos_Dep_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblDepartamentos_Dep_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblDepartamentos" EntitySet="tblDepartamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDirecciones_Dir_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblDirecciones_Dir_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblDirecciones" EntitySet="tblDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDirecciones_Dir_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblDirecciones_Dir_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblDirecciones" EntitySet="tblDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPersonas_Per_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblPersonas_Per_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPersonas_Per_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblPersonas_Per_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsuarios_tblPersonas_CarP_Id" Association="Self.FK_tblUsuarios_tblPersonas_CarP_Id">
+            <End Role="tblCargosPersonas" EntitySet="tblCargosPersonas" />
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsuarios_Usu_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblUsuarios_Usu_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblUsuarios1" EntitySet="tblUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsuarios_Usu_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblUsuarios_Usu_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblUsuarios1" EntitySet="tblUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblventadetalle_VentDet_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblventadetalle_VentDet_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblventadetalle" EntitySet="tblventadetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblventadetalle_VentDet_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblventadetalle_VentDet_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblventadetalle" EntitySet="tblventadetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVentaEncabezado_VentEnc_UsuarioCrea_tblUsuarios_Usu_Id" Association="Self.FK_tblVentaEncabezado_VentEnc_UsuarioCrea_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblVentaEncabezado" EntitySet="tblVentaEncabezadoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVentaEncabezado_VentEnc_UsuarioModifica_tblUsuarios_Usu_Id" Association="Self.FK_tblVentaEncabezado_VentEnc_UsuarioModifica_tblUsuarios_Usu_Id">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblVentaEncabezado" EntitySet="tblVentaEncabezadoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblProductos_Fact_tblCategorias_Cat_Id" Association="Self.FK_Fact_tblProductos_Fact_tblCategorias_Cat_Id">
+            <End Role="tblCategorias" EntitySet="tblCategorias" />
+            <End Role="tblProductos" EntitySet="tblProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblCompras_Fact_tblProductos_Prd_Id" Association="Self.FK_Fact_tblCompras_Fact_tblProductos_Prd_Id">
+            <End Role="tblProductos" EntitySet="tblProductos" />
+            <End Role="tblCompras" EntitySet="tblCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fact_tblProductos_Gral_tblProveedores_Pro_Id" Association="Self.FK_Fact_tblProductos_Gral_tblProveedores_Pro_Id">
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+            <End Role="tblProductos" EntitySet="tblProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblventadetalle_tblProductos_Prd_Id" Association="Self.FK_tblventadetalle_tblProductos_Prd_Id">
+            <End Role="tblProductos" EntitySet="tblProductos" />
+            <End Role="tblventadetalle" EntitySet="tblventadetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblventadetalle_tblVentaEncabezado_VentEnc_Id" Association="Self.FK_tblventadetalle_tblVentaEncabezado_VentEnc_Id">
+            <End Role="tblVentaEncabezado" EntitySet="tblVentaEncabezadoes" />
+            <End Role="tblventadetalle" EntitySet="tblventadetalles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVentaEncabezado_tblPersonas_Per_Id" Association="Self.FK_tblVentaEncabezado_tblPersonas_Per_Id">
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+            <End Role="tblVentaEncabezado" EntitySet="tblVentaEncabezadoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargosPersonas_tblCargos_Dir_Id" Association="Self.FK_tblCargosPersonas_tblCargos_Dir_Id">
+            <End Role="tblCargos" EntitySet="tblCargos" />
+            <End Role="tblCargosPersonas" EntitySet="tblCargosPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCargosPersonas_tblPersonas_Dir_Id" Association="Self.FK_tblCargosPersonas_tblPersonas_Dir_Id">
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+            <End Role="tblCargosPersonas" EntitySet="tblCargosPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCiudades_tblDepartamentos_Dep_Codigo" Association="Self.FK_tblCiudades_tblDepartamentos_Dep_Codigo">
+            <End Role="tblDepartamentos" EntitySet="tblDepartamentos" />
+            <End Role="tblCiudades" EntitySet="tblCiudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDirecciones_tblDirecciones_Ciu_Codigo" Association="Self.FK_tblDirecciones_tblDirecciones_Ciu_Codigo">
+            <End Role="tblCiudades" EntitySet="tblCiudades" />
+            <End Role="tblDirecciones" EntitySet="tblDirecciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tblProveedores_Gral_tblDirecciones_Dir_Id" Association="Self.FK_Gral_tblProveedores_Gral_tblDirecciones_Dir_Id">
+            <End Role="tblDirecciones" EntitySet="tblDirecciones" />
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPersonas_tblDireccion_Dir_Id" Association="Self.FK_tblPersonas_tblDireccion_Dir_Id">
+            <End Role="tblDirecciones" EntitySet="tblDirecciones" />
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Inicio_Sesion" ReturnType="Collection(SupermercadoDBModel.UDP_Inicio_Sesion_Result)">
+            <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
+            <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Usuario_UPDATE">
+            <Parameter Name="Usu_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
+            <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
+            <Parameter Name="Usu_EsAdmin" Mode="In" Type="Boolean" />
+            <Parameter Name="Usu_UsuarioModifica" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Categoria_DELETE">
+            <Parameter Name="Cat_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Cat_UsuarioModifica" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Categoria_INSERT">
+            <Parameter Name="Cat_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Cat_UsuarioCrea" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Categoria_UPDATE">
+            <Parameter Name="Cat_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Cat_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Cat_UsuarioModifica" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Proveedores_DELETE">
+            <Parameter Name="Pro_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Pro_UsuarioModifica" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Proveedores_INSERT">
+            <Parameter Name="Pro_Empresa" Mode="In" Type="String" />
+            <Parameter Name="Pro_RepNombreS" Mode="In" Type="String" />
+            <Parameter Name="Pro_RepPriApellido" Mode="In" Type="String" />
+            <Parameter Name="Pro_RepSegApellido" Mode="In" Type="String" />
+            <Parameter Name="Dir_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Pro_TelFijo" Mode="In" Type="String" />
+            <Parameter Name="Pro_TelMovil" Mode="In" Type="String" />
+            <Parameter Name="Pro_Email" Mode="In" Type="String" />
+            <Parameter Name="Pro_PaginaWeb" Mode="In" Type="String" />
+            <Parameter Name="Pro_UsuarioCrea" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Proveedores_UPDATE">
+            <Parameter Name="Pro_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Pro_Empresa" Mode="In" Type="String" />
+            <Parameter Name="Pro_RepNombreS" Mode="In" Type="String" />
+            <Parameter Name="Pro_RepPriApellido" Mode="In" Type="String" />
+            <Parameter Name="Pro_RepSegApellido" Mode="In" Type="String" />
+            <Parameter Name="Dir_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Pro_TelFijo" Mode="In" Type="String" />
+            <Parameter Name="Pro_TelMovil" Mode="In" Type="String" />
+            <Parameter Name="Pro_Email" Mode="In" Type="String" />
+            <Parameter Name="Pro_PaginaWeb" Mode="In" Type="String" />
+            <Parameter Name="Pro_UsuarioModifica" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tblPersonas_Delete">
+            <Parameter Name="Per_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Per_UsuarioModifica" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tblPersonas_Insert">
+            <Parameter Name="Per_Identidad" Mode="In" Type="String" />
+            <Parameter Name="Per_Rtn" Mode="In" Type="String" />
+            <Parameter Name="Per_Nombres" Mode="In" Type="String" />
+            <Parameter Name="Per_PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="Per_SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="Per_Sexo" Mode="In" Type="String" />
+            <Parameter Name="Dir_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Per_Telefono" Mode="In" Type="String" />
+            <Parameter Name="Per_Correo" Mode="In" Type="String" />
+            <Parameter Name="Per_UsuarioCrea" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tblPersonas_Update">
+            <Parameter Name="Per_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Per_Identidad" Mode="In" Type="String" />
+            <Parameter Name="Per_Rtn" Mode="In" Type="String" />
+            <Parameter Name="Per_Nombres" Mode="In" Type="String" />
+            <Parameter Name="Per_PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="Per_SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="Per_Sexo" Mode="In" Type="String" />
+            <Parameter Name="Dir_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Per_Telefono" Mode="In" Type="String" />
+            <Parameter Name="Per_Correo" Mode="In" Type="String" />
+            <Parameter Name="Per_UsuarioModifica" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Usuario_DELETE">
+            <Parameter Name="Usu_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Usu_UsuarioModifica" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Usuario_INSERT">
+            <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
+            <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
+            <Parameter Name="Usu_EsAdmin" Mode="In" Type="Boolean" />
+            <Parameter Name="Usu_UsuarioCrea" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="VW_Usuario" EntityType="SupermercadoDBModel.VW_Usuario" />
+        </EntityContainer>
+        <ComplexType Name="UDP_Inicio_Sesion_Result">
+          <Property Type="Int32" Name="Usu_Id" Nullable="false" />
+          <Property Type="String" Name="Usu_UsuarioNombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Usu_Contrasena" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Usu_EsAdmin" Nullable="true" />
+          <Property Type="Int32" Name="CarP_Id" Nullable="true" />
+          <Property Type="Boolean" Name="Usu_Activo" Nullable="true" />
+          <Property Type="Int32" Name="Usu_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="Usu_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="Usu_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="Usu_FechaModifica" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="VW_Usuario">
+          <Key>
+            <PropertyRef Name="IdU" />
+          </Key>
+          <Property Name="IdU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Act" Type="Boolean" />
+          <Property Name="Adm" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SupermercadoDBModelStoreContainer" CdmEntityContainer="SupermercadoDBEntities">
+          <EntitySetMapping Name="tblUsuarios">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblUsuario">
+              <MappingFragment StoreEntitySet="tblUsuarios">
+                <ScalarProperty Name="Usu_Id" ColumnName="Usu_Id" />
+                <ScalarProperty Name="Usu_UsuarioNombre" ColumnName="Usu_UsuarioNombre" />
+                <ScalarProperty Name="Usu_Contrasena" ColumnName="Usu_Contrasena" />
+                <ScalarProperty Name="Usu_EsAdmin" ColumnName="Usu_EsAdmin" />
+                <ScalarProperty Name="CarP_Id" ColumnName="CarP_Id" />
+                <ScalarProperty Name="Usu_Activo" ColumnName="Usu_Activo" />
+                <ScalarProperty Name="Usu_UsuarioCrea" ColumnName="Usu_UsuarioCrea" />
+                <ScalarProperty Name="Usu_FechaCrea" ColumnName="Usu_FechaCrea" />
+                <ScalarProperty Name="Usu_UsuarioModifica" ColumnName="Usu_UsuarioModifica" />
+                <ScalarProperty Name="Usu_FechaModifica" ColumnName="Usu_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCategorias">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblCategoria">
+              <MappingFragment StoreEntitySet="tblCategorias">
+                <ScalarProperty Name="Cat_Id" ColumnName="Cat_Id" />
+                <ScalarProperty Name="Cat_Descripcion" ColumnName="Cat_Descripcion" />
+                <ScalarProperty Name="Cat_Estado" ColumnName="Cat_Estado" />
+                <ScalarProperty Name="Cat_UsuarioCrea" ColumnName="Cat_UsuarioCrea" />
+                <ScalarProperty Name="Cat_FechaCrea" ColumnName="Cat_FechaCrea" />
+                <ScalarProperty Name="Cat_UsuarioModifica" ColumnName="Cat_UsuarioModifica" />
+                <ScalarProperty Name="Cat_FechaModifica" ColumnName="Cat_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCompras">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblCompra">
+              <MappingFragment StoreEntitySet="tblCompras">
+                <ScalarProperty Name="Cop_Id" ColumnName="Cop_Id" />
+                <ScalarProperty Name="Cop_NumFactura" ColumnName="Cop_NumFactura" />
+                <ScalarProperty Name="Cop_Fecha" ColumnName="Cop_Fecha" />
+                <ScalarProperty Name="Prd_Id" ColumnName="Prd_Id" />
+                <ScalarProperty Name="Cop_Cantidad" ColumnName="Cop_Cantidad" />
+                <ScalarProperty Name="Cop_Estado" ColumnName="Cop_Estado" />
+                <ScalarProperty Name="Cop_UsuarioCrea" ColumnName="Cop_UsuarioCrea" />
+                <ScalarProperty Name="Cop_FechaCrea" ColumnName="Cop_FechaCrea" />
+                <ScalarProperty Name="Cop_UsuarioModifica" ColumnName="Cop_UsuarioModifica" />
+                <ScalarProperty Name="Cop_FechaModifica" ColumnName="Cop_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProductos">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblProducto">
+              <MappingFragment StoreEntitySet="tblProductos">
+                <ScalarProperty Name="Prd_Id" ColumnName="Prd_Id" />
+                <ScalarProperty Name="Prd_Codigo" ColumnName="Prd_Codigo" />
+                <ScalarProperty Name="Prd_Descripcion" ColumnName="Prd_Descripcion" />
+                <ScalarProperty Name="Cat_Id" ColumnName="Cat_Id" />
+                <ScalarProperty Name="Pro_Id" ColumnName="Pro_Id" />
+                <ScalarProperty Name="Prd_Stock" ColumnName="Prd_Stock" />
+                <ScalarProperty Name="Prd_PrecioCompra" ColumnName="Prd_PrecioCompra" />
+                <ScalarProperty Name="Prd_PrecioVenta" ColumnName="Prd_PrecioVenta" />
+                <ScalarProperty Name="Prd_Imagen" ColumnName="Prd_Imagen" />
+                <ScalarProperty Name="Prd_Estado" ColumnName="Prd_Estado" />
+                <ScalarProperty Name="Prd_UsuarioCrea" ColumnName="Prd_UsuarioCrea" />
+                <ScalarProperty Name="Prd_FechaCrea" ColumnName="Prd_FechaCrea" />
+                <ScalarProperty Name="Prd_UsuarioModifica" ColumnName="Prd_UsuarioModifica" />
+                <ScalarProperty Name="Prd_FechaModifica" ColumnName="Prd_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblventadetalles">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblventadetalle">
+              <MappingFragment StoreEntitySet="tblventadetalle">
+                <ScalarProperty Name="VentDet_Id" ColumnName="VentDet_Id" />
+                <ScalarProperty Name="VentEnc_Id" ColumnName="VentEnc_Id" />
+                <ScalarProperty Name="Prd_Id" ColumnName="Prd_Id" />
+                <ScalarProperty Name="VentDet_Precio" ColumnName="VentDet_Precio" />
+                <ScalarProperty Name="VentDet_Cantidad" ColumnName="VentDet_Cantidad" />
+                <ScalarProperty Name="VentDet_Descuento" ColumnName="VentDet_Descuento" />
+                <ScalarProperty Name="VentDet_Impuesto" ColumnName="VentDet_Impuesto" />
+                <ScalarProperty Name="VentDet_Subtotal" ColumnName="VentDet_Subtotal" />
+                <ScalarProperty Name="VentDet_Activo" ColumnName="VentDet_Activo" />
+                <ScalarProperty Name="VentDet_UsuarioCrea" ColumnName="VentDet_UsuarioCrea" />
+                <ScalarProperty Name="VentDet_FechaCrea" ColumnName="VentDet_FechaCrea" />
+                <ScalarProperty Name="VentDet_UsuarioModifica" ColumnName="VentDet_UsuarioModifica" />
+                <ScalarProperty Name="VentDet_FechaModifica" ColumnName="VentDet_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVentaEncabezadoes">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblVentaEncabezado">
+              <MappingFragment StoreEntitySet="tblVentaEncabezado">
+                <ScalarProperty Name="VentEnc_Id" ColumnName="VentEnc_Id" />
+                <ScalarProperty Name="VentEnc_NumFactura" ColumnName="VentEnc_NumFactura" />
+                <ScalarProperty Name="VentEnc_Fecha" ColumnName="VentEnc_Fecha" />
+                <ScalarProperty Name="Per_Id" ColumnName="Per_Id" />
+                <ScalarProperty Name="VentEnc_Total" ColumnName="VentEnc_Total" />
+                <ScalarProperty Name="VentEnc_Activo" ColumnName="VentEnc_Activo" />
+                <ScalarProperty Name="VentEnc_UsuarioCrea" ColumnName="VentEnc_UsuarioCrea" />
+                <ScalarProperty Name="VentEnc_FechaCrea" ColumnName="VentEnc_FechaCrea" />
+                <ScalarProperty Name="VentEnc_UsuarioModifica" ColumnName="VentEnc_UsuarioModifica" />
+                <ScalarProperty Name="VentEnc_FechaModifica" ColumnName="VentEnc_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCargos">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblCargo">
+              <MappingFragment StoreEntitySet="tblCargos">
+                <ScalarProperty Name="Carg_Id" ColumnName="Carg_Id" />
+                <ScalarProperty Name="Carg_Descripcion" ColumnName="Carg_Descripcion" />
+                <ScalarProperty Name="Carg_EsActivo" ColumnName="Carg_EsActivo" />
+                <ScalarProperty Name="Carg_UsuarioCrea" ColumnName="Carg_UsuarioCrea" />
+                <ScalarProperty Name="Carg_FechaCrea" ColumnName="Carg_FechaCrea" />
+                <ScalarProperty Name="Carg_UsuarioModifica" ColumnName="Carg_UsuarioModifica" />
+                <ScalarProperty Name="Carg_FechaModifica" ColumnName="Carg_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCargosPersonas">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblCargosPersona">
+              <MappingFragment StoreEntitySet="tblCargosPersonas">
+                <ScalarProperty Name="CarP_Id" ColumnName="CarP_Id" />
+                <ScalarProperty Name="Carg_Id" ColumnName="Carg_Id" />
+                <ScalarProperty Name="Per_Id" ColumnName="Per_Id" />
+                <ScalarProperty Name="CarP_EsActivo" ColumnName="CarP_EsActivo" />
+                <ScalarProperty Name="CarP_UsuarioCrea" ColumnName="CarP_UsuarioCrea" />
+                <ScalarProperty Name="CarP_FechaCrea" ColumnName="CarP_FechaCrea" />
+                <ScalarProperty Name="CarP_UsuarioModifica" ColumnName="CarP_UsuarioModifica" />
+                <ScalarProperty Name="CarP_FechaModifica" ColumnName="CarP_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCiudades">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblCiudade">
+              <MappingFragment StoreEntitySet="tblCiudades">
+                <ScalarProperty Name="Ciu_Codigo" ColumnName="Ciu_Codigo" />
+                <ScalarProperty Name="Ciu_Descripcion" ColumnName="Ciu_Descripcion" />
+                <ScalarProperty Name="Dep_Codigo" ColumnName="Dep_Codigo" />
+                <ScalarProperty Name="Ciu_Activo" ColumnName="Ciu_Activo" />
+                <ScalarProperty Name="Ciu_UsuarioCrea" ColumnName="Ciu_UsuarioCrea" />
+                <ScalarProperty Name="Ciu_FechaCrea" ColumnName="Ciu_FechaCrea" />
+                <ScalarProperty Name="Ciu_UsuarioModifica" ColumnName="Ciu_UsuarioModifica" />
+                <ScalarProperty Name="Ciu_FechaModifica" ColumnName="Ciu_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDepartamentos">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblDepartamento">
+              <MappingFragment StoreEntitySet="tblDepartamentos">
+                <ScalarProperty Name="Dep_Codigo" ColumnName="Dep_Codigo" />
+                <ScalarProperty Name="Dep_Descripcion" ColumnName="Dep_Descripcion" />
+                <ScalarProperty Name="Dep_Activo" ColumnName="Dep_Activo" />
+                <ScalarProperty Name="Dep_UsuarioCrea" ColumnName="Dep_UsuarioCrea" />
+                <ScalarProperty Name="Dep_FechaCrea" ColumnName="Dep_FechaCrea" />
+                <ScalarProperty Name="Dep_UsuarioModifica" ColumnName="Dep_UsuarioModifica" />
+                <ScalarProperty Name="Dep_FechaModifica" ColumnName="Dep_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDirecciones">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblDireccione">
+              <MappingFragment StoreEntitySet="tblDirecciones">
+                <ScalarProperty Name="Dir_Id" ColumnName="Dir_Id" />
+                <ScalarProperty Name="Ciu_Codigo" ColumnName="Ciu_Codigo" />
+                <ScalarProperty Name="Dir_Sector" ColumnName="Dir_Sector" />
+                <ScalarProperty Name="Dir_Calle" ColumnName="Dir_Calle" />
+                <ScalarProperty Name="Dir_Avenida" ColumnName="Dir_Avenida" />
+                <ScalarProperty Name="Dir_Bloque" ColumnName="Dir_Bloque" />
+                <ScalarProperty Name="Dir_Activo" ColumnName="Dir_Activo" />
+                <ScalarProperty Name="Dir_UsuarioCrea" ColumnName="Dir_UsuarioCrea" />
+                <ScalarProperty Name="Dir_FechaCrea" ColumnName="Dir_FechaCrea" />
+                <ScalarProperty Name="Dir_UsuarioModifica" ColumnName="Dir_UsuarioModifica" />
+                <ScalarProperty Name="Dir_FechaModifica" ColumnName="Dir_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPersonas">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblPersona">
+              <MappingFragment StoreEntitySet="tblPersonas">
+                <ScalarProperty Name="Per_Id" ColumnName="Per_Id" />
+                <ScalarProperty Name="Per_Identidad" ColumnName="Per_Identidad" />
+                <ScalarProperty Name="Per_Rtn" ColumnName="Per_Rtn" />
+                <ScalarProperty Name="Per_Nombres" ColumnName="Per_Nombres" />
+                <ScalarProperty Name="Per_PrimerApellido" ColumnName="Per_PrimerApellido" />
+                <ScalarProperty Name="Per_SegundoApellido" ColumnName="Per_SegundoApellido" />
+                <ScalarProperty Name="Per_Sexo" ColumnName="Per_Sexo" />
+                <ScalarProperty Name="Dir_Id" ColumnName="Dir_Id" />
+                <ScalarProperty Name="Per_Telefono" ColumnName="Per_Telefono" />
+                <ScalarProperty Name="Per_Correo" ColumnName="Per_Correo" />
+                <ScalarProperty Name="Per_EsActivo" ColumnName="Per_EsActivo" />
+                <ScalarProperty Name="Per_UsuarioCrea" ColumnName="Per_UsuarioCrea" />
+                <ScalarProperty Name="Per_FechaCrea" ColumnName="Per_FechaCrea" />
+                <ScalarProperty Name="Per_UsuarioModifica" ColumnName="Per_UsuarioModifica" />
+                <ScalarProperty Name="Per_FechaModifica" ColumnName="Per_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProveedores">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.tblProveedore">
+              <MappingFragment StoreEntitySet="tblProveedores">
+                <ScalarProperty Name="Pro_Id" ColumnName="Pro_Id" />
+                <ScalarProperty Name="Pro_Empresa" ColumnName="Pro_Empresa" />
+                <ScalarProperty Name="Pro_RepNombreS" ColumnName="Pro_RepNombreS" />
+                <ScalarProperty Name="Pro_RepPriApellido" ColumnName="Pro_RepPriApellido" />
+                <ScalarProperty Name="Pro_RepSegApellido" ColumnName="Pro_RepSegApellido" />
+                <ScalarProperty Name="Dir_Id" ColumnName="Dir_Id" />
+                <ScalarProperty Name="Pro_TelFijo" ColumnName="Pro_TelFijo" />
+                <ScalarProperty Name="Pro_TelMovil" ColumnName="Pro_TelMovil" />
+                <ScalarProperty Name="Pro_Email" ColumnName="Pro_Email" />
+                <ScalarProperty Name="Pro_PaginaWeb" ColumnName="Pro_PaginaWeb" />
+                <ScalarProperty Name="Pro_Estado" ColumnName="Pro_Estado" />
+                <ScalarProperty Name="Pro_UsuarioCrea" ColumnName="Pro_UsuarioCrea" />
+                <ScalarProperty Name="Pro_FechaCrea" ColumnName="Pro_FechaCrea" />
+                <ScalarProperty Name="Pro_UsuarioModifica" ColumnName="Pro_UsuarioModifica" />
+                <ScalarProperty Name="Pro_FechaModifica" ColumnName="Pro_FechaModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inicio_Sesion" FunctionName="SupermercadoDBModel.Store.UDP_Inicio_Sesion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SupermercadoDBModel.UDP_Inicio_Sesion_Result">
+                <ScalarProperty Name="Usu_Id" ColumnName="Usu_Id" />
+                <ScalarProperty Name="Usu_UsuarioNombre" ColumnName="Usu_UsuarioNombre" />
+                <ScalarProperty Name="Usu_Contrasena" ColumnName="Usu_Contrasena" />
+                <ScalarProperty Name="Usu_EsAdmin" ColumnName="Usu_EsAdmin" />
+                <ScalarProperty Name="CarP_Id" ColumnName="CarP_Id" />
+                <ScalarProperty Name="Usu_Activo" ColumnName="Usu_Activo" />
+                <ScalarProperty Name="Usu_UsuarioCrea" ColumnName="Usu_UsuarioCrea" />
+                <ScalarProperty Name="Usu_FechaCrea" ColumnName="Usu_FechaCrea" />
+                <ScalarProperty Name="Usu_UsuarioModifica" ColumnName="Usu_UsuarioModifica" />
+                <ScalarProperty Name="Usu_FechaModifica" ColumnName="Usu_FechaModifica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Usuario_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_UPDATE" />
+          <FunctionImportMapping FunctionImportName="UDP_Categoria_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_DELETE" />
+          <FunctionImportMapping FunctionImportName="UDP_Categoria_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_INSERT" />
+          <FunctionImportMapping FunctionImportName="UDP_Categoria_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_UPDATE" />
+          <FunctionImportMapping FunctionImportName="UDP_Proveedores_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Proveedores_DELETE" />
+          <FunctionImportMapping FunctionImportName="UDP_Proveedores_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Proveedores_INSERT" />
+          <FunctionImportMapping FunctionImportName="UDP_Proveedores_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Proveedores_UPDATE" />
+          <FunctionImportMapping FunctionImportName="UDP_tblPersonas_Delete" FunctionName="SupermercadoDBModel.Store.UDP_tblPersonas_Delete" />
+          <FunctionImportMapping FunctionImportName="UDP_tblPersonas_Insert" FunctionName="SupermercadoDBModel.Store.UDP_tblPersonas_Insert" />
+          <FunctionImportMapping FunctionImportName="UDP_tblPersonas_Update" FunctionName="SupermercadoDBModel.Store.UDP_tblPersonas_Update" />
+          <FunctionImportMapping FunctionImportName="UDP_Usuario_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_DELETE" />
+          <FunctionImportMapping FunctionImportName="UDP_Usuario_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_INSERT" />
+          <EntitySetMapping Name="VW_Usuario">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.VW_Usuario">
+              <MappingFragment StoreEntitySet="VW_Usuario">
+                <ScalarProperty Name="Adm" ColumnName="Adm" />
+                <ScalarProperty Name="Act" ColumnName="Act" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdU" ColumnName="IdU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

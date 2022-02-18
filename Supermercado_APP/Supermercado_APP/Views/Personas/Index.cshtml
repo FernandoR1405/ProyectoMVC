@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Supermercado_APP.Models.tblPersona>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Per_Identidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Per_Rtn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Per_Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Per_PrimerApellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Per_SegundoApellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Per_Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Per_Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Per_Correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Per_EsActivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Per_FechaCrea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Per_FechaModifica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblDireccione.Dir_Sector)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Per_Identidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Per_Rtn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Per_Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Per_PrimerApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Per_SegundoApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Per_Sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Per_Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Per_Correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Per_EsActivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Per_FechaCrea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Per_FechaModifica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblUsuario.Usu_UsuarioNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblUsuario1.Usu_UsuarioNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblDireccione.Dir_Sector)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Per_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Per_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Per_Id })
+        </td>
+    </tr>
+}
+
+</table>

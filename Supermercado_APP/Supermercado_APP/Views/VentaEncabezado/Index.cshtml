@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Supermercado_APP.Models.tblVentaEncabezado>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VentEnc_NumFactura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VentEnc_Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VentEnc_Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VentEnc_Activo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VentEnc_FechaCrea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VentEnc_FechaModifica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblPersona.Per_Identidad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VentEnc_NumFactura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VentEnc_Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VentEnc_Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VentEnc_Activo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VentEnc_FechaCrea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VentEnc_FechaModifica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblUsuario.Usu_UsuarioNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblUsuario1.Usu_UsuarioNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblPersona.Per_Identidad)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VentEnc_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VentEnc_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VentEnc_Id })
+        </td>
+    </tr>
+}
+
+</table>

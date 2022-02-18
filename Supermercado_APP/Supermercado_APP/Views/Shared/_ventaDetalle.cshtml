@@ -1,0 +1,43 @@
+﻿@model Supermercado_APP.Models.tblventadetalle
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Prd_Id, "Prd_Id", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="form-group">
+                @Html.DropDownList("Prd_Id", null, htmlAttributes: new { @class = "form-control flexselect" })
+                @Html.ValidationMessageFor(model => model.Prd_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.VentDet_Precio, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="form-group">
+                @Html.EditorFor(model => model.VentDet_Precio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VentDet_Precio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.VentDet_Cantidad, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="form-group">
+                @Html.EditorFor(model => model.VentDet_Cantidad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VentDet_Cantidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.VentDet_Descuento, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="form-group">
+                @Html.EditorFor(model => model.VentDet_Descuento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VentDet_Descuento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    hr
+}
+

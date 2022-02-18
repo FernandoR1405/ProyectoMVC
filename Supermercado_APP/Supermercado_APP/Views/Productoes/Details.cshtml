@@ -1,0 +1,123 @@
+﻿@model Supermercado_APP.Models.tblProducto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblProducto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Prd_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prd_Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prd_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prd_Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prd_Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prd_Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prd_PrecioCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prd_PrecioCompra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prd_PrecioVenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prd_PrecioVenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prd_Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prd_Imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prd_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prd_Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prd_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prd_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prd_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prd_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCategoria.Cat_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCategoria.Cat_Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblProveedore.Pro_Empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblProveedore.Pro_Empresa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Prd_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

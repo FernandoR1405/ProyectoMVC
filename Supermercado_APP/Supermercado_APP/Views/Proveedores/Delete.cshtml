@@ -1,0 +1,145 @@
+﻿@model Supermercado_APP.Models.tblProveedore
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tblProveedore</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_Empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_Empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_RepNombreS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_RepNombreS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_RepPriApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_RepPriApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_RepSegApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_RepSegApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_TelFijo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_TelFijo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_TelMovil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_TelMovil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_PaginaWeb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_PaginaWeb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pro_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pro_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblDireccione.Dir_Sector)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblDireccione.Dir_Sector)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

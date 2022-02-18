@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SupermercadoDBModelStoreContainer" CdmEntityContainer="SupermercadoDBEntities">
+    <EntitySetMapping Name="tblUsuarios">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblUsuario">
+        <MappingFragment StoreEntitySet="tblUsuarios">
+          <ScalarProperty Name="Usu_Id" ColumnName="Usu_Id" />
+          <ScalarProperty Name="Usu_UsuarioNombre" ColumnName="Usu_UsuarioNombre" />
+          <ScalarProperty Name="Usu_Contrasena" ColumnName="Usu_Contrasena" />
+          <ScalarProperty Name="Usu_EsAdmin" ColumnName="Usu_EsAdmin" />
+          <ScalarProperty Name="CarP_Id" ColumnName="CarP_Id" />
+          <ScalarProperty Name="Usu_Activo" ColumnName="Usu_Activo" />
+          <ScalarProperty Name="Usu_UsuarioCrea" ColumnName="Usu_UsuarioCrea" />
+          <ScalarProperty Name="Usu_FechaCrea" ColumnName="Usu_FechaCrea" />
+          <ScalarProperty Name="Usu_UsuarioModifica" ColumnName="Usu_UsuarioModifica" />
+          <ScalarProperty Name="Usu_FechaModifica" ColumnName="Usu_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCategorias">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblCategoria">
+        <MappingFragment StoreEntitySet="tblCategorias">
+          <ScalarProperty Name="Cat_Id" ColumnName="Cat_Id" />
+          <ScalarProperty Name="Cat_Descripcion" ColumnName="Cat_Descripcion" />
+          <ScalarProperty Name="Cat_Estado" ColumnName="Cat_Estado" />
+          <ScalarProperty Name="Cat_UsuarioCrea" ColumnName="Cat_UsuarioCrea" />
+          <ScalarProperty Name="Cat_FechaCrea" ColumnName="Cat_FechaCrea" />
+          <ScalarProperty Name="Cat_UsuarioModifica" ColumnName="Cat_UsuarioModifica" />
+          <ScalarProperty Name="Cat_FechaModifica" ColumnName="Cat_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCompras">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblCompra">
+        <MappingFragment StoreEntitySet="tblCompras">
+          <ScalarProperty Name="Cop_Id" ColumnName="Cop_Id" />
+          <ScalarProperty Name="Cop_NumFactura" ColumnName="Cop_NumFactura" />
+          <ScalarProperty Name="Cop_Fecha" ColumnName="Cop_Fecha" />
+          <ScalarProperty Name="Prd_Id" ColumnName="Prd_Id" />
+          <ScalarProperty Name="Cop_Cantidad" ColumnName="Cop_Cantidad" />
+          <ScalarProperty Name="Cop_Estado" ColumnName="Cop_Estado" />
+          <ScalarProperty Name="Cop_UsuarioCrea" ColumnName="Cop_UsuarioCrea" />
+          <ScalarProperty Name="Cop_FechaCrea" ColumnName="Cop_FechaCrea" />
+          <ScalarProperty Name="Cop_UsuarioModifica" ColumnName="Cop_UsuarioModifica" />
+          <ScalarProperty Name="Cop_FechaModifica" ColumnName="Cop_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProductos">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblProducto">
+        <MappingFragment StoreEntitySet="tblProductos">
+          <ScalarProperty Name="Prd_Id" ColumnName="Prd_Id" />
+          <ScalarProperty Name="Prd_Codigo" ColumnName="Prd_Codigo" />
+          <ScalarProperty Name="Prd_Descripcion" ColumnName="Prd_Descripcion" />
+          <ScalarProperty Name="Cat_Id" ColumnName="Cat_Id" />
+          <ScalarProperty Name="Pro_Id" ColumnName="Pro_Id" />
+          <ScalarProperty Name="Prd_Stock" ColumnName="Prd_Stock" />
+          <ScalarProperty Name="Prd_PrecioCompra" ColumnName="Prd_PrecioCompra" />
+          <ScalarProperty Name="Prd_PrecioVenta" ColumnName="Prd_PrecioVenta" />
+          <ScalarProperty Name="Prd_Imagen" ColumnName="Prd_Imagen" />
+          <ScalarProperty Name="Prd_Estado" ColumnName="Prd_Estado" />
+          <ScalarProperty Name="Prd_UsuarioCrea" ColumnName="Prd_UsuarioCrea" />
+          <ScalarProperty Name="Prd_FechaCrea" ColumnName="Prd_FechaCrea" />
+          <ScalarProperty Name="Prd_UsuarioModifica" ColumnName="Prd_UsuarioModifica" />
+          <ScalarProperty Name="Prd_FechaModifica" ColumnName="Prd_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblventadetalles">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblventadetalle">
+        <MappingFragment StoreEntitySet="tblventadetalle">
+          <ScalarProperty Name="VentDet_Id" ColumnName="VentDet_Id" />
+          <ScalarProperty Name="VentEnc_Id" ColumnName="VentEnc_Id" />
+          <ScalarProperty Name="Prd_Id" ColumnName="Prd_Id" />
+          <ScalarProperty Name="VentDet_Precio" ColumnName="VentDet_Precio" />
+          <ScalarProperty Name="VentDet_Cantidad" ColumnName="VentDet_Cantidad" />
+          <ScalarProperty Name="VentDet_Descuento" ColumnName="VentDet_Descuento" />
+          <ScalarProperty Name="VentDet_Impuesto" ColumnName="VentDet_Impuesto" />
+          <ScalarProperty Name="VentDet_Subtotal" ColumnName="VentDet_Subtotal" />
+          <ScalarProperty Name="VentDet_Activo" ColumnName="VentDet_Activo" />
+          <ScalarProperty Name="VentDet_UsuarioCrea" ColumnName="VentDet_UsuarioCrea" />
+          <ScalarProperty Name="VentDet_FechaCrea" ColumnName="VentDet_FechaCrea" />
+          <ScalarProperty Name="VentDet_UsuarioModifica" ColumnName="VentDet_UsuarioModifica" />
+          <ScalarProperty Name="VentDet_FechaModifica" ColumnName="VentDet_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblVentaEncabezadoes">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblVentaEncabezado">
+        <MappingFragment StoreEntitySet="tblVentaEncabezado">
+          <ScalarProperty Name="VentEnc_Id" ColumnName="VentEnc_Id" />
+          <ScalarProperty Name="VentEnc_NumFactura" ColumnName="VentEnc_NumFactura" />
+          <ScalarProperty Name="VentEnc_Fecha" ColumnName="VentEnc_Fecha" />
+          <ScalarProperty Name="Per_Id" ColumnName="Per_Id" />
+          <ScalarProperty Name="VentEnc_Total" ColumnName="VentEnc_Total" />
+          <ScalarProperty Name="VentEnc_Activo" ColumnName="VentEnc_Activo" />
+          <ScalarProperty Name="VentEnc_UsuarioCrea" ColumnName="VentEnc_UsuarioCrea" />
+          <ScalarProperty Name="VentEnc_FechaCrea" ColumnName="VentEnc_FechaCrea" />
+          <ScalarProperty Name="VentEnc_UsuarioModifica" ColumnName="VentEnc_UsuarioModifica" />
+          <ScalarProperty Name="VentEnc_FechaModifica" ColumnName="VentEnc_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCargos">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblCargo">
+        <MappingFragment StoreEntitySet="tblCargos">
+          <ScalarProperty Name="Carg_Id" ColumnName="Carg_Id" />
+          <ScalarProperty Name="Carg_Descripcion" ColumnName="Carg_Descripcion" />
+          <ScalarProperty Name="Carg_EsActivo" ColumnName="Carg_EsActivo" />
+          <ScalarProperty Name="Carg_UsuarioCrea" ColumnName="Carg_UsuarioCrea" />
+          <ScalarProperty Name="Carg_FechaCrea" ColumnName="Carg_FechaCrea" />
+          <ScalarProperty Name="Carg_UsuarioModifica" ColumnName="Carg_UsuarioModifica" />
+          <ScalarProperty Name="Carg_FechaModifica" ColumnName="Carg_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCargosPersonas">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblCargosPersona">
+        <MappingFragment StoreEntitySet="tblCargosPersonas">
+          <ScalarProperty Name="CarP_Id" ColumnName="CarP_Id" />
+          <ScalarProperty Name="Carg_Id" ColumnName="Carg_Id" />
+          <ScalarProperty Name="Per_Id" ColumnName="Per_Id" />
+          <ScalarProperty Name="CarP_EsActivo" ColumnName="CarP_EsActivo" />
+          <ScalarProperty Name="CarP_UsuarioCrea" ColumnName="CarP_UsuarioCrea" />
+          <ScalarProperty Name="CarP_FechaCrea" ColumnName="CarP_FechaCrea" />
+          <ScalarProperty Name="CarP_UsuarioModifica" ColumnName="CarP_UsuarioModifica" />
+          <ScalarProperty Name="CarP_FechaModifica" ColumnName="CarP_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCiudades">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblCiudade">
+        <MappingFragment StoreEntitySet="tblCiudades">
+          <ScalarProperty Name="Ciu_Codigo" ColumnName="Ciu_Codigo" />
+          <ScalarProperty Name="Ciu_Descripcion" ColumnName="Ciu_Descripcion" />
+          <ScalarProperty Name="Dep_Codigo" ColumnName="Dep_Codigo" />
+          <ScalarProperty Name="Ciu_Activo" ColumnName="Ciu_Activo" />
+          <ScalarProperty Name="Ciu_UsuarioCrea" ColumnName="Ciu_UsuarioCrea" />
+          <ScalarProperty Name="Ciu_FechaCrea" ColumnName="Ciu_FechaCrea" />
+          <ScalarProperty Name="Ciu_UsuarioModifica" ColumnName="Ciu_UsuarioModifica" />
+          <ScalarProperty Name="Ciu_FechaModifica" ColumnName="Ciu_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDepartamentos">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblDepartamento">
+        <MappingFragment StoreEntitySet="tblDepartamentos">
+          <ScalarProperty Name="Dep_Codigo" ColumnName="Dep_Codigo" />
+          <ScalarProperty Name="Dep_Descripcion" ColumnName="Dep_Descripcion" />
+          <ScalarProperty Name="Dep_Activo" ColumnName="Dep_Activo" />
+          <ScalarProperty Name="Dep_UsuarioCrea" ColumnName="Dep_UsuarioCrea" />
+          <ScalarProperty Name="Dep_FechaCrea" ColumnName="Dep_FechaCrea" />
+          <ScalarProperty Name="Dep_UsuarioModifica" ColumnName="Dep_UsuarioModifica" />
+          <ScalarProperty Name="Dep_FechaModifica" ColumnName="Dep_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDirecciones">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblDireccione">
+        <MappingFragment StoreEntitySet="tblDirecciones">
+          <ScalarProperty Name="Dir_Id" ColumnName="Dir_Id" />
+          <ScalarProperty Name="Ciu_Codigo" ColumnName="Ciu_Codigo" />
+          <ScalarProperty Name="Dir_Sector" ColumnName="Dir_Sector" />
+          <ScalarProperty Name="Dir_Calle" ColumnName="Dir_Calle" />
+          <ScalarProperty Name="Dir_Avenida" ColumnName="Dir_Avenida" />
+          <ScalarProperty Name="Dir_Bloque" ColumnName="Dir_Bloque" />
+          <ScalarProperty Name="Dir_Activo" ColumnName="Dir_Activo" />
+          <ScalarProperty Name="Dir_UsuarioCrea" ColumnName="Dir_UsuarioCrea" />
+          <ScalarProperty Name="Dir_FechaCrea" ColumnName="Dir_FechaCrea" />
+          <ScalarProperty Name="Dir_UsuarioModifica" ColumnName="Dir_UsuarioModifica" />
+          <ScalarProperty Name="Dir_FechaModifica" ColumnName="Dir_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPersonas">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblPersona">
+        <MappingFragment StoreEntitySet="tblPersonas">
+          <ScalarProperty Name="Per_Id" ColumnName="Per_Id" />
+          <ScalarProperty Name="Per_Identidad" ColumnName="Per_Identidad" />
+          <ScalarProperty Name="Per_Rtn" ColumnName="Per_Rtn" />
+          <ScalarProperty Name="Per_Nombres" ColumnName="Per_Nombres" />
+          <ScalarProperty Name="Per_PrimerApellido" ColumnName="Per_PrimerApellido" />
+          <ScalarProperty Name="Per_SegundoApellido" ColumnName="Per_SegundoApellido" />
+          <ScalarProperty Name="Per_Sexo" ColumnName="Per_Sexo" />
+          <ScalarProperty Name="Dir_Id" ColumnName="Dir_Id" />
+          <ScalarProperty Name="Per_Telefono" ColumnName="Per_Telefono" />
+          <ScalarProperty Name="Per_Correo" ColumnName="Per_Correo" />
+          <ScalarProperty Name="Per_EsActivo" ColumnName="Per_EsActivo" />
+          <ScalarProperty Name="Per_UsuarioCrea" ColumnName="Per_UsuarioCrea" />
+          <ScalarProperty Name="Per_FechaCrea" ColumnName="Per_FechaCrea" />
+          <ScalarProperty Name="Per_UsuarioModifica" ColumnName="Per_UsuarioModifica" />
+          <ScalarProperty Name="Per_FechaModifica" ColumnName="Per_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProveedores">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.tblProveedore">
+        <MappingFragment StoreEntitySet="tblProveedores">
+          <ScalarProperty Name="Pro_Id" ColumnName="Pro_Id" />
+          <ScalarProperty Name="Pro_Empresa" ColumnName="Pro_Empresa" />
+          <ScalarProperty Name="Pro_RepNombreS" ColumnName="Pro_RepNombreS" />
+          <ScalarProperty Name="Pro_RepPriApellido" ColumnName="Pro_RepPriApellido" />
+          <ScalarProperty Name="Pro_RepSegApellido" ColumnName="Pro_RepSegApellido" />
+          <ScalarProperty Name="Dir_Id" ColumnName="Dir_Id" />
+          <ScalarProperty Name="Pro_TelFijo" ColumnName="Pro_TelFijo" />
+          <ScalarProperty Name="Pro_TelMovil" ColumnName="Pro_TelMovil" />
+          <ScalarProperty Name="Pro_Email" ColumnName="Pro_Email" />
+          <ScalarProperty Name="Pro_PaginaWeb" ColumnName="Pro_PaginaWeb" />
+          <ScalarProperty Name="Pro_Estado" ColumnName="Pro_Estado" />
+          <ScalarProperty Name="Pro_UsuarioCrea" ColumnName="Pro_UsuarioCrea" />
+          <ScalarProperty Name="Pro_FechaCrea" ColumnName="Pro_FechaCrea" />
+          <ScalarProperty Name="Pro_UsuarioModifica" ColumnName="Pro_UsuarioModifica" />
+          <ScalarProperty Name="Pro_FechaModifica" ColumnName="Pro_FechaModifica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inicio_Sesion" FunctionName="SupermercadoDBModel.Store.UDP_Inicio_Sesion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SupermercadoDBModel.UDP_Inicio_Sesion_Result">
+          <ScalarProperty Name="Usu_Id" ColumnName="Usu_Id" />
+          <ScalarProperty Name="Usu_UsuarioNombre" ColumnName="Usu_UsuarioNombre" />
+          <ScalarProperty Name="Usu_Contrasena" ColumnName="Usu_Contrasena" />
+          <ScalarProperty Name="Usu_EsAdmin" ColumnName="Usu_EsAdmin" />
+          <ScalarProperty Name="CarP_Id" ColumnName="CarP_Id" />
+          <ScalarProperty Name="Usu_Activo" ColumnName="Usu_Activo" />
+          <ScalarProperty Name="Usu_UsuarioCrea" ColumnName="Usu_UsuarioCrea" />
+          <ScalarProperty Name="Usu_FechaCrea" ColumnName="Usu_FechaCrea" />
+          <ScalarProperty Name="Usu_UsuarioModifica" ColumnName="Usu_UsuarioModifica" />
+          <ScalarProperty Name="Usu_FechaModifica" ColumnName="Usu_FechaModifica" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Usuario_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_UPDATE" />
+    <FunctionImportMapping FunctionImportName="UDP_Categoria_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_DELETE" />
+    <FunctionImportMapping FunctionImportName="UDP_Categoria_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_INSERT" />
+    <FunctionImportMapping FunctionImportName="UDP_Categoria_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_UPDATE" />
+    <FunctionImportMapping FunctionImportName="UDP_Proveedores_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Proveedores_DELETE" />
+    <FunctionImportMapping FunctionImportName="UDP_Proveedores_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Proveedores_INSERT" />
+    <FunctionImportMapping FunctionImportName="UDP_Proveedores_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Proveedores_UPDATE" />
+    <FunctionImportMapping FunctionImportName="UDP_tblPersonas_Delete" FunctionName="SupermercadoDBModel.Store.UDP_tblPersonas_Delete" />
+    <FunctionImportMapping FunctionImportName="UDP_tblPersonas_Insert" FunctionName="SupermercadoDBModel.Store.UDP_tblPersonas_Insert" />
+    <FunctionImportMapping FunctionImportName="UDP_tblPersonas_Update" FunctionName="SupermercadoDBModel.Store.UDP_tblPersonas_Update" />
+    <FunctionImportMapping FunctionImportName="UDP_Usuario_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_DELETE" />
+    <FunctionImportMapping FunctionImportName="UDP_Usuario_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_INSERT" />
+    <EntitySetMapping Name="VW_Usuario">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.VW_Usuario">
+        <MappingFragment StoreEntitySet="VW_Usuario">
+          <ScalarProperty Name="Adm" ColumnName="Adm" />
+          <ScalarProperty Name="Act" ColumnName="Act" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdU" ColumnName="IdU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
