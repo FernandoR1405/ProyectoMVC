@@ -1,16 +1,12 @@
 ﻿@model Supermercado_APP.Models.tblVentaEncabezado
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle de Venta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>tblVentaEncabezado</h4>
-    <hr />
-    <dl class="dl-horizontal">
+    <dl class="row">
         <dt>
             @Html.DisplayNameFor(model => model.VentEnc_NumFactura)
         </dt>

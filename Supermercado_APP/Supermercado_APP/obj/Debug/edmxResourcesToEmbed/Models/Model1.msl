@@ -245,13 +245,13 @@
     <EntitySetMapping Name="VW_Usuario">
       <EntityTypeMapping TypeName="SupermercadoDBModel.VW_Usuario">
         <MappingFragment StoreEntitySet="VW_Usuario">
-          <ScalarProperty Name="Adm" ColumnName="Adm" />
-          <ScalarProperty Name="Act" ColumnName="Act" />
-          <ScalarProperty Name="Pass" ColumnName="Pass" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="IdU" ColumnName="IdU" />
+          <ScalarProperty Name="Usu_EsAdmin" ColumnName="Usu_EsAdmin" />
+          <ScalarProperty Name="Usu_Contrasena" ColumnName="Usu_Contrasena" />
+          <ScalarProperty Name="Usu_UsuarioNombre" ColumnName="Usu_UsuarioNombre" />
+          <ScalarProperty Name="Usu_Id" ColumnName="Usu_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Venta_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Venta_INSERT" />
   </EntityContainerMapping>
 </Mapping>

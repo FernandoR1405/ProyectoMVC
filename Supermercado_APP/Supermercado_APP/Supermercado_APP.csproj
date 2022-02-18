@@ -159,6 +159,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personas.cs" />
     <Compile Include="Models\tblCargo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -202,6 +203,8 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuarios.cs" />
+    <Compile Include="Models\VentaDetalle.cs" />
+    <Compile Include="Models\VentaEncabezado.cs" />
     <Compile Include="Models\VW_Usuario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -52,11 +52,13 @@ namespace Supermercado_APP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "VentEnc_Id,VentEnc_NumFactura,VentEnc_Fecha,Per_Id,VentEnc_Total,VentEnc_Activo,VentEnc_UsuarioCrea,VentEnc_FechaCrea,VentEnc_UsuarioModifica,VentEnc_FechaModifica")] tblVentaEncabezado tblVentaEncabezado)
+        public async Task<ActionResult> Create([Bind(Include = "VentEnc_Id,VentEnc_NumFactura,VentEnc_Fecha,Per_Id,VentEnc_Total")] tblVentaEncabezado tblVentaEncabezado, [Bind(Include = "Prd_Id,VentDet_Precio,VentDet_Cantidad,VentDet_Descuento,VentDet_Impuesto,VentDet_Subtotal")] tblventadetalle tblventadetalle)
         {
+            ModelState.Remove("VentEnc_Total");
+            ModelState.Remove("VentDet_Subtotal");
             if (ModelState.IsValid)
             {
-                db.tblVentaEncabezadoes.Add(tblVentaEncabezado);
+                db.UDP_Venta_INSERT(tblVentaEncabezado.VentEnc_NumFactura, tblVentaEncabezado.VentEnc_Fecha, tblVentaEncabezado.VentEnc_Total, 1, tblventadetalle.Prd_Id, tblventadetalle.VentDet_Precio, tblventadetalle.VentDet_Cantidad, tblventadetalle.VentDet_Descuento, tblventadetalle.VentDet_Impuesto,0);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
