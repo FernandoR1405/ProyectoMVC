@@ -107,7 +107,7 @@ body {
 	margin: -20px 0 50px;
 }
 .Login{
-	color: #1a1922c0;
+	color: #1a1922;
 }
 
 
@@ -144,7 +144,7 @@ span {
 }
 
 a {
-	color: rgb(61, 58, 58);
+	color: #1a1922;
 	font-size: 14px;
 	text-decoration: none;
 	margin: 15px 0;
@@ -152,10 +152,10 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #1a1922c0;
-	background-color: #1a1922c0;
+	border: 1px solid #1a1922;
+	background-color: #1a1922;
 	box-shadow: 10px #2bffd1;
-	box-shadow: 0px 0px 4px #1a1922c0;
+	box-shadow: 0px 0px 3px #1a1922;
 	color: #FFFFFF;
 	font-size: 15px;
 	font-weight: bold;
@@ -203,7 +203,7 @@ input {
 	border-top-right-radius: 18px;
 	border-bottom-right-radius: 18px;
 	border-bottom-left-radius: 18px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25);
+  	box-shadow: 0 14px 28px #111016c0;
 	position: relative;
 	overflow: hidden;
 	width: 800px;
@@ -270,7 +270,7 @@ input {
 }
 
 .overlay {
-	background: #1a1922c0;
+	background: #1a1922;
 	/* background: -webkit-linear-gradient(to right, #2bffff, #41ffb0);
 	background: linear-gradient(to right, #2bff60, #418dff); */
 	background-repeat: no-repeat;
