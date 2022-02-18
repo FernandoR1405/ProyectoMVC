@@ -1,11 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Supermercado_APP",
-    "\\Supermercado_APP\\Supermercado_APP",
-    "\\Supermercado_APP\\Supermercado_APP\\Views",
-    "\\Supermercado_APP\\Supermercado_APP\\Views\\Shared"
+    "\\Supermercado_APP"
   ],
-  "SelectedNode": "\\Supermercado_APP\\Supermercado_APP\\Views\\Shared\\_Layout.cshtml",
+  "SelectedNode": "\\Supermercado_APP\\Supermercado_APP.sln",
   "PreviewInSolutionExplorer": false
 }

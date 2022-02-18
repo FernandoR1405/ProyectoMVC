@@ -200,16 +200,17 @@
     <Property Name="Pro_UsuarioModifica" Type="int" />
     <Property Name="Pro_FechaModifica" Type="date" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_Usuario">
     <Key>
-      <PropertyRef Name="Usu_Id" />
+      <PropertyRef Name="IdU" />
     </Key>
-    <Property Name="Usu_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Usu_UsuarioNombre" Type="nvarchar" MaxLength="100" />
-    <Property Name="Usu_Contrasena" Type="nvarchar" MaxLength="100" />
-    <Property Name="Usu_EsAdmin" Type="varchar" MaxLength="2" />
+    <Property Name="IdU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+    <Property Name="Pass" Type="nvarchar" MaxLength="100" />
+    <Property Name="Act" Type="bit" />
+    <Property Name="Adm" Type="varchar" MaxLength="2" />
   </EntityType>
   <Association Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
     <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
@@ -799,10 +800,11 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene def
     <EntitySet Name="tblProveedores" EntityType="Self.tblProveedores" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="VW_Usuario" EntityType="Self.VW_Usuario" store:Type="Views" store:Schema="Acce">
       <DefiningQuery>SELECT 
-    [VW_Usuario].[Usu_Id] AS [Usu_Id], 
-    [VW_Usuario].[Usu_UsuarioNombre] AS [Usu_UsuarioNombre], 
-    [VW_Usuario].[Usu_Contrasena] AS [Usu_Contrasena], 
-    [VW_Usuario].[Usu_EsAdmin] AS [Usu_EsAdmin]
+    [VW_Usuario].[IdU] AS [IdU], 
+    [VW_Usuario].[Nombre] AS [Nombre], 
+    [VW_Usuario].[Pass] AS [Pass], 
+    [VW_Usuario].[Act] AS [Act], 
+    [VW_Usuario].[Adm] AS [Adm]
     FROM [Acce].[VW_Usuario] AS [VW_Usuario]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">

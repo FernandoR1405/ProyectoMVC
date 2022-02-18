@@ -52,14 +52,15 @@ namespace Supermercado_APP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "VentEnc_Id,VentEnc_NumFactura,VentEnc_Fecha,Per_Id,VentEnc_Total")] tblVentaEncabezado tblVentaEncabezado, [Bind(Include = "Prd_Id,VentDet_Precio,VentDet_Cantidad,VentDet_Descuento,VentDet_Impuesto,VentDet_Subtotal")] tblventadetalle tblventadetalle)
+        public async Task<ActionResult> Create([Bind(Include = "VentEnc_Id,VentEnc_NumFactura,VentEnc_Fecha,Per_Id,VentEnc_Total")] tblVentaEncabezado tblVentaEncabezado, [Bind(Include = "Prd_Id,VentDet_Precio,VentDet_Cantidad,VentDet_Descuento,VentDet_Impuesto,VentDet_Subtotal")] tblventadetalle tblventadetalle, [Bind(Include = "Per_Identidad,Per_Rtn,Per_Nombres,Per_PrimerApellido,Per_SegundoApellido,Per_Sexo,Dir_Id,Per_Telefono,Per_Correo")] tblPersona tblPersona)
         {
             ModelState.Remove("VentEnc_Total");
             ModelState.Remove("VentDet_Subtotal");
             if (ModelState.IsValid)
             {
-                db.UDP_Venta_INSERT(tblVentaEncabezado.VentEnc_NumFactura, tblVentaEncabezado.VentEnc_Fecha, tblVentaEncabezado.VentEnc_Total, 1, tblventadetalle.Prd_Id, tblventadetalle.VentDet_Precio, tblventadetalle.VentDet_Cantidad, tblventadetalle.VentDet_Descuento, tblventadetalle.VentDet_Impuesto,0);
-                await db.SaveChangesAsync();
+                db.UDP_tblPersonas_Insert(tblPersona.Per_Identidad,tblPersona.Per_Rtn,tblPersona.Per_Nombres,tblPersona.Per_PrimerApellido,tblPersona.Per_SegundoApellido,tblPersona.Per_Sexo,1,tblPersona.Per_Telefono,tblPersona.Per_Correo,1);
+                db.UDP_Venta_INSERT(tblVentaEncabezado.VentEnc_NumFactura, tblVentaEncabezado.VentEnc_Fecha, tblVentaEncabezado.VentEnc_Total, 1, 1, tblventadetalle.VentDet_Precio, tblventadetalle.VentDet_Cantidad, tblventadetalle.VentDet_Descuento, tblventadetalle.VentDet_Impuesto, 0);
+                //await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 

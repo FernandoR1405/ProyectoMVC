@@ -12,15 +12,15 @@
         <hr />
     </div>
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="col-md-4">
-        @Html.LabelFor(model => model.Per_Identidad, htmlAttributes: new { @class = "control-label col-md-4" })
+    <div class="col-md-12">
+        @Html.LabelFor(model => model.Per_Identidad, htmlAttributes: new { @class = "control-label col-md-12" })
         <div class="form-group">
             @Html.EditorFor(model => model.Per_Identidad, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Per_Identidad, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div class="col-md-4">
+    @*<div class="col-md-4">
         @Html.LabelFor(model => model.Per_Rtn, htmlAttributes: new { @class = "control-label col-md-4" })
         <div class="form-group">
             @Html.EditorFor(model => model.Per_Rtn, new { htmlAttributes = new { @class = "form-control" } })
@@ -50,9 +50,17 @@
             @Html.EditorFor(model => model.Per_SegundoApellido, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Per_SegundoApellido, "", new { @class = "text-danger" })
         </div>
-    </div>
+    </div>*@
 
-    <div class="col-md-4">
+    @*<div class="col-md-4">
+        @Html.LabelFor(model => model.Dir_Id, htmlAttributes: new { @class = "control-label col-md-5" })
+        <div class="form-group">
+            @Html.EditorFor(model => model.Dir_Id, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Dir_Id, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <!--<div class="col-md-4">
         @Html.LabelFor(model => model.Per_Sexo, htmlAttributes: new { @class = "control-label col-md-4" })
         <div class="form-group">
             <div style="display: flex; justify-content:space-between; align-items: center; padding: 5px 80px">
@@ -65,9 +73,9 @@
                     <input type="radio" name="Per_Sexo" value="F" />
                     <label>Femenino</label>
                 </div>
-            </div>
+            </div>-->
             @*@Html.EditorFor(model => model.Per_Sexo, new { htmlAttributes = new { @class = "form-control" } })*@
-            @Html.ValidationMessageFor(model => model.Per_Sexo, "", new { @class = "text-danger" })
+            <!--@Html.ValidationMessageFor(model => model.Per_Sexo, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -86,7 +94,7 @@
             @Html.EditorFor(model => model.Per_Correo, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Per_Correo, "", new { @class = "text-danger" })
         </div>
-    </div>
+    </div>-->
 
 </div>
 }

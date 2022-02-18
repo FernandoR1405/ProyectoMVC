@@ -205,16 +205,17 @@
           <Property Name="Pro_UsuarioModifica" Type="int" />
           <Property Name="Pro_FechaModifica" Type="date" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_Usuario">
           <Key>
-            <PropertyRef Name="Usu_Id" />
+            <PropertyRef Name="IdU" />
           </Key>
-          <Property Name="Usu_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Usu_UsuarioNombre" Type="nvarchar" MaxLength="100" />
-          <Property Name="Usu_Contrasena" Type="nvarchar" MaxLength="100" />
-          <Property Name="Usu_EsAdmin" Type="varchar" MaxLength="2" />
+          <Property Name="IdU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="100" />
+          <Property Name="Act" Type="bit" />
+          <Property Name="Adm" Type="varchar" MaxLength="2" />
         </EntityType>
         <Association Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
           <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
@@ -804,10 +805,11 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene def
           <EntitySet Name="tblProveedores" EntityType="Self.tblProveedores" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="VW_Usuario" EntityType="Self.VW_Usuario" store:Type="Views" store:Schema="Acce">
             <DefiningQuery>SELECT 
-    [VW_Usuario].[Usu_Id] AS [Usu_Id], 
-    [VW_Usuario].[Usu_UsuarioNombre] AS [Usu_UsuarioNombre], 
-    [VW_Usuario].[Usu_Contrasena] AS [Usu_Contrasena], 
-    [VW_Usuario].[Usu_EsAdmin] AS [Usu_EsAdmin]
+    [VW_Usuario].[IdU] AS [IdU], 
+    [VW_Usuario].[Nombre] AS [Nombre], 
+    [VW_Usuario].[Pass] AS [Pass], 
+    [VW_Usuario].[Act] AS [Act], 
+    [VW_Usuario].[Adm] AS [Adm]
     FROM [Acce].[VW_Usuario] AS [VW_Usuario]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
@@ -1248,6 +1250,16 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene def
           <NavigationProperty Name="tblUsuario1" Relationship="Self.FK_Gral_tblProveedores_Pro_UsuarioModifica_Acc_tblUsuario_Usu_Id" FromRole="tblProveedores" ToRole="tblUsuarios" />
           <NavigationProperty Name="tblProductos" Relationship="Self.FK_Fact_tblProductos_Gral_tblProveedores_Pro_Id" FromRole="tblProveedores" ToRole="tblProductos" />
           <NavigationProperty Name="tblDireccione" Relationship="Self.FK_Gral_tblProveedores_Gral_tblDirecciones_Dir_Id" FromRole="tblProveedores" ToRole="tblDirecciones" />
+        </EntityType>
+        <EntityType Name="VW_Usuario">
+          <Key>
+            <PropertyRef Name="IdU" />
+          </Key>
+          <Property Name="IdU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Act" Type="Boolean" />
+          <Property Name="Adm" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
           <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="1" />
@@ -1731,6 +1743,7 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene def
           <EntitySet Name="tblDirecciones" EntityType="Self.tblDireccione" />
           <EntitySet Name="tblPersonas" EntityType="Self.tblPersona" />
           <EntitySet Name="tblProveedores" EntityType="Self.tblProveedore" />
+          <EntitySet Name="VW_Usuario" EntityType="Self.VW_Usuario" />
           <AssociationSet Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
             <End Role="tblUsuarios" EntitySet="tblUsuarios" />
             <End Role="tblCategorias" EntitySet="tblCategorias" />
@@ -1891,6 +1904,12 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene def
             <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
             <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Usuario_INSERT">
+            <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
+            <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
+            <Parameter Name="Usu_EsAdmin" Mode="In" Type="Boolean" />
+            <Parameter Name="Usu_UsuarioCrea" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="UDP_Usuario_UPDATE">
             <Parameter Name="Usu_Id" Mode="In" Type="Int32" />
             <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
@@ -1973,13 +1992,6 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene def
             <Parameter Name="Usu_Id" Mode="In" Type="Int32" />
             <Parameter Name="Usu_UsuarioModifica" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Usuario_INSERT">
-            <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
-            <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
-            <Parameter Name="Usu_EsAdmin" Mode="In" Type="Boolean" />
-            <Parameter Name="Usu_UsuarioCrea" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <EntitySet Name="VW_Usuario" EntityType="SupermercadoDBModel.VW_Usuario" />
           <FunctionImport Name="UDP_Venta_INSERT">
             <Parameter Name="VentEnc_NumFactura" Mode="In" Type="Int32" />
             <Parameter Name="VentEnc_Fecha" Mode="In" Type="DateTime" />
@@ -2005,21 +2017,6 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene def
           <Property Type="Int32" Name="Usu_UsuarioModifica" Nullable="true" />
           <Property Type="DateTime" Name="Usu_FechaModifica" Nullable="true" Precision="23" />
         </ComplexType>
-        <EntityType Name="VW_Usuario">
-          <Key>
-            <PropertyRef Name="IdU" />
-            <PropertyRef Name="Usu_Id" />
-          </Key>
-          <Property Name="IdU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Act" Type="Boolean" />
-          <Property Name="Adm" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="Usu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Usu_UsuarioNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Usu_Contrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Usu_EsAdmin" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2239,6 +2236,17 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VW_Usuario">
+            <EntityTypeMapping TypeName="SupermercadoDBModel.VW_Usuario">
+              <MappingFragment StoreEntitySet="VW_Usuario">
+                <ScalarProperty Name="IdU" ColumnName="IdU" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Act" ColumnName="Act" />
+                <ScalarProperty Name="Adm" ColumnName="Adm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="UDP_Inicio_Sesion" FunctionName="SupermercadoDBModel.Store.UDP_Inicio_Sesion">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SupermercadoDBModel.UDP_Inicio_Sesion_Result">
@@ -2255,6 +2263,7 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene def
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Usuario_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_INSERT" />
           <FunctionImportMapping FunctionImportName="UDP_Usuario_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_UPDATE" />
           <FunctionImportMapping FunctionImportName="UDP_Categoria_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_DELETE" />
           <FunctionImportMapping FunctionImportName="UDP_Categoria_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_INSERT" />
@@ -2266,17 +2275,6 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene def
           <FunctionImportMapping FunctionImportName="UDP_tblPersonas_Insert" FunctionName="SupermercadoDBModel.Store.UDP_tblPersonas_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_tblPersonas_Update" FunctionName="SupermercadoDBModel.Store.UDP_tblPersonas_Update" />
           <FunctionImportMapping FunctionImportName="UDP_Usuario_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_DELETE" />
-          <FunctionImportMapping FunctionImportName="UDP_Usuario_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_INSERT" />
-          <EntitySetMapping Name="VW_Usuario">
-            <EntityTypeMapping TypeName="SupermercadoDBModel.VW_Usuario">
-              <MappingFragment StoreEntitySet="VW_Usuario">
-                <ScalarProperty Name="Usu_EsAdmin" ColumnName="Usu_EsAdmin" />
-                <ScalarProperty Name="Usu_Contrasena" ColumnName="Usu_Contrasena" />
-                <ScalarProperty Name="Usu_UsuarioNombre" ColumnName="Usu_UsuarioNombre" />
-                <ScalarProperty Name="Usu_Id" ColumnName="Usu_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="UDP_Venta_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Venta_INSERT" />
         </EntityContainerMapping>
       </Mapping>
@@ -2294,7 +2292,7 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene def
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
