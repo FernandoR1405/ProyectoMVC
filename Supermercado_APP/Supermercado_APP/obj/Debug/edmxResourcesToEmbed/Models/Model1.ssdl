@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="SupermercadoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="SupermercadoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="tblUsuarios">
     <Key>
       <PropertyRef Name="Usu_Id" />
@@ -200,17 +200,16 @@
     <Property Name="Pro_UsuarioModifica" Type="int" />
     <Property Name="Pro_FechaModifica" Type="date" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="VW_Usuario">
     <Key>
-      <PropertyRef Name="IdU" />
+      <PropertyRef Name="Usu_Id" />
     </Key>
-    <Property Name="IdU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
-    <Property Name="Pass" Type="nvarchar" MaxLength="100" />
-    <Property Name="Act" Type="bit" />
-    <Property Name="Adm" Type="varchar" MaxLength="2" />
+    <Property Name="Usu_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usu_UsuarioNombre" Type="nvarchar" MaxLength="100" />
+    <Property Name="Usu_Contrasena" Type="nvarchar" MaxLength="100" />
+    <Property Name="Usu_EsAdmin" Type="varchar" MaxLength="2" />
   </EntityType>
   <Association Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
     <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
@@ -739,6 +738,18 @@ warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a pr
     <Parameter Name="Pro_PaginaWeb" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="Pro_UsuarioModifica" Type="int" Mode="In" />
   </Function>
+  <Function Name="UDP_Venta_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Fact">
+    <Parameter Name="VentEnc_NumFactura" Type="int" Mode="In" />
+    <Parameter Name="VentEnc_Fecha" Type="datetime" Mode="In" />
+    <Parameter Name="VentEnc_Total" Type="money" Mode="In" />
+    <Parameter Name="Ven_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="Prd_Id" Type="int" Mode="In" />
+    <Parameter Name="VentDet_Precio" Type="money" Mode="In" />
+    <Parameter Name="VentDet_Cantidad" Type="int" Mode="In" />
+    <Parameter Name="VentDet_Descuento" Type="money" Mode="In" />
+    <Parameter Name="VentDet_Impuesto" Type="nvarchar" Mode="In" />
+    <Parameter Name="cont" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_tblPersonas_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="Per_Id" Type="int" Mode="In" />
     <Parameter Name="Per_UsuarioModifica" Type="int" Mode="In" />
@@ -788,12 +799,11 @@ warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a pr
     <EntitySet Name="tblProveedores" EntityType="Self.tblProveedores" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="VW_Usuario" EntityType="Self.VW_Usuario" store:Type="Views" store:Schema="Acce">
       <DefiningQuery>SELECT 
-[VW_Usuario].[IdU] AS [IdU], 
-[VW_Usuario].[Nombre] AS [Nombre], 
-[VW_Usuario].[Pass] AS [Pass], 
-[VW_Usuario].[Act] AS [Act], 
-[VW_Usuario].[Adm] AS [Adm]
-FROM [Acce].[VW_Usuario] AS [VW_Usuario]</DefiningQuery>
+    [VW_Usuario].[Usu_Id] AS [Usu_Id], 
+    [VW_Usuario].[Usu_UsuarioNombre] AS [Usu_UsuarioNombre], 
+    [VW_Usuario].[Usu_Contrasena] AS [Usu_Contrasena], 
+    [VW_Usuario].[Usu_EsAdmin] AS [Usu_EsAdmin]
+    FROM [Acce].[VW_Usuario] AS [VW_Usuario]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
       <End Role="tblUsuarios" EntitySet="tblUsuarios" />

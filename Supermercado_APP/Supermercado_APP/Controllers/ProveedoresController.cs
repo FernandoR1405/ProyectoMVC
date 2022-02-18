@@ -51,12 +51,11 @@ namespace Supermercado_APP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Pro_Id,Pro_Empresa,Pro_RepNombreS,Pro_RepPriApellido,Pro_RepSegApellido,Dir_Id,Pro_TelFijo,Pro_TelMovil,Pro_Email,Pro_PaginaWeb,Pro_Estado,Pro_UsuarioCrea,Pro_FechaCrea,Pro_UsuarioModifica,Pro_FechaModifica")] tblProveedore tblProveedore)
+        public async Task<ActionResult> Create([Bind(Include = "Pro_Id,Pro_Empresa,Pro_RepNombreS,Pro_RepPriApellido,Pro_RepSegApellido,Dir_Id,Pro_TelFijo,Pro_TelMovil,Pro_Email,Pro_PaginaWeb,Pro_UsuarioCrea,")] tblProveedore tblProveedore)
         {
             if (ModelState.IsValid)
             {
-                db.tblProveedores.Add(tblProveedore);
-                await db.SaveChangesAsync();
+                db.UDP_Proveedores_INSERT(tblProveedore.Pro_Empresa, tblProveedore.Pro_RepNombreS, tblProveedore.Pro_RepPriApellido, tblProveedore.Pro_RepSegApellido, tblProveedore.Dir_Id, tblProveedore.Pro_TelFijo, tblProveedore.Pro_TelMovil, tblProveedore.Pro_Email, tblProveedore.Pro_PaginaWeb, 1);
                 return RedirectToAction("Index");
             }
 
