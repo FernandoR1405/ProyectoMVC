@@ -1,14 +1,21 @@
 /* Recordatorio de Fer: La fuente es Google Font Import - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
- 
 }
 
-.Sidebar{
+body {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.sidebar {
     backdrop-filter: blur(10px);
     box-shadow: 0 0 6px #1a1922c0;
     position: fixed;
@@ -19,47 +26,51 @@
     background: #1a1922;
     padding: 14px 14px;
     transition: all 0.5s ease;
-    z-index:1;
-
 }
 
+h6 {
+    padding-left: 15px;
+}
 
-
-.Sidebar.active{
+.sidebar.active {
     width: 240px
 }
 
-.Sidebar.active .logo_content .logo {
-    opacity: 1;
-}
+    .sidebar.active .logo_content .logo {
+        opacity: 1;
+    }
 
-.Sidebar .logo_content .logo {
+.sidebar .logo_content .logo {
     color: white;
     display: flex;
     height: 210px;
     width: 100%;
+    font-size: 0px;
     align-items: center;
     opacity: 0;
+    font-size: 0px;
     pointer-events: none;
     transition: all 0.5s ease;
 }
 
 
 
-.logo_content .logo i{
+.logo_content .logo i {
     font-size: 48px;
-    margin-top: -50px
+}
+
+#nick_logo {
+    padding-left: 15px;
 }
 
 .logo_content .logo .logo_name {
     font-size: 20px;
     font-weight: 400;
-    margin-top: -50px
 }
 
 
 
-.Sidebar #btn{
+.sidebar #btn {
     position: absolute;
     color: white;
     left: 50%;
@@ -73,107 +84,107 @@
     transition: all 0.5s ease;
 }
 
-.Sidebar.active #btn{
+.sidebar.active #btn {
     left: 80%;
     transform: translateX(-50%);
     transition: all 0.5s ease;
-
 }
 
 
-.Sidebar ul{
-    margin-top: -80px;
+.sidebar ul {
+    margin-top: 20px;
 }
 
-.Sidebar ul li {
-    position: relative;
-    height: 50px;
-    width: 100%;
-    margin: 5px 5px;
-    list-style: none;
-    line-height: 50px;
-}
+    .sidebar ul li {
+        position: relative;
+        height: 50px;
+        width: 100%;
+        margin: 5 5px;
+        list-style: none;
+        line-height: 50px;
+    }
 
-.Sidebar ul li a{
-    color: white;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: all 0.4s ease;
-    border-radius: 5px;
-}
+        .sidebar ul li a {
+            color: white;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            border-radius: 5px;
+        }
 
-.Sidebar ul li a:hover{
-    color: #1a1922;
-    background: white;
+            .sidebar ul li a:hover {
+                color: #1a1922;
+                background: white;
+            }
 
-}
+            .sidebar ul li a i {
+                height: 50px;
+                min-width: 50px;
+                border-radius: 12px;
+                line-height: 50px;
+                text-align: center;
+            }
 
-.Sidebar ul li a i{
-    height: 50px;
-    min-width: 50px;
-    border-radius: 12px;
-    line-height: 50px;
-    text-align: center;
-}
-
-.Sidebar .links_name{
+.sidebar .links_name {
     opacity: 0;
+    font-size: 0px;
     transition: all 0.5s ease;
 }
 
-.Sidebar.active .links_name{
+.sidebar.active .links_name {
     opacity: 1;
+    font-size: 15px;
     pointer-events: auto;
 }
 
 
-.Sidebar .profile_content{
+.sidebar .profile_content {
     position: absolute;
     color: white;
     bottom: 0;
     left: 0;
 }
-   
-.Sidebar .profile_content .profile{
-    position: relative;
-    padding: 10px 6px;
-    height: 60px;
-}
 
-.profile_content .profile .profile_details{
+    .sidebar .profile_content .profile {
+        position: relative;
+        padding: 10px 6px;
+        height: 60px;
+    }
+
+.profile_content .profile .profile_details {
     display: flex;
     align-items: center;
     opacity: 0;
+    font-size: 0px;
     pointer-events: auto;
     white-space: nowrap;
     transition: all 0.5s ease;
 }
 
-.Sidebar.active .profile .profile_details{
+.sidebar.active .profile .profile_details {
     opacity: 1;
     pointer-events: auto;
-    
-
+    font-size: 15px;
 }
 
-.profile .profile_details .name_job{
+.profile .profile_details .name_job {
     margin-left: 30px;
 }
 
 
 
-.profile .profile_details .name{
-    font-size: 15px;
+.profile .profile_details .name {
+    /* font-size: 15px; */
     font-weight: 400;
 }
-
+/* 
 .profile .profile_details .job{
     font-size: 12px;
-}
+} */
 
-.profile #log_out{
-    position:  absolute;
+.profile #log_out {
+    position: absolute;
     left: 47px;
     bottom: 5px;
     transform: translateX(-50%);
@@ -181,13 +192,9 @@
     line-height: 50px;
     font-size: 30px;
     border-radius: 12px;
-    transition: all 0.5s ease;    
+    transition: all 0.5s ease;
 }
-.Sidebar.Sidebar.active .profile #log_out{
-    
+
+.sidebar.sidebar.active .profile #log_out {
     left: 200px;
-
 }
-
-
-

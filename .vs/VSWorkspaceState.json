@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Supermercado_APP"
+    "\\Supermercado_APP",
+    "\\Supermercado_APP\\Supermercado_APP",
+    "\\Supermercado_APP\\Supermercado_APP\\Models"
   ],
   "SelectedNode": "\\Supermercado_APP\\Supermercado_APP.sln",
   "PreviewInSolutionExplorer": false
