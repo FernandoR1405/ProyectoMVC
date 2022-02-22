@@ -17,7 +17,7 @@ namespace Supermercado_APP.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            var tblUsuarios = db.VW_Usuario;
+            var tblUsuarios = db.VW_Usuario.Where(x => x.Act == true);
             return View(tblUsuarios.ToList());
         }
 
