@@ -278,16 +278,6 @@
     <NavigationProperty Name="tblProductos" Relationship="Self.FK_Fact_tblProductos_Gral_tblProveedores_Pro_Id" FromRole="tblProveedores" ToRole="tblProductos" />
     <NavigationProperty Name="tblDireccione" Relationship="Self.FK_Gral_tblProveedores_Gral_tblDirecciones_Dir_Id" FromRole="tblProveedores" ToRole="tblDirecciones" />
   </EntityType>
-  <EntityType Name="VW_Usuario">
-    <Key>
-      <PropertyRef Name="IdU" />
-    </Key>
-    <Property Name="IdU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Act" Type="Boolean" />
-    <Property Name="Adm" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-  </EntityType>
   <Association Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
     <End Role="tblUsuarios" Type="Self.tblUsuario" Multiplicity="1" />
     <End Role="tblCategorias" Type="Self.tblCategoria" Multiplicity="*" />
@@ -770,7 +760,6 @@
     <EntitySet Name="tblDirecciones" EntityType="Self.tblDireccione" />
     <EntitySet Name="tblPersonas" EntityType="Self.tblPersona" />
     <EntitySet Name="tblProveedores" EntityType="Self.tblProveedore" />
-    <EntitySet Name="VW_Usuario" EntityType="Self.VW_Usuario" />
     <AssociationSet Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
       <End Role="tblUsuarios" EntitySet="tblUsuarios" />
       <End Role="tblCategorias" EntitySet="tblCategorias" />
@@ -1031,6 +1020,7 @@
       <Parameter Name="VentDet_Impuesto" Mode="In" Type="String" />
       <Parameter Name="cont" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="VW_Usuarios" EntityType="SupermercadoDBModel.VW_Usuarios" />
   </EntityContainer>
   <ComplexType Name="UDP_Inicio_Sesion_Result">
     <Property Type="Int32" Name="Usu_Id" Nullable="false" />
@@ -1044,4 +1034,13 @@
     <Property Type="Int32" Name="Usu_UsuarioModifica" Nullable="true" />
     <Property Type="DateTime" Name="Usu_FechaModifica" Nullable="true" Precision="23" />
   </ComplexType>
+  <EntityType Name="VW_Usuarios">
+    <Key>
+      <PropertyRef Name="Usu_Id" />
+    </Key>
+    <Property Name="Usu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usu_UsuarioNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Usu_Contrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Usu_EsAdmin" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

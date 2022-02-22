@@ -214,17 +214,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="VW_Usuario">
-      <EntityTypeMapping TypeName="SupermercadoDBModel.VW_Usuario">
-        <MappingFragment StoreEntitySet="VW_Usuario">
-          <ScalarProperty Name="IdU" ColumnName="IdU" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Pass" ColumnName="Pass" />
-          <ScalarProperty Name="Act" ColumnName="Act" />
-          <ScalarProperty Name="Adm" ColumnName="Adm" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="UDP_Inicio_Sesion" FunctionName="SupermercadoDBModel.Store.UDP_Inicio_Sesion">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SupermercadoDBModel.UDP_Inicio_Sesion_Result">
@@ -241,18 +230,15 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Usuario_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_INSERT" />
-    <FunctionImportMapping FunctionImportName="UDP_Usuario_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_UPDATE" />
-    <FunctionImportMapping FunctionImportName="UDP_Categoria_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_DELETE" />
-    <FunctionImportMapping FunctionImportName="UDP_Categoria_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_INSERT" />
-    <FunctionImportMapping FunctionImportName="UDP_Categoria_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_UPDATE" />
-    <FunctionImportMapping FunctionImportName="UDP_Proveedores_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Proveedores_DELETE" />
-    <FunctionImportMapping FunctionImportName="UDP_Proveedores_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Proveedores_INSERT" />
-    <FunctionImportMapping FunctionImportName="UDP_Proveedores_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Proveedores_UPDATE" />
-    <FunctionImportMapping FunctionImportName="UDP_tblPersonas_Delete" FunctionName="SupermercadoDBModel.Store.UDP_tblPersonas_Delete" />
-    <FunctionImportMapping FunctionImportName="UDP_tblPersonas_Insert" FunctionName="SupermercadoDBModel.Store.UDP_tblPersonas_Insert" />
-    <FunctionImportMapping FunctionImportName="UDP_tblPersonas_Update" FunctionName="SupermercadoDBModel.Store.UDP_tblPersonas_Update" />
-    <FunctionImportMapping FunctionImportName="UDP_Usuario_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_DELETE" />
-    <FunctionImportMapping FunctionImportName="UDP_Venta_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Venta_INSERT" />
+    <EntitySetMapping Name="VW_Usuarios">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.VW_Usuarios">
+        <MappingFragment StoreEntitySet="VW_Usuarios">
+          <ScalarProperty Name="Usu_EsAdmin" ColumnName="Usu_EsAdmin" />
+          <ScalarProperty Name="Usu_Contrasena" ColumnName="Usu_Contrasena" />
+          <ScalarProperty Name="Usu_UsuarioNombre" ColumnName="Usu_UsuarioNombre" />
+          <ScalarProperty Name="Usu_Id" ColumnName="Usu_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

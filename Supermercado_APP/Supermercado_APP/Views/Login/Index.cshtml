@@ -1,4 +1,4 @@
-﻿
+﻿@model Supermercado_APP.Models.tblUsuario
 @{
     Layout = null;
 }
@@ -18,15 +18,17 @@
     <div class="container" id="container">
 
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form action="@Url.Action("Index","Login")" method="post">
                 <h1>Login_</h1>
                 <br>
-                <input type="text" placeholder="Usuario" />
-                <input type="password" placeholder="Contraseña" />
+                <input type="text" placeholder="Usuario" name="Usu_UsuarioNombre" />
+                <input type="password" placeholder="Contraseña" name="txtpass" />
                 <br>
-                <button>Sign In</button>
+                <p style="color:red;">@Html.ValidationMessageFor(model => model.Usu_UsuarioNombre)</p>
+                <button type="submit">Iniciar Session</button>
             </form>
         </div>
+        
         <div class="overlay-container">
             <div class="overlay">
 
