@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Supermercado_APP.Models;
+using Supermercado_APP.Models.ViewModels;
 
 namespace Supermercado_APP.Controllers
 {
@@ -58,8 +59,57 @@ namespace Supermercado_APP.Controllers
             ViewBag.VentEnc_UsuarioModifica = new SelectList(db.tblUsuarios, "Usu_Id", "Usu_UsuarioNombre");
             ViewBag.Per_Id = new SelectList(db.tblPersonas, "Per_Id", "Per_Identidad");
             ViewBag.Prd_Id = new SelectList(db.tblProductos, "Prd_Id", "Prd_Codigo");
-            ViewBag.VentEnc_Id = new SelectList(db.tblVentaEncabezadoes, "VentEnc_Id", "VentEnc_Id");
+            //ViewBag.VentEnc_Id = new SelectList(db.tblVentaEncabezadoes, "VentEnc_Id", "VentEnc_Id");
             return View();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ObtenerListadoProductos()
+        {
+            var data = db.tblProductos.Select(x => new {
+                Prod_Id = x.Prd_Codigo,
+                Prod_Descripcion = x.Prd_Descripcion,
+                Prod_Precio = x.Prd_PrecioVenta
+            }).ToList();
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateFactura(int NoFactura, decimal Total)
+        {
+            try
+            {
+                DateTime FechaActual = DateTime.Now;
+
+                List<VentaDetalle_ViewModel> ListaDetalle = (List<VentaDetalle_ViewModel>)HttpContext.Session["ListaDetalle"];
+
+                //Aquí hacer el insert del encabezado
+
+
+                //luego hacer el insert del detalle con un foreach
+
+
+                return Json("Bien", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public async Task<ActionResult> ListaDetalleSesion(List<VentaDetalle_ViewModel> ListaDetalle)
+        {
+            try
+            {
+                Session["ListaDetalle"] = ListaDetalle;
+                return Json("Bien", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception Ex)
+            {
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
         }
 
         // POST: VentaEncabezado/Create
