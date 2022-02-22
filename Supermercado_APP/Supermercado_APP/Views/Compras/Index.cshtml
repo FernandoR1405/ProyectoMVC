@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Supermercado_APP.Models.tblCompra>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cop_NumFactura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cop_Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cop_Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cop_Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cop_FechaCrea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cop_FechaModifica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblProducto.Prd_Codigo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cop_NumFactura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cop_Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cop_Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cop_Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cop_FechaCrea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cop_FechaModifica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblUsuario.Usu_UsuarioNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblUsuario1.Usu_UsuarioNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblProducto.Prd_Codigo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Cop_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Cop_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Cop_Id })
+        </td>
+    </tr>
+}
+
+</table>

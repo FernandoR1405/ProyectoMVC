@@ -1,0 +1,87 @@
+﻿@model Supermercado_APP.Models.tblVentaEncabezado
+
+@{
+    ViewBag.Title = "Detalle de Venta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <dl class="row">
+        <dt>
+            @Html.DisplayNameFor(model => model.VentEnc_NumFactura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VentEnc_NumFactura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VentEnc_Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VentEnc_Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VentEnc_Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VentEnc_Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VentEnc_Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VentEnc_Activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VentEnc_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VentEnc_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VentEnc_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VentEnc_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblPersona.Per_Identidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblPersona.Per_Identidad)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VentEnc_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

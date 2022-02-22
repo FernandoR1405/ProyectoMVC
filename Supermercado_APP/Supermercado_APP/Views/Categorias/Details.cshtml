@@ -1,0 +1,67 @@
+﻿@model Supermercado_APP.Models.tblCategoria
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblCategoria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuario.Usu_UsuarioNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuario1.Usu_UsuarioNombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cat_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

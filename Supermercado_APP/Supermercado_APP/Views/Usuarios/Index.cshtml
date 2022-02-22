@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Supermercado_APP.Models.VW_Usuario>
+
+@{
+    ViewBag.Title = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    th {
+        background: #212529;
+        color: #FFF;
+    }
+</style>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-info" })
+</p>
+<hr />
+
+<table id="example" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adm)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adm)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdU }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Detalle", "Details", new { id = item.IdU }, new { @class = "btn btn-secondary" }) |
+                    <button class="btn btn-danger" onclick="modal(@item.IdU)">Desactivar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<!-- MODAL USUARIOS DELETE -->
+<div class="modal" tabindex="-1" role="dialog" id="UsuariosDelete">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="modal-title">Eliminar Usuario</h5>
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <h4><center>El Usuario</center> <center style="color: #000;">Sera Eliminado</center></h4>
+                            <label style="color: #000;" for="">Desea Continuar?</label>
+                            <input type="hidden" name="IdCatD">
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="btn btn-block btn-danger" onclick="eliminar()" type="submit" value="Desactivar">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="btn btn-block btn-secondary " onclick="Close();" type="button" value="Cancelar">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN MODAL USUARIOS DELETE -->
+
+
+    <script>
+        let idCat;
+        function modal(id) {
+            idUsu = id;
+            $("#UsuariosDelete").modal();
+        }
+
+        function eliminar() {
+            window.location.href = "Usuarios/Delete/" + idUsu;
+        }
+
+        function Close() {
+            $("#UsuariosDelete").modal("hide");
+        }
+    </script>

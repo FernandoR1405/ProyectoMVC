@@ -1,0 +1,94 @@
+﻿@model Supermercado_APP.Models.tblVentaEncabezado
+
+
+@{
+    ViewBag.Title = "Crear Venta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-row">
+
+    <div class="suarios" id="suarios">
+        @Html.Partial("_Personas")
+    </div>
+
+    <div class="col-md-12" style="margin-top: 10px">
+        <h2>Encabezado</h2>
+        <hr />
+    </div>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="col-md-4">
+        @Html.LabelFor(model => model.VentEnc_NumFactura, htmlAttributes: new { @class = "control-label col-md-5" })
+        <div class="form-group">
+            @Html.EditorFor(model => model.VentEnc_NumFactura, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.VentEnc_NumFactura, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        @Html.LabelFor(model => model.VentEnc_Fecha, htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="form-group">
+            <input type="date" class="form-control" id="VentEnc_Fecha" name="VentEnc_Fecha" value="" />
+            @*@Html.EditorFor(model => model.VentEnc_Fecha, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.ValidationMessageFor(model => model.VentEnc_Fecha, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        @Html.LabelFor(model => model.VentEnc_Total, htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="form-group">
+            @Html.EditorFor(model => model.VentEnc_Total, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.VentEnc_Total, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        @Html.LabelFor(model => model.Per_Id, htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="form-group">
+            @Html.DropDownList("Per_Id", null, htmlAttributes: new { @class = "form-control flexselect" })
+            @Html.ValidationMessageFor(model => model.Per_Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-4" style="display:flex; align-items: center;">
+        <span id="usuDatosbtn" class="btn btn-info" style="margin-top: 15px">Ingresar Usuario</span>
+    </div>
+
+    <div class="col-md-12" style="margin-top: 10px">
+        <h2>Detalle</h2>
+        <hr />
+    </div>
+
+
+    <div>
+        @Html.Partial("_Productos")
+    </div>
+
+</div>
+}
+<hr />
+<div class="col-md-3">
+    @Html.ActionLink("< Regresar", "Index")
+</div>
+
+<script>
+
+    function listar() {
+        $.ajax({
+            url: "GetProductos",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+        })
+
+            .done(function (data) {
+                cosole.log(data);
+            });
+    }
+
+</script>
