@@ -920,19 +920,6 @@
       <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
       <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Usuario_INSERT">
-      <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
-      <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
-      <Parameter Name="Usu_EsAdmin" Mode="In" Type="Boolean" />
-      <Parameter Name="Usu_UsuarioCrea" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Usuario_UPDATE">
-      <Parameter Name="Usu_Id" Mode="In" Type="Int32" />
-      <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
-      <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
-      <Parameter Name="Usu_EsAdmin" Mode="In" Type="Boolean" />
-      <Parameter Name="Usu_UsuarioModifica" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Categoria_DELETE">
       <Parameter Name="Cat_Id" Mode="In" Type="Int32" />
       <Parameter Name="Cat_UsuarioModifica" Mode="In" Type="Int32" />
@@ -1004,10 +991,6 @@
       <Parameter Name="Per_Correo" Mode="In" Type="String" />
       <Parameter Name="Per_UsuarioModifica" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Usuario_DELETE">
-      <Parameter Name="Usu_Id" Mode="In" Type="Int32" />
-      <Parameter Name="Usu_UsuarioModifica" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Venta_INSERT">
       <Parameter Name="VentEnc_NumFactura" Mode="In" Type="Int32" />
       <Parameter Name="VentEnc_Fecha" Mode="In" Type="DateTime" />
@@ -1020,7 +1003,24 @@
       <Parameter Name="VentDet_Impuesto" Mode="In" Type="String" />
       <Parameter Name="cont" Mode="In" Type="Int32" />
     </FunctionImport>
-    <EntitySet Name="VW_Usuarios" EntityType="SupermercadoDBModel.VW_Usuarios" />
+    <EntitySet Name="VW_Usuario" EntityType="SupermercadoDBModel.VW_Usuario" />
+    <FunctionImport Name="UDP_Usuario_INSERT">
+      <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
+      <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
+      <Parameter Name="Usu_EsAdmin" Mode="In" Type="Boolean" />
+      <Parameter Name="Usu_UsuarioCrea" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Usuario_UPDATE">
+      <Parameter Name="Usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
+      <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
+      <Parameter Name="Usu_EsAdmin" Mode="In" Type="Boolean" />
+      <Parameter Name="Usu_UsuarioModifica" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Usuario_DELETE">
+      <Parameter Name="Usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Usu_UsuarioModifica" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="UDP_Inicio_Sesion_Result">
     <Property Type="Int32" Name="Usu_Id" Nullable="false" />
@@ -1034,13 +1034,14 @@
     <Property Type="Int32" Name="Usu_UsuarioModifica" Nullable="true" />
     <Property Type="DateTime" Name="Usu_FechaModifica" Nullable="true" Precision="23" />
   </ComplexType>
-  <EntityType Name="VW_Usuarios">
+  <EntityType Name="VW_Usuario">
     <Key>
-      <PropertyRef Name="Usu_Id" />
+      <PropertyRef Name="IdU" />
     </Key>
-    <Property Name="Usu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Usu_UsuarioNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Usu_Contrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Usu_EsAdmin" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="IdU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Act" Type="Boolean" />
+    <Property Name="Adm" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

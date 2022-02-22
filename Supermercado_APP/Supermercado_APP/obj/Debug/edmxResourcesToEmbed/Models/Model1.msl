@@ -230,15 +230,19 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="VW_Usuarios">
-      <EntityTypeMapping TypeName="SupermercadoDBModel.VW_Usuarios">
-        <MappingFragment StoreEntitySet="VW_Usuarios">
-          <ScalarProperty Name="Usu_EsAdmin" ColumnName="Usu_EsAdmin" />
-          <ScalarProperty Name="Usu_Contrasena" ColumnName="Usu_Contrasena" />
-          <ScalarProperty Name="Usu_UsuarioNombre" ColumnName="Usu_UsuarioNombre" />
-          <ScalarProperty Name="Usu_Id" ColumnName="Usu_Id" />
+    <EntitySetMapping Name="VW_Usuario">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.VW_Usuario">
+        <MappingFragment StoreEntitySet="VW_Usuario">
+          <ScalarProperty Name="Adm" ColumnName="Adm" />
+          <ScalarProperty Name="Act" ColumnName="Act" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdU" ColumnName="IdU" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Usuario_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_INSERT" />
+    <FunctionImportMapping FunctionImportName="UDP_Usuario_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_UPDATE" />
+    <FunctionImportMapping FunctionImportName="UDP_Usuario_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_DELETE" />
   </EntityContainerMapping>
 </Mapping>

@@ -17,7 +17,7 @@ namespace Supermercado_APP.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            var tblUsuarios = db.VW_Usuarios;
+            var tblUsuarios = db.VW_Usuario;
             return View(tblUsuarios.ToList());
         }
 
@@ -54,7 +54,7 @@ namespace Supermercado_APP.Controllers
         {
             if (ModelState.IsValid)
             {
-                int usu = 1;
+                int usu = int.Parse(Session["UsuarioId"].ToString());
                 db.UDP_Usuario_INSERT(tblUsuario.Usu_UsuarioNombre, tblUsuario.Usu_Contrasena, tblUsuario.Usu_EsAdmin,usu);
                 //db.tblUsuarios.Add(tblUsuario);
                 //db.SaveChanges();
@@ -94,7 +94,7 @@ namespace Supermercado_APP.Controllers
         {
             if (ModelState.IsValid)
             {
-                int usu = 1;
+                int usu = int.Parse(Session["UsuarioId"].ToString());
                 db.UDP_Usuario_UPDATE(tblUsuario.Usu_Id,tblUsuario.Usu_UsuarioNombre, tblUsuario.Usu_Contrasena, tblUsuario.Usu_EsAdmin,usu);
                 //db.Entry(tblUsuario).State = EntityState.Modified;
                 //db.SaveChanges();
@@ -109,7 +109,8 @@ namespace Supermercado_APP.Controllers
         // GET: Usuarios/Delete/5
         public ActionResult Delete(int? id)
         {
-            db.UDP_Usuario_DELETE(id, 1);
+            int usu = int.Parse(Session["UsuarioId"].ToString());
+            db.UDP_Usuario_DELETE(id, usu);
             //tblUsuario tblUsuario = db.tblUsuarios.Find(id);
             //db.tblUsuarios.Remove(tblUsuario);
             //db.SaveChanges();

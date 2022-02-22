@@ -28,6 +28,7 @@
             padding-right: 15px !important;
             padding-left: 5px !important;
         }
+
         td {
             padding-right: 15px !important;
             padding-left: 5px !important;
@@ -53,7 +54,7 @@
 
                         <ul class="nav_list">
                             <li>
-                                <a href="#">
+                                <a href="@Url.Action("Index","Usuarios")">
                                     <i class='bx bx-user'></i>
                                     <span class="links_name">Usuario</span>
                                 </a>
@@ -133,7 +134,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            @RenderBody();
+                            @RenderBody()
                         </div>
 
                     </div>
@@ -145,7 +146,7 @@
 
     @*</div>
 
-    </div>*@
+        </div>*@
 
     @*<script src="../../Content/plugins/jquery/jquery.min.js"></script>*@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -189,6 +190,11 @@
         }
 
     </script>
+
+    @if (HttpContext.Current.Session["NombreUsuario"] == "")
+    {
+        @Url.Action("Index", "Login")
+    }
 
 </body>
 </html>

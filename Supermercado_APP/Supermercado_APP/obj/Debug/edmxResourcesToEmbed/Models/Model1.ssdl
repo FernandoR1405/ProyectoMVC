@@ -200,16 +200,17 @@
     <Property Name="Pro_UsuarioModifica" Type="int" />
     <Property Name="Pro_FechaModifica" Type="date" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-  <EntityType Name="VW_Usuarios">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_Usuario">
     <Key>
-      <PropertyRef Name="Usu_Id" />
+      <PropertyRef Name="IdU" />
     </Key>
-    <Property Name="Usu_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Usu_UsuarioNombre" Type="nvarchar" MaxLength="100" />
-    <Property Name="Usu_Contrasena" Type="nvarchar" MaxLength="100" />
-    <Property Name="Usu_EsAdmin" Type="varchar" MaxLength="2" />
+    <Property Name="IdU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+    <Property Name="Pass" Type="nvarchar" MaxLength="100" />
+    <Property Name="Act" Type="bit" />
+    <Property Name="Adm" Type="varchar" MaxLength="2" />
   </EntityType>
   <Association Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
     <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
@@ -683,6 +684,23 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuarios' no tiene de
     <Parameter Name="Usu_UsuarioNombre" Type="nvarchar" Mode="In" />
     <Parameter Name="Usu_Contrasena" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="UDP_Usuario_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="Usu_UsuarioNombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="Usu_Contrasena" Type="nvarchar" Mode="In" />
+    <Parameter Name="Usu_EsAdmin" Type="bit" Mode="In" />
+    <Parameter Name="Usu_UsuarioCrea" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Usuario_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="Usu_Id" Type="int" Mode="In" />
+    <Parameter Name="Usu_UsuarioNombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="Usu_Contrasena" Type="nvarchar" Mode="In" />
+    <Parameter Name="Usu_EsAdmin" Type="bit" Mode="In" />
+    <Parameter Name="Usu_UsuarioModifica" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Usuario_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="Usu_Id" Type="int" Mode="In" />
+    <Parameter Name="Usu_UsuarioModifica" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="SupermercadoDBModelStoreContainer">
     <EntitySet Name="tblUsuarios" EntityType="Self.tblUsuarios" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tblCategorias" EntityType="Self.tblCategorias" Schema="Fact" store:Type="Tables" />
@@ -697,13 +715,14 @@ advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuarios' no tiene de
     <EntitySet Name="tblDirecciones" EntityType="Self.tblDirecciones" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tblPersonas" EntityType="Self.tblPersonas" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tblProveedores" EntityType="Self.tblProveedores" Schema="Gral" store:Type="Tables" />
-    <EntitySet Name="VW_Usuarios" EntityType="Self.VW_Usuarios" store:Type="Views" store:Schema="Acce">
+    <EntitySet Name="VW_Usuario" EntityType="Self.VW_Usuario" store:Type="Views" store:Schema="Acce">
       <DefiningQuery>SELECT 
-    [VW_Usuarios].[Usu_Id] AS [Usu_Id], 
-    [VW_Usuarios].[Usu_UsuarioNombre] AS [Usu_UsuarioNombre], 
-    [VW_Usuarios].[Usu_Contrasena] AS [Usu_Contrasena], 
-    [VW_Usuarios].[Usu_EsAdmin] AS [Usu_EsAdmin]
-    FROM [Acce].[VW_Usuarios] AS [VW_Usuarios]</DefiningQuery>
+    [VW_Usuario].[IdU] AS [IdU], 
+    [VW_Usuario].[Nombre] AS [Nombre], 
+    [VW_Usuario].[Pass] AS [Pass], 
+    [VW_Usuario].[Act] AS [Act], 
+    [VW_Usuario].[Adm] AS [Adm]
+    FROM [Acce].[VW_Usuario] AS [VW_Usuario]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
       <End Role="tblUsuarios" EntitySet="tblUsuarios" />
