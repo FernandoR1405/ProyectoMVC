@@ -58,6 +58,7 @@
         <AssociationConnector Association="SupermercadoDBModel.FK_Gral_tblProveedores_Gral_tblDirecciones_Dir_Id" ManuallyRouted="false" />
         <AssociationConnector Association="SupermercadoDBModel.FK_tblPersonas_tblDireccion_Dir_Id" ManuallyRouted="false" />
         <EntityTypeShape EntityType="SupermercadoDBModel.VW_Usuario" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SupermercadoDBModel.VW_Categorias" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
