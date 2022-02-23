@@ -244,5 +244,17 @@
     <FunctionImportMapping FunctionImportName="UDP_Usuario_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_INSERT" />
     <FunctionImportMapping FunctionImportName="UDP_Usuario_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_UPDATE" />
     <FunctionImportMapping FunctionImportName="UDP_Usuario_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_DELETE" />
+    <EntitySetMapping Name="VW_Categorias">
+      <EntityTypeMapping TypeName="SupermercadoDBModel.VW_Categorias">
+        <MappingFragment StoreEntitySet="VW_Categorias">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Id_Cate" ColumnName="Id_Cate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Categoria_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_DELETE" />
+    <FunctionImportMapping FunctionImportName="UDP_Categoria_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_INSERT" />
+    <FunctionImportMapping FunctionImportName="UDP_Categoria_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Categoria_UPDATE" />
   </EntityContainerMapping>
 </Mapping>

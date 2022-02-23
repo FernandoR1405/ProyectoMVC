@@ -200,8 +200,8 @@
     <Property Name="Pro_UsuarioModifica" Type="int" />
     <Property Name="Pro_FechaModifica" Type="date" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SupermercadoDB.Acce.VW_Usuario' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="VW_Usuario">
     <Key>
       <PropertyRef Name="IdU" />
@@ -211,6 +211,16 @@ warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a pr
     <Property Name="Pass" Type="nvarchar" MaxLength="100" />
     <Property Name="Act" Type="bit" />
     <Property Name="Adm" Type="varchar" MaxLength="2" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SupermercadoDB.Fact.VW_Categorias' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="VW_Categorias">
+    <Key>
+      <PropertyRef Name="Id_Cate" />
+    </Key>
+    <Property Name="Id_Cate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Categoria" Type="nvarchar" MaxLength="100" />
+    <Property Name="Estado" Type="varchar" MaxLength="8" />
   </EntityType>
   <Association Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
     <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
@@ -697,6 +707,19 @@ warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a pr
     <Parameter Name="Usu_EsAdmin" Type="bit" Mode="In" />
     <Parameter Name="Usu_UsuarioModifica" Type="int" Mode="In" />
   </Function>
+  <Function Name="UDP_Categoria_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Cat_Id" Type="int" Mode="In" />
+    <Parameter Name="Cat_UsuarioModifica" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Categoria_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Cat_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="Cat_UsuarioCrea" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Categoria_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Cat_Id" Type="int" Mode="In" />
+    <Parameter Name="Cat_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="Cat_UsuarioModifica" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Usuario_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="Usu_Id" Type="int" Mode="In" />
     <Parameter Name="Usu_UsuarioModifica" Type="int" Mode="In" />
@@ -723,6 +746,13 @@ warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a pr
     [VW_Usuario].[Act] AS [Act], 
     [VW_Usuario].[Adm] AS [Adm]
     FROM [Acce].[VW_Usuario] AS [VW_Usuario]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_Categorias" EntityType="Self.VW_Categorias" store:Type="Views" store:Schema="Fact">
+      <DefiningQuery>SELECT 
+    [VW_Categorias].[Id_Cate] AS [Id_Cate], 
+    [VW_Categorias].[Categoria] AS [Categoria], 
+    [VW_Categorias].[Estado] AS [Estado]
+    FROM [Fact].[VW_Categorias] AS [VW_Categorias]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id" Association="Self.FK_Fact_tblCategorias_Cat_UsuarioCrea_Acc_tblUsuario_Usu_Id">
       <End Role="tblUsuarios" EntitySet="tblUsuarios" />

@@ -920,19 +920,6 @@
       <Parameter Name="Usu_UsuarioNombre" Mode="In" Type="String" />
       <Parameter Name="Usu_Contrasena" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Categoria_DELETE">
-      <Parameter Name="Cat_Id" Mode="In" Type="Int32" />
-      <Parameter Name="Cat_UsuarioModifica" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Categoria_INSERT">
-      <Parameter Name="Cat_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="Cat_UsuarioCrea" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Categoria_UPDATE">
-      <Parameter Name="Cat_Id" Mode="In" Type="Int32" />
-      <Parameter Name="Cat_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="Cat_UsuarioModifica" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Proveedores_DELETE">
       <Parameter Name="Pro_Id" Mode="In" Type="Int32" />
       <Parameter Name="Pro_UsuarioModifica" Mode="In" Type="Int32" />
@@ -1021,6 +1008,20 @@
       <Parameter Name="Usu_Id" Mode="In" Type="Int32" />
       <Parameter Name="Usu_UsuarioModifica" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="VW_Categorias" EntityType="SupermercadoDBModel.VW_Categorias" />
+    <FunctionImport Name="UDP_Categoria_DELETE">
+      <Parameter Name="Cat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Cat_UsuarioModifica" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Categoria_INSERT">
+      <Parameter Name="Cat_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Cat_UsuarioCrea" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Categoria_UPDATE">
+      <Parameter Name="Cat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Cat_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Cat_UsuarioModifica" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="UDP_Inicio_Sesion_Result">
     <Property Type="Int32" Name="Usu_Id" Nullable="false" />
@@ -1043,5 +1044,13 @@
     <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Act" Type="Boolean" />
     <Property Name="Adm" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_Categorias">
+    <Key>
+      <PropertyRef Name="Id_Cate" />
+    </Key>
+    <Property Name="Id_Cate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Estado" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

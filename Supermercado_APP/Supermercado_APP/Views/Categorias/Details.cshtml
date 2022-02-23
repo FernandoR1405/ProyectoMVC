@@ -5,63 +5,69 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
+<h2>Detalle de categoria</h2>
+<hr />
 <div>
-    <h4>tblCategoria</h4>
-    <hr />
-    <dl class="dl-horizontal">
+    <dl class="row">
+        <div class="col-md-3">
         <dt>
-            @Html.DisplayNameFor(model => model.Cat_Descripcion)
+            @Html.DisplayNameFor(model => model.Cat_Id)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Cat_Descripcion)
+            @Html.DisplayFor(model => model.Cat_Id)
         </dd>
+</div>
+<div class="col-md-3">
+    <dt>
+        @Html.DisplayNameFor(model => model.Cat_Descripcion)
+    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cat_Estado)
-        </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Cat_Descripcion)
+    </dd>
+</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cat_Estado)
-        </dd>
+<div class="col-md-12">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cat_Id }, new { @class = "btn btn-success" })
+</div>
+<br />
+<br />
+<br />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cat_FechaCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cat_FechaCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cat_FechaModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cat_FechaModifica)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tblUsuario.Usu_UsuarioNombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tblUsuario.Usu_UsuarioNombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tblUsuario1.Usu_UsuarioNombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tblUsuario1.Usu_UsuarioNombre)
-        </dd>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            Auditoria
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Accion</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tblUsuario.Usu_UsuarioNombre)</td>
+                        <td>@Html.DisplayFor(model => model.Cat_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tblUsuario1.Usu_UsuarioNombre)</td>
+                        <td>@Html.DisplayFor(model => model.Cat_FechaModifica)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Cat_Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<hr />
+<div class="col-md-3">
+    @Html.ActionLink("< Regresar", "Index")
+</div>

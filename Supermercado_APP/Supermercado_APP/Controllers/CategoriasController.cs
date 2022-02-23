@@ -16,10 +16,10 @@ namespace Supermercado_APP.Controllers
         private SupermercadoDBEntities db = new SupermercadoDBEntities();
 
         // GET: Categorias
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var tblCategorias = db.tblCategorias.Include(t => t.tblUsuario).Include(t => t.tblUsuario1);
-            return View(await tblCategorias.ToListAsync());
+            var tblCategorias = db.VW_Categorias.Where(x => x.Estado == "Activo");
+            return View(tblCategorias.ToList());
         }
 
         // GET: Categorias/Details/5
@@ -50,12 +50,12 @@ namespace Supermercado_APP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Cat_Id,Cat_Descripcion,Cat_Estado,Cat_UsuarioCrea,Cat_FechaCrea,Cat_UsuarioModifica,Cat_FechaModifica")] tblCategoria tblCategoria)
+        public ActionResult Create([Bind(Include = "Cat_Descripcion,Cat_UsuarioCrea")] tblCategoria tblCategoria)
         {
             if (ModelState.IsValid)
             {
-                db.tblCategorias.Add(tblCategoria);
-                await db.SaveChangesAsync();
+                int usu = int.Parse(Session["UsuarioId"].ToString());
+                db.UDP_Categoria_INSERT(tblCategoria.Cat_Descripcion, usu);
                 return RedirectToAction("Index");
             }
 
@@ -86,12 +86,12 @@ namespace Supermercado_APP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Cat_Id,Cat_Descripcion,Cat_Estado,Cat_UsuarioCrea,Cat_FechaCrea,Cat_UsuarioModifica,Cat_FechaModifica")] tblCategoria tblCategoria)
+        public ActionResult Edit([Bind(Include = "Cat_Id,Cat_Descripcion,Cat_UsuarioModifica")] tblCategoria tblCategoria)
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(tblCategoria).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                int usu = int.Parse(Session["UsuarioId"].ToString());
+                db.UDP_Categoria_UPDATE(tblCategoria.Cat_Id, tblCategoria.Cat_Descripcion, usu);
                 return RedirectToAction("Index");
             }
             ViewBag.Cat_UsuarioCrea = new SelectList(db.tblUsuarios, "Usu_Id", "Usu_UsuarioNombre", tblCategoria.Cat_UsuarioCrea);
@@ -100,18 +100,11 @@ namespace Supermercado_APP.Controllers
         }
 
         // GET: Categorias/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tblCategoria tblCategoria = await db.tblCategorias.FindAsync(id);
-            if (tblCategoria == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tblCategoria);
+            int usu = int.Parse(Session["UsuarioId"].ToString());
+            db.UDP_Categoria_DELETE(id, usu);
+            return RedirectToAction("Index");
         }
 
         // POST: Categorias/Delete/5
