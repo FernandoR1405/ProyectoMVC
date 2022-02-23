@@ -7,13 +7,14 @@ var prod_Id = 0;
 var prod_Precio = 0;
 var prod_Descripcion = "";
 var prod_Cantidad = 0;
+var Vacios = "";
+var Nfactura = "";
 
 //total de venta
 var VentEnc_Total = 0;
 
-
-//cargar el listado de productos 
-$(document).ready(function () {
+//Cargar el Listado de productos
+function LlenarDropown() {
 
     //vaciar el dropdown de productos 
     $("#DDLProductos").empty();
@@ -30,7 +31,7 @@ $(document).ready(function () {
 
         //llenar el primer registro del ddl
         var Options = "<option val='0'>Seleccione un producto...</option>";
-        
+
         //dibujar los option con registros de productos
         data.forEach(function (item, index) {
             Options += "<option value='" + item.Prod_Id + "' data-id='" + item.Prod_Id + "' data-precio='" + item.Prod_Precio + "'>" + item.Prod_Descripcion + " - L. " + item.Prod_Precio + "</option>";
@@ -42,6 +43,17 @@ $(document).ready(function () {
     }).fail(function () {
         console.log("Ha ocurrido un error.")
     });
+}
+
+
+
+
+
+//Llamar listado de productos 
+$(document).ready(function () {
+
+    LlenarDropown();
+
 });
 
 //detectar los cambios en el ddl de productos
@@ -60,18 +72,37 @@ $("#DDLProductos").change(function () {
 
 //agregar linea al detalle de la factura
 $("#btnAgregarDetalle").click(function () {
+
     //cambiar el valor de la variable cantidad
     prod_Cantidad = $("#txtCantidad").val();
+    Nfactura = $("#NumFact").val();
+    if (prod_Cantidad == "" || prod_Precio == "" || Nfactura == "")
+    {
+        Vacios = "Debe completar todos los campos";
+        $("#Message").html(Vacios);
+    }
+    else
+    {
 
-    //agregar detalle de venta a la lista
-    ListadoDetalle.push({ prod_Id: prod_Id, prod_Precio: prod_Precio, prod_Cantidad: prod_Cantidad });
+        Vacios = "";
 
-    //ListadoDetalle.push(DetalleVenta);
-    console.log("AgregarDetalle");
-    console.log(ListadoDetalle);
+        //Limpiar Cantidad
+        $("#txtCantidad").val("");
+        $("#Message").html(Vacios);
 
-    //llamar funcion que inserta detalle en la tabla
-    InsertarDetalleFactura();
+        //Limpiar el dropdown
+        LlenarDropown();
+
+        //agregar detalle de venta a la lista
+        ListadoDetalle.push({ prod_Id: prod_Id, prod_Precio: prod_Precio, prod_Cantidad: prod_Cantidad });
+
+        //llamar funcion que inserta detalle en la tabla
+        InsertarDetalleFactura();
+
+        //ListadoDetalle.push(DetalleVenta);
+        console.log("AgregarDetalle");
+        console.log(ListadoDetalle);
+    }
 });
 
 //llamar el action result de insert
@@ -83,7 +114,7 @@ $("#btnCreate").click(function () {
     if (RespuestaValidacion == true) {
 
         let DataForm = [
-            { name: "NoFactura", value: 1 },
+            { name: "NoFactura", value: Nfactura},
             { name: "Total", value: parseFloat(VentEnc_Id) }
         ];
         console.log(DataForm);
@@ -111,6 +142,8 @@ $("#btnCreate").click(function () {
         });
 
     }
+
+    /*location.reload();*/
 });
 
 

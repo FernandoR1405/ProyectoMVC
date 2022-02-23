@@ -697,6 +697,27 @@ warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a pr
     <Parameter Name="Usu_EsAdmin" Type="bit" Mode="In" />
     <Parameter Name="Usu_UsuarioModifica" Type="int" Mode="In" />
   </Function>
+  <Function Name="UDP_VentaDetalle_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Fact">
+    <Parameter Name="Prd_Id" Type="int" Mode="In" />
+    <Parameter Name="VentDet_Precio" Type="money" Mode="In" />
+    <Parameter Name="VentDet_Cantidad" Type="int" Mode="In" />
+    <Parameter Name="VentDet_UsuarioCrea" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_VentaEncabezado_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Fact">
+    <Parameter Name="VentEnc_NumFactura" Type="int" Mode="In" />
+    <Parameter Name="VentEnc_Total" Type="money" Mode="In" />
+    <Parameter Name="VentEnc_UsuarioCrea" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Personas_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="Per_Identidad" Type="nvarchar" Mode="In" />
+    <Parameter Name="Per_Rtn" Type="nvarchar" Mode="In" />
+    <Parameter Name="Per_Nombres" Type="nvarchar" Mode="In" />
+    <Parameter Name="Per_PrimerApellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="Per_SegundoApellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="Per_Sexo" Type="char" Mode="In" />
+    <Parameter Name="Per_Telefono" Type="nvarchar" Mode="In" />
+    <Parameter Name="Per_Correo" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Usuario_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="Usu_Id" Type="int" Mode="In" />
     <Parameter Name="Usu_UsuarioModifica" Type="int" Mode="In" />

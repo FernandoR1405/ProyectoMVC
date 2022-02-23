@@ -58,16 +58,17 @@ namespace Supermercado_APP.Controllers
             ViewBag.VentEnc_UsuarioCrea = new SelectList(db.tblUsuarios, "Usu_Id", "Usu_UsuarioNombre");
             ViewBag.VentEnc_UsuarioModifica = new SelectList(db.tblUsuarios, "Usu_Id", "Usu_UsuarioNombre");
             ViewBag.Per_Id = new SelectList(db.tblPersonas, "Per_Id", "Per_Identidad");
-            ViewBag.Prd_Id = new SelectList(db.tblProductos, "Prd_Id", "Prd_Codigo");
+            ViewBag.Prd_Id = new SelectList(db.tblProductos, "Prd_Id", "Prd_Id");
             //ViewBag.VentEnc_Id = new SelectList(db.tblVentaEncabezadoes, "VentEnc_Id", "VentEnc_Id");
             return View();
         }
 
+        //Obtener listado de Productos
         [HttpGet]
         public async Task<ActionResult> ObtenerListadoProductos()
         {
             var data = db.tblProductos.Select(x => new {
-                Prod_Id = x.Prd_Codigo,
+                Prod_Id = x.Prd_Id,
                 Prod_Descripcion = x.Prd_Descripcion,
                 Prod_Precio = x.Prd_PrecioVenta
             }).ToList();
@@ -75,9 +76,11 @@ namespace Supermercado_APP.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+
         [HttpPost]
         public async Task<ActionResult> CreateFactura(int NoFactura, decimal Total)
         {
+            int usu = int.Parse(Session["UsuarioId"].ToString());
             try
             {
                 DateTime FechaActual = DateTime.Now;
@@ -86,9 +89,14 @@ namespace Supermercado_APP.Controllers
 
                 //Aquí hacer el insert del encabezado
 
+                db.UDP_VentaEncabezado_INSERT(NoFactura,Total,usu);
 
                 //luego hacer el insert del detalle con un foreach
 
+                foreach (var item in ListaDetalle)
+                {
+                        db.UDP_VentaDetalle_INSERT(item.prod_Id,item.prod_Precio,item.prod_Cantidad, usu);
+                }
 
                 return Json("Bien", JsonRequestBehavior.AllowGet);
             }
@@ -123,8 +131,8 @@ namespace Supermercado_APP.Controllers
             ModelState.Remove("VentDet_Subtotal"); 
             if (ModelState.IsValid)
             {
-                db.UDP_tblPersonas_Insert(tblPersona.Per_Identidad,tblPersona.Per_Rtn,tblPersona.Per_Nombres,tblPersona.Per_PrimerApellido,tblPersona.Per_SegundoApellido,tblPersona.Per_Sexo,1,tblPersona.Per_Telefono,tblPersona.Per_Correo,1);
-                db.UDP_Venta_INSERT(tblVentaEncabezado.VentEnc_NumFactura, tblVentaEncabezado.VentEnc_Fecha, tblVentaEncabezado.VentEnc_Total, 1, 1, tblventadetalle.VentDet_Precio, tblventadetalle.VentDet_Cantidad, tblventadetalle.VentDet_Descuento, tblventadetalle.VentDet_Impuesto, 0);
+                //db.UDP_tblPersonas_Insert(tblPersona.Per_Identidad,tblPersona.Per_Rtn,tblPersona.Per_Nombres,tblPersona.Per_PrimerApellido,tblPersona.Per_SegundoApellido,tblPersona.Per_Sexo,1,tblPersona.Per_Telefono,tblPersona.Per_Correo,1);
+                //db.UDP_Venta_INSERT(tblVentaEncabezado.VentEnc_NumFactura, tblVentaEncabezado.VentEnc_Fecha, tblVentaEncabezado.VentEnc_Total, 1, 1, tblventadetalle.VentDet_Precio, tblventadetalle.VentDet_Cantidad, tblventadetalle.VentDet_Descuento, tblventadetalle.VentDet_Impuesto, 0);
                 //await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

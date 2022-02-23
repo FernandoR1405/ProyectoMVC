@@ -218,51 +218,6 @@ namespace Supermercado_APP.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tblPersonas_Delete", per_IdParameter, per_UsuarioModificaParameter);
         }
     
-        public virtual int UDP_tblPersonas_Insert(string per_Identidad, string per_Rtn, string per_Nombres, string per_PrimerApellido, string per_SegundoApellido, string per_Sexo, Nullable<int> dir_Id, string per_Telefono, string per_Correo, Nullable<int> per_UsuarioCrea)
-        {
-            var per_IdentidadParameter = per_Identidad != null ?
-                new ObjectParameter("Per_Identidad", per_Identidad) :
-                new ObjectParameter("Per_Identidad", typeof(string));
-    
-            var per_RtnParameter = per_Rtn != null ?
-                new ObjectParameter("Per_Rtn", per_Rtn) :
-                new ObjectParameter("Per_Rtn", typeof(string));
-    
-            var per_NombresParameter = per_Nombres != null ?
-                new ObjectParameter("Per_Nombres", per_Nombres) :
-                new ObjectParameter("Per_Nombres", typeof(string));
-    
-            var per_PrimerApellidoParameter = per_PrimerApellido != null ?
-                new ObjectParameter("Per_PrimerApellido", per_PrimerApellido) :
-                new ObjectParameter("Per_PrimerApellido", typeof(string));
-    
-            var per_SegundoApellidoParameter = per_SegundoApellido != null ?
-                new ObjectParameter("Per_SegundoApellido", per_SegundoApellido) :
-                new ObjectParameter("Per_SegundoApellido", typeof(string));
-    
-            var per_SexoParameter = per_Sexo != null ?
-                new ObjectParameter("Per_Sexo", per_Sexo) :
-                new ObjectParameter("Per_Sexo", typeof(string));
-    
-            var dir_IdParameter = dir_Id.HasValue ?
-                new ObjectParameter("Dir_Id", dir_Id) :
-                new ObjectParameter("Dir_Id", typeof(int));
-    
-            var per_TelefonoParameter = per_Telefono != null ?
-                new ObjectParameter("Per_Telefono", per_Telefono) :
-                new ObjectParameter("Per_Telefono", typeof(string));
-    
-            var per_CorreoParameter = per_Correo != null ?
-                new ObjectParameter("Per_Correo", per_Correo) :
-                new ObjectParameter("Per_Correo", typeof(string));
-    
-            var per_UsuarioCreaParameter = per_UsuarioCrea.HasValue ?
-                new ObjectParameter("Per_UsuarioCrea", per_UsuarioCrea) :
-                new ObjectParameter("Per_UsuarioCrea", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tblPersonas_Insert", per_IdentidadParameter, per_RtnParameter, per_NombresParameter, per_PrimerApellidoParameter, per_SegundoApellidoParameter, per_SexoParameter, dir_IdParameter, per_TelefonoParameter, per_CorreoParameter, per_UsuarioCreaParameter);
-        }
-    
         public virtual int UDP_tblPersonas_Update(Nullable<int> per_Id, string per_Identidad, string per_Rtn, string per_Nombres, string per_PrimerApellido, string per_SegundoApellido, string per_Sexo, Nullable<int> dir_Id, string per_Telefono, string per_Correo, Nullable<int> per_UsuarioModifica)
         {
             var per_IdParameter = per_Id.HasValue ?
@@ -310,51 +265,6 @@ namespace Supermercado_APP.Models
                 new ObjectParameter("Per_UsuarioModifica", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_tblPersonas_Update", per_IdParameter, per_IdentidadParameter, per_RtnParameter, per_NombresParameter, per_PrimerApellidoParameter, per_SegundoApellidoParameter, per_SexoParameter, dir_IdParameter, per_TelefonoParameter, per_CorreoParameter, per_UsuarioModificaParameter);
-        }
-    
-        public virtual int UDP_Venta_INSERT(Nullable<int> ventEnc_NumFactura, Nullable<System.DateTime> ventEnc_Fecha, Nullable<decimal> ventEnc_Total, Nullable<int> ven_UsuarioCrea, Nullable<int> prd_Id, Nullable<decimal> ventDet_Precio, Nullable<int> ventDet_Cantidad, Nullable<decimal> ventDet_Descuento, string ventDet_Impuesto, Nullable<int> cont)
-        {
-            var ventEnc_NumFacturaParameter = ventEnc_NumFactura.HasValue ?
-                new ObjectParameter("VentEnc_NumFactura", ventEnc_NumFactura) :
-                new ObjectParameter("VentEnc_NumFactura", typeof(int));
-    
-            var ventEnc_FechaParameter = ventEnc_Fecha.HasValue ?
-                new ObjectParameter("VentEnc_Fecha", ventEnc_Fecha) :
-                new ObjectParameter("VentEnc_Fecha", typeof(System.DateTime));
-    
-            var ventEnc_TotalParameter = ventEnc_Total.HasValue ?
-                new ObjectParameter("VentEnc_Total", ventEnc_Total) :
-                new ObjectParameter("VentEnc_Total", typeof(decimal));
-    
-            var ven_UsuarioCreaParameter = ven_UsuarioCrea.HasValue ?
-                new ObjectParameter("Ven_UsuarioCrea", ven_UsuarioCrea) :
-                new ObjectParameter("Ven_UsuarioCrea", typeof(int));
-    
-            var prd_IdParameter = prd_Id.HasValue ?
-                new ObjectParameter("Prd_Id", prd_Id) :
-                new ObjectParameter("Prd_Id", typeof(int));
-    
-            var ventDet_PrecioParameter = ventDet_Precio.HasValue ?
-                new ObjectParameter("VentDet_Precio", ventDet_Precio) :
-                new ObjectParameter("VentDet_Precio", typeof(decimal));
-    
-            var ventDet_CantidadParameter = ventDet_Cantidad.HasValue ?
-                new ObjectParameter("VentDet_Cantidad", ventDet_Cantidad) :
-                new ObjectParameter("VentDet_Cantidad", typeof(int));
-    
-            var ventDet_DescuentoParameter = ventDet_Descuento.HasValue ?
-                new ObjectParameter("VentDet_Descuento", ventDet_Descuento) :
-                new ObjectParameter("VentDet_Descuento", typeof(decimal));
-    
-            var ventDet_ImpuestoParameter = ventDet_Impuesto != null ?
-                new ObjectParameter("VentDet_Impuesto", ventDet_Impuesto) :
-                new ObjectParameter("VentDet_Impuesto", typeof(string));
-    
-            var contParameter = cont.HasValue ?
-                new ObjectParameter("cont", cont) :
-                new ObjectParameter("cont", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Venta_INSERT", ventEnc_NumFacturaParameter, ventEnc_FechaParameter, ventEnc_TotalParameter, ven_UsuarioCreaParameter, prd_IdParameter, ventDet_PrecioParameter, ventDet_CantidadParameter, ventDet_DescuentoParameter, ventDet_ImpuestoParameter, contParameter);
         }
     
         public virtual int UDP_Usuario_INSERT(string usu_UsuarioNombre, string usu_Contrasena, Nullable<bool> usu_EsAdmin, Nullable<int> usu_UsuarioCrea)
@@ -414,6 +324,81 @@ namespace Supermercado_APP.Models
                 new ObjectParameter("Usu_UsuarioModifica", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Usuario_DELETE", usu_IdParameter, usu_UsuarioModificaParameter);
+        }
+    
+        public virtual int UDP_VentaEncabezado_INSERT(Nullable<int> ventEnc_NumFactura, Nullable<decimal> ventEnc_Total, Nullable<int> ventEnc_UsuarioCrea)
+        {
+            var ventEnc_NumFacturaParameter = ventEnc_NumFactura.HasValue ?
+                new ObjectParameter("VentEnc_NumFactura", ventEnc_NumFactura) :
+                new ObjectParameter("VentEnc_NumFactura", typeof(int));
+    
+            var ventEnc_TotalParameter = ventEnc_Total.HasValue ?
+                new ObjectParameter("VentEnc_Total", ventEnc_Total) :
+                new ObjectParameter("VentEnc_Total", typeof(decimal));
+    
+            var ventEnc_UsuarioCreaParameter = ventEnc_UsuarioCrea.HasValue ?
+                new ObjectParameter("VentEnc_UsuarioCrea", ventEnc_UsuarioCrea) :
+                new ObjectParameter("VentEnc_UsuarioCrea", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_VentaEncabezado_INSERT", ventEnc_NumFacturaParameter, ventEnc_TotalParameter, ventEnc_UsuarioCreaParameter);
+        }
+    
+        public virtual int UDP_Personas_INSERT(string per_Identidad, string per_Rtn, string per_Nombres, string per_PrimerApellido, string per_SegundoApellido, string per_Sexo, string per_Telefono, string per_Correo)
+        {
+            var per_IdentidadParameter = per_Identidad != null ?
+                new ObjectParameter("Per_Identidad", per_Identidad) :
+                new ObjectParameter("Per_Identidad", typeof(string));
+    
+            var per_RtnParameter = per_Rtn != null ?
+                new ObjectParameter("Per_Rtn", per_Rtn) :
+                new ObjectParameter("Per_Rtn", typeof(string));
+    
+            var per_NombresParameter = per_Nombres != null ?
+                new ObjectParameter("Per_Nombres", per_Nombres) :
+                new ObjectParameter("Per_Nombres", typeof(string));
+    
+            var per_PrimerApellidoParameter = per_PrimerApellido != null ?
+                new ObjectParameter("Per_PrimerApellido", per_PrimerApellido) :
+                new ObjectParameter("Per_PrimerApellido", typeof(string));
+    
+            var per_SegundoApellidoParameter = per_SegundoApellido != null ?
+                new ObjectParameter("Per_SegundoApellido", per_SegundoApellido) :
+                new ObjectParameter("Per_SegundoApellido", typeof(string));
+    
+            var per_SexoParameter = per_Sexo != null ?
+                new ObjectParameter("Per_Sexo", per_Sexo) :
+                new ObjectParameter("Per_Sexo", typeof(string));
+    
+            var per_TelefonoParameter = per_Telefono != null ?
+                new ObjectParameter("Per_Telefono", per_Telefono) :
+                new ObjectParameter("Per_Telefono", typeof(string));
+    
+            var per_CorreoParameter = per_Correo != null ?
+                new ObjectParameter("Per_Correo", per_Correo) :
+                new ObjectParameter("Per_Correo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Personas_INSERT", per_IdentidadParameter, per_RtnParameter, per_NombresParameter, per_PrimerApellidoParameter, per_SegundoApellidoParameter, per_SexoParameter, per_TelefonoParameter, per_CorreoParameter);
+        }
+    
+        public virtual int UDP_VentaDetalle_INSERT(Nullable<int> prd_Id, Nullable<decimal> ventDet_Precio, Nullable<int> ventDet_Cantidad, Nullable<int> ventDet_UsuarioCrea)
+        {
+            var prd_IdParameter = prd_Id.HasValue ?
+                new ObjectParameter("Prd_Id", prd_Id) :
+                new ObjectParameter("Prd_Id", typeof(int));
+    
+            var ventDet_PrecioParameter = ventDet_Precio.HasValue ?
+                new ObjectParameter("VentDet_Precio", ventDet_Precio) :
+                new ObjectParameter("VentDet_Precio", typeof(decimal));
+    
+            var ventDet_CantidadParameter = ventDet_Cantidad.HasValue ?
+                new ObjectParameter("VentDet_Cantidad", ventDet_Cantidad) :
+                new ObjectParameter("VentDet_Cantidad", typeof(int));
+    
+            var ventDet_UsuarioCreaParameter = ventDet_UsuarioCrea.HasValue ?
+                new ObjectParameter("VentDet_UsuarioCrea", ventDet_UsuarioCrea) :
+                new ObjectParameter("VentDet_UsuarioCrea", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_VentaDetalle_INSERT", prd_IdParameter, ventDet_PrecioParameter, ventDet_CantidadParameter, ventDet_UsuarioCreaParameter);
         }
     }
 }

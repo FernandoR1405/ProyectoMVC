@@ -966,18 +966,6 @@
       <Parameter Name="Per_Id" Mode="In" Type="Int32" />
       <Parameter Name="Per_UsuarioModifica" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_tblPersonas_Insert">
-      <Parameter Name="Per_Identidad" Mode="In" Type="String" />
-      <Parameter Name="Per_Rtn" Mode="In" Type="String" />
-      <Parameter Name="Per_Nombres" Mode="In" Type="String" />
-      <Parameter Name="Per_PrimerApellido" Mode="In" Type="String" />
-      <Parameter Name="Per_SegundoApellido" Mode="In" Type="String" />
-      <Parameter Name="Per_Sexo" Mode="In" Type="String" />
-      <Parameter Name="Dir_Id" Mode="In" Type="Int32" />
-      <Parameter Name="Per_Telefono" Mode="In" Type="String" />
-      <Parameter Name="Per_Correo" Mode="In" Type="String" />
-      <Parameter Name="Per_UsuarioCrea" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_tblPersonas_Update">
       <Parameter Name="Per_Id" Mode="In" Type="Int32" />
       <Parameter Name="Per_Identidad" Mode="In" Type="String" />
@@ -990,18 +978,6 @@
       <Parameter Name="Per_Telefono" Mode="In" Type="String" />
       <Parameter Name="Per_Correo" Mode="In" Type="String" />
       <Parameter Name="Per_UsuarioModifica" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Venta_INSERT">
-      <Parameter Name="VentEnc_NumFactura" Mode="In" Type="Int32" />
-      <Parameter Name="VentEnc_Fecha" Mode="In" Type="DateTime" />
-      <Parameter Name="VentEnc_Total" Mode="In" Type="Decimal" />
-      <Parameter Name="Ven_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="Prd_Id" Mode="In" Type="Int32" />
-      <Parameter Name="VentDet_Precio" Mode="In" Type="Decimal" />
-      <Parameter Name="VentDet_Cantidad" Mode="In" Type="Int32" />
-      <Parameter Name="VentDet_Descuento" Mode="In" Type="Decimal" />
-      <Parameter Name="VentDet_Impuesto" Mode="In" Type="String" />
-      <Parameter Name="cont" Mode="In" Type="Int32" />
     </FunctionImport>
     <EntitySet Name="VW_Usuario" EntityType="SupermercadoDBModel.VW_Usuario" />
     <FunctionImport Name="UDP_Usuario_INSERT">
@@ -1020,6 +996,27 @@
     <FunctionImport Name="UDP_Usuario_DELETE">
       <Parameter Name="Usu_Id" Mode="In" Type="Int32" />
       <Parameter Name="Usu_UsuarioModifica" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_VentaEncabezado_INSERT">
+      <Parameter Name="VentEnc_NumFactura" Mode="In" Type="Int32" />
+      <Parameter Name="VentEnc_Total" Mode="In" Type="Decimal" />
+      <Parameter Name="VentEnc_UsuarioCrea" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Personas_INSERT">
+      <Parameter Name="Per_Identidad" Mode="In" Type="String" />
+      <Parameter Name="Per_Rtn" Mode="In" Type="String" />
+      <Parameter Name="Per_Nombres" Mode="In" Type="String" />
+      <Parameter Name="Per_PrimerApellido" Mode="In" Type="String" />
+      <Parameter Name="Per_SegundoApellido" Mode="In" Type="String" />
+      <Parameter Name="Per_Sexo" Mode="In" Type="String" />
+      <Parameter Name="Per_Telefono" Mode="In" Type="String" />
+      <Parameter Name="Per_Correo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_VentaDetalle_INSERT">
+      <Parameter Name="Prd_Id" Mode="In" Type="Int32" />
+      <Parameter Name="VentDet_Precio" Mode="In" Type="Decimal" />
+      <Parameter Name="VentDet_Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="VentDet_UsuarioCrea" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="UDP_Inicio_Sesion_Result">

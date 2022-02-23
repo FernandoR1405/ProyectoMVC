@@ -702,6 +702,27 @@ warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a pr
           <Parameter Name="Usu_EsAdmin" Type="bit" Mode="In" />
           <Parameter Name="Usu_UsuarioModifica" Type="int" Mode="In" />
         </Function>
+        <Function Name="UDP_VentaDetalle_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Fact">
+          <Parameter Name="Prd_Id" Type="int" Mode="In" />
+          <Parameter Name="VentDet_Precio" Type="money" Mode="In" />
+          <Parameter Name="VentDet_Cantidad" Type="int" Mode="In" />
+          <Parameter Name="VentDet_UsuarioCrea" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_VentaEncabezado_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Fact">
+          <Parameter Name="VentEnc_NumFactura" Type="int" Mode="In" />
+          <Parameter Name="VentEnc_Total" Type="money" Mode="In" />
+          <Parameter Name="VentEnc_UsuarioCrea" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Personas_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="Per_Identidad" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Rtn" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Nombres" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_PrimerApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_SegundoApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Sexo" Type="char" Mode="In" />
+          <Parameter Name="Per_Telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="Per_Correo" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Usuario_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="Usu_Id" Type="int" Mode="In" />
           <Parameter Name="Usu_UsuarioModifica" Type="int" Mode="In" />
@@ -1856,18 +1877,6 @@ warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a pr
             <Parameter Name="Per_Id" Mode="In" Type="Int32" />
             <Parameter Name="Per_UsuarioModifica" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_tblPersonas_Insert">
-            <Parameter Name="Per_Identidad" Mode="In" Type="String" />
-            <Parameter Name="Per_Rtn" Mode="In" Type="String" />
-            <Parameter Name="Per_Nombres" Mode="In" Type="String" />
-            <Parameter Name="Per_PrimerApellido" Mode="In" Type="String" />
-            <Parameter Name="Per_SegundoApellido" Mode="In" Type="String" />
-            <Parameter Name="Per_Sexo" Mode="In" Type="String" />
-            <Parameter Name="Dir_Id" Mode="In" Type="Int32" />
-            <Parameter Name="Per_Telefono" Mode="In" Type="String" />
-            <Parameter Name="Per_Correo" Mode="In" Type="String" />
-            <Parameter Name="Per_UsuarioCrea" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UDP_tblPersonas_Update">
             <Parameter Name="Per_Id" Mode="In" Type="Int32" />
             <Parameter Name="Per_Identidad" Mode="In" Type="String" />
@@ -1880,18 +1889,6 @@ warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a pr
             <Parameter Name="Per_Telefono" Mode="In" Type="String" />
             <Parameter Name="Per_Correo" Mode="In" Type="String" />
             <Parameter Name="Per_UsuarioModifica" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Venta_INSERT">
-            <Parameter Name="VentEnc_NumFactura" Mode="In" Type="Int32" />
-            <Parameter Name="VentEnc_Fecha" Mode="In" Type="DateTime" />
-            <Parameter Name="VentEnc_Total" Mode="In" Type="Decimal" />
-            <Parameter Name="Ven_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="Prd_Id" Mode="In" Type="Int32" />
-            <Parameter Name="VentDet_Precio" Mode="In" Type="Decimal" />
-            <Parameter Name="VentDet_Cantidad" Mode="In" Type="Int32" />
-            <Parameter Name="VentDet_Descuento" Mode="In" Type="Decimal" />
-            <Parameter Name="VentDet_Impuesto" Mode="In" Type="String" />
-            <Parameter Name="cont" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="VW_Usuario" EntityType="SupermercadoDBModel.VW_Usuario" />
           <FunctionImport Name="UDP_Usuario_INSERT">
@@ -1910,6 +1907,27 @@ warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a pr
           <FunctionImport Name="UDP_Usuario_DELETE">
             <Parameter Name="Usu_Id" Mode="In" Type="Int32" />
             <Parameter Name="Usu_UsuarioModifica" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_VentaEncabezado_INSERT">
+            <Parameter Name="VentEnc_NumFactura" Mode="In" Type="Int32" />
+            <Parameter Name="VentEnc_Total" Mode="In" Type="Decimal" />
+            <Parameter Name="VentEnc_UsuarioCrea" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Personas_INSERT">
+            <Parameter Name="Per_Identidad" Mode="In" Type="String" />
+            <Parameter Name="Per_Rtn" Mode="In" Type="String" />
+            <Parameter Name="Per_Nombres" Mode="In" Type="String" />
+            <Parameter Name="Per_PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="Per_SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="Per_Sexo" Mode="In" Type="String" />
+            <Parameter Name="Per_Telefono" Mode="In" Type="String" />
+            <Parameter Name="Per_Correo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_VentaDetalle_INSERT">
+            <Parameter Name="Prd_Id" Mode="In" Type="Int32" />
+            <Parameter Name="VentDet_Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="VentDet_Cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="VentDet_UsuarioCrea" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="UDP_Inicio_Sesion_Result">
@@ -2183,6 +2201,9 @@ warning 6002: The table/view 'SupermercadoDB.Acce.VW_Usuario' does not have a pr
           <FunctionImportMapping FunctionImportName="UDP_Usuario_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_INSERT" />
           <FunctionImportMapping FunctionImportName="UDP_Usuario_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_UPDATE" />
           <FunctionImportMapping FunctionImportName="UDP_Usuario_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_DELETE" />
+          <FunctionImportMapping FunctionImportName="UDP_VentaEncabezado_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_VentaEncabezado_INSERT" />
+          <FunctionImportMapping FunctionImportName="UDP_Personas_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Personas_INSERT" />
+          <FunctionImportMapping FunctionImportName="UDP_VentaDetalle_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_VentaDetalle_INSERT" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

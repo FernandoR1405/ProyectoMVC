@@ -244,5 +244,8 @@
     <FunctionImportMapping FunctionImportName="UDP_Usuario_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_INSERT" />
     <FunctionImportMapping FunctionImportName="UDP_Usuario_UPDATE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_UPDATE" />
     <FunctionImportMapping FunctionImportName="UDP_Usuario_DELETE" FunctionName="SupermercadoDBModel.Store.UDP_Usuario_DELETE" />
+    <FunctionImportMapping FunctionImportName="UDP_VentaEncabezado_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_VentaEncabezado_INSERT" />
+    <FunctionImportMapping FunctionImportName="UDP_Personas_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_Personas_INSERT" />
+    <FunctionImportMapping FunctionImportName="UDP_VentaDetalle_INSERT" FunctionName="SupermercadoDBModel.Store.UDP_VentaDetalle_INSERT" />
   </EntityContainerMapping>
 </Mapping>

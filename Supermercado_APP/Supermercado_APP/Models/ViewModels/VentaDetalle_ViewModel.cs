@@ -9,7 +9,7 @@ namespace Supermercado_APP.Models.ViewModels
     {
         public int prod_Id { get; set; }
         public int prod_Precio { get; set; }
-        public int prod_Cantidad { get; set; }
+        public int prod_Cantidad { get; set; } 
 
     }
 }
